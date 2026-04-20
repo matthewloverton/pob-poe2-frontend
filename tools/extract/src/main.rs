@@ -2,6 +2,8 @@ use anyhow::{Context, Result};
 use clap::Parser;
 use std::path::PathBuf;
 
+mod tree;
+
 #[derive(Parser, Debug)]
 #[command(about = "Extract PoB-PoE2 data artifacts into frontend-consumable JSON")]
 struct Args {
@@ -21,7 +23,12 @@ struct Args {
 fn main() -> Result<()> {
     let args = Args::parse();
     std::fs::create_dir_all(&args.out).context("create output dir")?;
-    println!("extract: pob={} out={}", args.pob.display(), args.out.display());
-    // Real work added in Tasks 5–7
+
+    let (version, tree_lua) = tree::find_latest_tree(&args.pob)?;
+    println!("extracting tree version {}", version);
+
+    let tree_json = args.out.join("tree.json");
+    tree::extract_tree(&args.luajit, &tree_lua, &tree_json)?;
+    println!("wrote {}", tree_json.display());
     Ok(())
 }
