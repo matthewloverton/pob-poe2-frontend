@@ -28,7 +28,8 @@ function base64urlEncode(bytes: Uint8Array): string {
 export function decodeTreeUrl(input: string): DecodedTreeUrl {
   if (!input) throw new Error("empty tree url");
   const payload = input.replace(URL_PREFIX, "").trim();
-  if (!/^[A-Za-z0-9_-]+$/.test(payload)) throw new Error("invalid base64url payload");
+  // Accept either base64 or base64url (some PoE2 URL exports include '+' / '/' / '=' padding).
+  if (!/^[A-Za-z0-9+/=_-]+$/.test(payload)) throw new Error("invalid base64url payload");
 
   const b = base64urlDecode(payload);
   if (b.length < 6) throw new Error("tree url payload too short");
