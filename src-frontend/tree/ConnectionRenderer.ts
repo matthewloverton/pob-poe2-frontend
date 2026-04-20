@@ -2,11 +2,18 @@ import { Graphics } from "pixi.js";
 import type { PassiveNode, PassiveGroup, TreeConstants } from "../types/tree";
 import { nodeWorldPosition } from "./geometry";
 
+export interface DrawConnectionsOptions {
+  color: number;
+  width: number;
+  filter?: (aId: number, bId: number) => boolean;
+}
+
 export function drawConnections(
   g: Graphics,
   nodes: Record<string, PassiveNode>,
   groups: Record<string, PassiveGroup>,
   constants: TreeConstants,
+  opts: DrawConnectionsOptions = { color: 0x3f3f46, width: 1.5 },
 ) {
   g.clear();
   const drawn = new Set<string>();
@@ -20,6 +27,7 @@ export function drawConnections(
       const neighbor = nodes[String(neighborId)];
       if (!neighbor) continue;
       if (shouldSkipConnection(node, neighbor)) continue;
+      if (opts.filter && !opts.filter(id, neighborId)) continue;
 
       const key = id < neighborId ? `${id}-${neighborId}` : `${neighborId}-${id}`;
       if (drawn.has(key)) continue;
@@ -44,7 +52,7 @@ export function drawConnections(
       g.lineTo(to.x, to.y);
     }
   }
-  g.stroke({ color: 0x3f3f46, width: 1.5 });
+  g.stroke({ color: opts.color, width: opts.width });
 }
 
 function shouldSkipConnection(a: PassiveNode, b: PassiveNode): boolean {

@@ -9,9 +9,11 @@ export class TreeRenderer {
   private app: Application;
   private viewport!: Viewport;
   private connectionLayer = new Graphics();
+  private allocatedConnectionLayer = new Graphics();
   private nodeLayer = new Container();
   private nodeGraphics = new Map<number, Graphics>();
   private nodeStates = new Map<number, NodeVisualState>();
+  private lastAllocated: Set<number> = new Set();
   private tree: PassiveTree;
   private resizeObserver: ResizeObserver | null = null;
 
@@ -67,6 +69,7 @@ export class TreeRenderer {
 
     this.app.stage.addChild(this.viewport);
     this.viewport.addChild(this.connectionLayer);
+    this.viewport.addChild(this.allocatedConnectionLayer);
     this.viewport.addChild(this.nodeLayer);
 
     drawConnections(this.connectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants);
@@ -129,6 +132,21 @@ export class TreeRenderer {
       drawNode(g, node, state);
       this.nodeStates.set(id, state);
     }
+
+    if (!sameSet(this.lastAllocated, allocated)) {
+      drawConnections(
+        this.allocatedConnectionLayer,
+        this.tree.nodes,
+        this.tree.groups,
+        this.tree.constants,
+        {
+          color: 0xfafafa,
+          width: 2,
+          filter: (a, b) => allocated.has(a) && allocated.has(b),
+        },
+      );
+      this.lastAllocated = new Set(allocated);
+    }
   }
 
   destroy() {
@@ -136,4 +154,10 @@ export class TreeRenderer {
     this.resizeObserver = null;
     this.app.destroy(true, { children: true });
   }
+}
+
+function sameSet(a: Set<number>, b: Set<number>): boolean {
+  if (a.size !== b.size) return false;
+  for (const v of a) if (!b.has(v)) return false;
+  return true;
 }
