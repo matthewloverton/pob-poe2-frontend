@@ -27,9 +27,15 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
       const s = useBuildStore.getState();
       if (s.allocated.has(id)) {
         deallocate(id);
+        return;
+      }
+      const path = i.nodesToAllocate(s.allocated, id);
+      if (path.length > 0) {
+        allocate(path);
       } else {
-        const path = i.nodesToAllocate(s.allocated, id);
-        if (path.length > 0) allocate(path);
+        import("../ui/dialogStore").then(({ useDialogStore }) => {
+          useDialogStore.getState().pushToast(`No path to node ${id} from your allocation.`, "error");
+        });
       }
     };
     renderer.init(canvas).then(() => {
