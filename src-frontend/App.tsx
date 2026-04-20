@@ -1,5 +1,10 @@
 import manifest from "./data/manifest.json";
+import treeData from "./data/tree.json";
+import type { PassiveTree } from "./types/tree";
 import { StatusPill } from "./ui/StatusPill";
+import { TreeCanvas } from "./tree/TreeCanvas";
+
+const tree = treeData as unknown as PassiveTree;
 
 export default function App() {
   return (
@@ -10,8 +15,8 @@ export default function App() {
         </div>
         <StatusPill />
       </header>
-      <main className="flex-1 flex items-center justify-center text-fg-muted font-mono text-xs">
-        tree canvas goes here
+      <main className="flex-1 relative">
+        <TreeCanvas tree={tree} />
       </main>
     </div>
   );
