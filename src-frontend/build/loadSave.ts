@@ -26,8 +26,6 @@ function findClassStartNodeId(classId: number): NodeId | null {
 
 function nodesWithClassStart(classId: number, nodes: NodeId[]): NodeId[] {
   const startId = findClassStartNodeId(classId);
-  // eslint-disable-next-line no-console
-  console.log("[import] classId", classId, "-> class-start nodeId", startId);
   if (startId == null) return nodes;
   if (nodes.includes(startId)) return nodes;
   return [startId, ...nodes];
