@@ -3,6 +3,8 @@ import treeData from "./data/tree.json";
 import type { PassiveTree } from "./types/tree";
 import { StatusPill } from "./ui/StatusPill";
 import { TreeCanvas } from "./tree/TreeCanvas";
+import { Toolbar } from "./ui/Toolbar";
+import { Sidebar } from "./ui/Sidebar";
 
 const tree = treeData as unknown as PassiveTree;
 
@@ -15,9 +17,13 @@ export default function App() {
         </div>
         <StatusPill />
       </header>
-      <main className="flex-1 relative">
-        <TreeCanvas tree={tree} />
-      </main>
+      <Toolbar />
+      <div className="flex-1 flex">
+        <Sidebar />
+        <main className="flex-1 relative">
+          <TreeCanvas tree={tree} />
+        </main>
+      </div>
     </div>
   );
 }
