@@ -2,6 +2,8 @@
 node_modules/
 dist/
 target/
+Cargo.lock
+tsconfig.tsbuildinfo
 src-tauri/binaries/
 src-tauri/gen/
 src-frontend/data/tree.json
