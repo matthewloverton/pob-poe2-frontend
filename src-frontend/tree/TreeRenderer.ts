@@ -73,13 +73,14 @@ export class TreeRenderer {
 
     for (const [idStr, node] of Object.entries(this.tree.nodes)) {
       const id = Number(idStr);
+      if (!this.isRenderableNode(node)) continue;
       const pos = nodeWorldPosition(node, this.tree.groups, this.tree.constants);
       const g = new Graphics();
       g.position.set(pos.x, pos.y);
       drawNode(g, node, "unallocated");
       g.eventMode = "static";
       g.cursor = "pointer";
-      g.hitArea = new Circle(0, 0, 20);
+      g.hitArea = new Circle(0, 0, 30);
       g.on("pointerover", () => this.onNodeHover?.(id));
       g.on("pointerout", () => this.onNodeHover?.(null));
       g.on("pointertap", () => this.onNodeClick?.(id));
@@ -87,6 +88,18 @@ export class TreeRenderer {
       this.nodeGraphics.set(id, g);
       this.nodeStates.set(id, "unallocated");
     }
+  }
+
+  // Mirror PoB's render filter: proxy nodes, proxy groups, and nodes without a
+  // usable skill effect aren't drawn in the main view.
+  private isRenderableNode(node: import("../types/tree").PassiveNode): boolean {
+    if (node["isProxy"] === true) return false;
+    if (node.group != null) {
+      const group = this.tree.groups[String(node.group)] as (import("../types/tree").PassiveGroup & { isProxy?: boolean }) | undefined;
+      if (group?.isProxy) return false;
+    }
+    if (node["type"] === "OnlyImage") return false;
+    return true;
   }
 
   applyAllocations(allocated: Set<number>, pathing: Set<number>, hovered: number | null) {
