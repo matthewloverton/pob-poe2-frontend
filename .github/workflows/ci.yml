@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { submodules: recursive }
+      - uses: pnpm/action-setup@v4
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: pnpm }
+      - uses: dtolnay/rust-toolchain@stable
+      - run: pnpm install
+      - name: Bundle LuaJIT
+        shell: pwsh
+        run: scripts/bundle-luajit.ps1
+      - name: Extract tree data
+        run: cargo run -p extract -- --pob vendor/PathOfBuilding-PoE2 --out src-frontend/data
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: cargo test --workspace

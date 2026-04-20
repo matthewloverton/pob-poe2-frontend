@@ -2,3 +2,10 @@
 node_modules/
 dist/
 target/
+tsconfig.tsbuildinfo
+src-tauri/binaries/
+src-tauri/gen/
+src-frontend/data/tree.json
+src-frontend/data/sprites.json
+src-frontend/data/manifest.json
+src-frontend/data/sprites/

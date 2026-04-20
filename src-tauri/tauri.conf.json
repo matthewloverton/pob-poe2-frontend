@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.0",
+  "productName": "PoB-PoE2",
+  "version": "0.1.0",
+  "identifier": "com.wil.pob-poe2-frontend",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "PoB-PoE2",
+        "width": 1400,
+        "height": 900,
+        "minWidth": 1024,
+        "minHeight": 700
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": ["icons/icon.ico"],
+    "externalBin": ["binaries/luajit"],
+    "resources": ["../sidecar/main.lua"]
+  }
+}

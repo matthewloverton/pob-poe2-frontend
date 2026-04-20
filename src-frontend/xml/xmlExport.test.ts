@@ -1,0 +1,28 @@
+import { describe, expect, test } from "vitest";
+import { readFileSync } from "node:fs";
+import { parseBuildXml } from "./xmlImport";
+import { serializeBuild } from "./xmlExport";
+
+const minimal = readFileSync("test/fixtures/minimal-build.xml", "utf8");
+
+describe("serializeBuild", () => {
+  test("round-trips unchanged build", () => {
+    const parsed = parseBuildXml(minimal);
+    const out = serializeBuild(parsed, { newTreeUrl: parsed.activeSpec.treeUrl });
+    const reparsed = parseBuildXml(out);
+    expect(reparsed.activeSpec).toEqual(parsed.activeSpec);
+  });
+
+  test("replaces only the URL when tree url changes", () => {
+    const parsed = parseBuildXml(minimal);
+    const NEW_URL = "https://www.pathofexile.com/passive-skill-tree/AAAABAEAAAAA-NEW";
+    const out = serializeBuild(parsed, { newTreeUrl: NEW_URL });
+    const reparsed = parseBuildXml(out);
+    expect(reparsed.activeSpec.treeUrl).toBe(NEW_URL);
+    expect(reparsed.activeSpec.classId).toBe(parsed.activeSpec.classId);
+    expect(reparsed.activeSpec.title).toBe(parsed.activeSpec.title);
+    expect(out).toContain("<Items");
+    expect(out).toContain("<Calcs");
+    expect(out).toContain("<Notes");
+  });
+});
