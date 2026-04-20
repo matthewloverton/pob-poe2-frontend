@@ -1,4 +1,4 @@
-import { Application, Container, Graphics } from "pixi.js";
+import { Application, Circle, Container, Graphics } from "pixi.js";
 import { Viewport } from "pixi-viewport";
 import type { PassiveTree } from "../types/tree";
 import { nodeWorldPosition } from "./geometry";
@@ -12,6 +12,9 @@ export class TreeRenderer {
   private nodeLayer = new Container();
   private nodeGraphics = new Map<number, Graphics>();
   private tree: PassiveTree;
+
+  onNodeHover?: (id: number | null) => void;
+  onNodeClick?: (id: number) => void;
 
   constructor(tree: PassiveTree) {
     this.tree = tree;
@@ -52,17 +55,27 @@ export class TreeRenderer {
       const g = new Graphics();
       g.position.set(pos.x, pos.y);
       drawNode(g, node, "unallocated");
+      g.eventMode = "static";
+      g.cursor = "pointer";
+      g.hitArea = new Circle(0, 0, 20);
+      g.on("pointerover", () => this.onNodeHover?.(id));
+      g.on("pointerout", () => this.onNodeHover?.(null));
+      g.on("pointertap", () => this.onNodeClick?.(id));
       this.nodeLayer.addChild(g);
       this.nodeGraphics.set(id, g);
     }
   }
 
-  setNodeState(id: number, state: NodeVisualState) {
-    const g = this.nodeGraphics.get(id);
-    if (!g) return;
-    const node = this.tree.nodes[String(id)];
-    if (!node) return;
-    drawNode(g, node, state);
+  applyAllocations(allocated: Set<number>, pathing: Set<number>, hovered: number | null) {
+    for (const [id, g] of this.nodeGraphics) {
+      const node = this.tree.nodes[String(id)];
+      if (!node) continue;
+      let state: NodeVisualState = "unallocated";
+      if (allocated.has(id)) state = "allocated";
+      else if (pathing.has(id)) state = "pathing";
+      if (hovered === id) state = "hovered";
+      drawNode(g, node, state);
+    }
   }
 
   destroy() {
