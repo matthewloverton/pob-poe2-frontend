@@ -3,6 +3,8 @@ use clap::Parser;
 use std::path::PathBuf;
 
 mod tree;
+mod sprites;
+mod manifest;
 
 #[derive(Parser, Debug)]
 #[command(about = "Extract PoB-PoE2 data artifacts into frontend-consumable JSON")]
@@ -27,8 +29,14 @@ fn main() -> Result<()> {
     let (version, tree_lua) = tree::find_latest_tree(&args.pob)?;
     println!("extracting tree version {}", version);
 
-    let tree_json = args.out.join("tree.json");
-    tree::extract_tree(&args.luajit, &tree_lua, &tree_json)?;
-    println!("wrote {}", tree_json.display());
+    tree::extract_tree(&args.luajit, &tree_lua, &args.out.join("tree.json"))?;
+
+    let tree_dir = tree_lua.parent().unwrap();
+    let copied = sprites::copy_sprites(tree_dir, &args.out)?;
+    sprites::write_sprite_manifest(&args.out, &copied)?;
+    println!("copied {} sprite files", copied.len());
+
+    manifest::write_manifest(&args.pob, &args.out, &version)?;
+    println!("wrote manifest.json");
     Ok(())
 }
