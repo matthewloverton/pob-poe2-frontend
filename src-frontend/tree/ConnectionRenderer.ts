@@ -57,5 +57,11 @@ function drawArc(
   const startRad = ((angleA - 90) * Math.PI) / 180;
   const endRad = ((angleA + diff - 90) * Math.PI) / 180;
 
+  // Start a fresh subpath at the arc's first endpoint so the arc isn't
+  // joined to the previous segment (which otherwise causes spurious lines
+  // spanning the whole tree).
+  const startX = group.x + radius * Math.cos(startRad);
+  const startY = group.y + radius * Math.sin(startRad);
+  g.moveTo(startX, startY);
   g.arc(group.x, group.y, radius, startRad, endRad, diff < 0);
 }
