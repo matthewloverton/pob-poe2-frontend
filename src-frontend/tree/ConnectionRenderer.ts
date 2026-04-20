@@ -1,7 +1,9 @@
 import { Graphics } from "pixi.js";
 import type { PassiveNode, PassiveGroup, TreeConstants } from "../types/tree";
-import { nodeWorldPosition, nodesShareOrbit } from "./geometry";
+import { nodeWorldPosition } from "./geometry";
 
+// v0.1: straight lines only. Arc rendering for same-orbit connections is a follow-up —
+// trying to batch arcs with Graphics.arc produced spurious path continuations.
 export function drawConnections(
   g: Graphics,
   nodes: Record<string, PassiveNode>,
@@ -14,6 +16,7 @@ export function drawConnections(
   for (const [idStr, node] of Object.entries(nodes)) {
     const id = Number(idStr);
     const from = nodeWorldPosition(node, groups, constants);
+    if (!Number.isFinite(from.x) || !Number.isFinite(from.y)) continue;
     const conns = Array.isArray(node.connections) ? node.connections : [];
     for (const conn of conns) {
       const neighborId = conn.id;
@@ -23,13 +26,10 @@ export function drawConnections(
       const neighbor = nodes[String(neighborId)];
       if (!neighbor) continue;
       const to = nodeWorldPosition(neighbor, groups, constants);
+      if (!Number.isFinite(to.x) || !Number.isFinite(to.y)) continue;
 
-      if (nodesShareOrbit(node, neighbor)) {
-        drawArc(g, node, neighbor, groups, constants);
-      } else {
-        g.moveTo(from.x, from.y);
-        g.lineTo(to.x, to.y);
-      }
+      g.moveTo(from.x, from.y);
+      g.lineTo(to.x, to.y);
     }
   }
   g.stroke({ color: 0x3f3f46, width: 1.5 });
