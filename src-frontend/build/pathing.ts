@@ -2,13 +2,24 @@ import type { PassiveNode, NodeId } from "../types/tree";
 
 export type Graph = Map<NodeId, NodeId[]>;
 
+// Upstream stores each edge on only one endpoint's `connections` array, but the
+// tree is logically undirected — so mirror every edge onto both endpoints.
 export function buildGraph(nodes: Record<string, PassiveNode>): Graph {
   const graph: Graph = new Map();
+  const ensure = (id: NodeId): NodeId[] => {
+    let list = graph.get(id);
+    if (!list) { list = []; graph.set(id, list); }
+    return list;
+  };
   for (const [idStr, node] of Object.entries(nodes)) {
     const id = Number(idStr);
+    ensure(id);
     const raw = node.connections;
-    const neighbors = Array.isArray(raw) ? raw.map((c) => c.id) : [];
-    graph.set(id, neighbors);
+    if (!Array.isArray(raw)) continue;
+    for (const conn of raw) {
+      ensure(id).push(conn.id);
+      ensure(conn.id).push(id);
+    }
   }
   return graph;
 }
