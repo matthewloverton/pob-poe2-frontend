@@ -10,10 +10,12 @@ export class TreeRenderer {
   private viewport!: Viewport;
   private connectionLayer = new Graphics();
   private allocatedConnectionLayer = new Graphics();
+  private removingConnectionLayer = new Graphics();
   private nodeLayer = new Container();
   private nodeGraphics = new Map<number, Graphics>();
   private nodeStates = new Map<number, NodeVisualState>();
   private lastAllocated: Set<number> = new Set();
+  private lastRemoving: Set<number> = new Set();
   private tree: PassiveTree;
   private resizeObserver: ResizeObserver | null = null;
 
@@ -70,6 +72,7 @@ export class TreeRenderer {
     this.app.stage.addChild(this.viewport);
     this.viewport.addChild(this.connectionLayer);
     this.viewport.addChild(this.allocatedConnectionLayer);
+    this.viewport.addChild(this.removingConnectionLayer);
     this.viewport.addChild(this.nodeLayer);
 
     drawConnections(this.connectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants);
@@ -118,14 +121,19 @@ export class TreeRenderer {
     return true;
   }
 
-  applyAllocations(allocated: Set<number>, pathing: Set<number>, hovered: number | null) {
-    // Only redraw nodes whose visual state changed. Redrawing all ~4700 nodes
-    // on every hover was enough to stutter pan/drag interactions.
+  applyAllocations(
+    allocated: Set<number>,
+    pathing: Set<number>,
+    hovered: number | null,
+    removing: Set<number> = new Set(),
+  ) {
     for (const [id, g] of this.nodeGraphics) {
-      let state: NodeVisualState = "unallocated";
-      if (allocated.has(id)) state = "allocated";
+      let state: NodeVisualState;
+      if (removing.has(id)) state = "removing";
+      else if (hovered === id) state = "hovered";
+      else if (allocated.has(id)) state = "allocated";
       else if (pathing.has(id)) state = "pathing";
-      if (hovered === id) state = "hovered";
+      else state = "unallocated";
       if (this.nodeStates.get(id) === state) continue;
       const node = this.tree.nodes[String(id)];
       if (!node) continue;
@@ -133,7 +141,8 @@ export class TreeRenderer {
       this.nodeStates.set(id, state);
     }
 
-    if (!sameSet(this.lastAllocated, allocated)) {
+    if (!sameSet(this.lastAllocated, allocated) || !sameSet(this.lastRemoving, removing)) {
+      // Allocated connections (white), excluding any about-to-be-removed endpoints.
       drawConnections(
         this.allocatedConnectionLayer,
         this.tree.nodes,
@@ -142,10 +151,25 @@ export class TreeRenderer {
         {
           color: 0xfafafa,
           width: 2,
-          filter: (a, b) => allocated.has(a) && allocated.has(b),
+          filter: (a, b) =>
+            allocated.has(a) && allocated.has(b) && !removing.has(a) && !removing.has(b),
+        },
+      );
+      // Removing-preview connections (red) — edges where at least one endpoint is doomed.
+      drawConnections(
+        this.removingConnectionLayer,
+        this.tree.nodes,
+        this.tree.groups,
+        this.tree.constants,
+        {
+          color: 0xf43f5e,
+          width: 2,
+          filter: (a, b) =>
+            (removing.has(a) || removing.has(b)) && allocated.has(a) && allocated.has(b),
         },
       );
       this.lastAllocated = new Set(allocated);
+      this.lastRemoving = new Set(removing);
     }
   }
 

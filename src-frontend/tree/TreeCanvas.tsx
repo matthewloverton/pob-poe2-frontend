@@ -26,7 +26,9 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
       if (!i) return;
       const s = useBuildStore.getState();
       if (s.allocated.has(id)) {
+        const orphans = i.orphansOnRemove(s.allocated, id);
         deallocate(id);
+        for (const orphanId of orphans) deallocate(orphanId);
         return;
       }
       const path = i.nodesToAllocate(s.allocated, id);
@@ -63,7 +65,12 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
     const i = interactionRef.current;
     if (!r || !i) return;
     const pathing = i.computePathing(allocated, hovered);
-    r.applyAllocations(allocated, pathing, hovered);
+    let removing: Set<NodeId> = new Set();
+    if (hovered != null && allocated.has(hovered)) {
+      removing = i.orphansOnRemove(allocated, hovered);
+      removing.add(hovered);
+    }
+    r.applyAllocations(allocated, pathing, hovered, removing);
   }, [allocated, hovered]);
 
   return <canvas ref={canvasRef} className="block h-full w-full" />;

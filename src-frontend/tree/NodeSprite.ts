@@ -1,7 +1,7 @@
 import { Graphics } from "pixi.js";
 import type { PassiveNode } from "../types/tree";
 
-export type NodeVisualState = "unallocated" | "allocated" | "pathing" | "hovered";
+export type NodeVisualState = "unallocated" | "allocated" | "pathing" | "hovered" | "removing";
 
 export function classifyNode(node: PassiveNode): "keystone" | "notable" | "socket" | "normal" {
   if (node.isKeystone) return "keystone";
@@ -16,6 +16,7 @@ const COLORS: Record<NodeVisualState, number> = {
   allocated: 0xfafafa,
   pathing: 0x06b6d4,
   hovered: 0xeab308,
+  removing: 0xf43f5e,
 };
 
 export function drawNode(g: Graphics, node: PassiveNode, state: NodeVisualState) {

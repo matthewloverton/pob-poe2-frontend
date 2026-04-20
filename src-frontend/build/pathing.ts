@@ -24,6 +24,44 @@ export function buildGraph(nodes: Record<string, PassiveNode>): Graph {
   return graph;
 }
 
+// Given a set of allocated nodes and a hypothetical removal, find which of the
+// remaining allocated nodes would be orphaned from the class-start anchor(s).
+// Anchor = any currently-allocated node whose `classesStart` is set.
+export function findOrphansOnRemove(
+  allocated: Set<NodeId>,
+  removeId: NodeId,
+  graph: Graph,
+  nodes: Record<string, import("../types/tree").PassiveNode>,
+): Set<NodeId> {
+  const anchors = new Set<NodeId>();
+  for (const id of allocated) {
+    if (id === removeId) continue;
+    const node = nodes[String(id)];
+    if (node && Array.isArray(node.classesStart)) anchors.add(id);
+  }
+  if (anchors.size === 0) return new Set();
+
+  const reached = new Set<NodeId>(anchors);
+  const queue: NodeId[] = [...anchors];
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    for (const next of graph.get(current) ?? []) {
+      if (next === removeId) continue;
+      if (!allocated.has(next)) continue;
+      if (reached.has(next)) continue;
+      reached.add(next);
+      queue.push(next);
+    }
+  }
+
+  const orphans = new Set<NodeId>();
+  for (const id of allocated) {
+    if (id === removeId) continue;
+    if (!reached.has(id)) orphans.add(id);
+  }
+  return orphans;
+}
+
 export function shortestPath(
   allocated: Set<NodeId>,
   to: NodeId,
