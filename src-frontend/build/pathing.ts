@@ -6,7 +6,8 @@ export function buildGraph(nodes: Record<string, PassiveNode>): Graph {
   const graph: Graph = new Map();
   for (const [idStr, node] of Object.entries(nodes)) {
     const id = Number(idStr);
-    const neighbors = (node.connections ?? []).map((c) => c.id);
+    const raw = node.connections;
+    const neighbors = Array.isArray(raw) ? raw.map((c) => c.id) : [];
     graph.set(id, neighbors);
   }
   return graph;

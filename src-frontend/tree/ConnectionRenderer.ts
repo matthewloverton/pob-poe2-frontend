@@ -14,7 +14,8 @@ export function drawConnections(
   for (const [idStr, node] of Object.entries(nodes)) {
     const id = Number(idStr);
     const from = nodeWorldPosition(node, groups, constants);
-    for (const conn of node.connections ?? []) {
+    const conns = Array.isArray(node.connections) ? node.connections : [];
+    for (const conn of conns) {
       const neighborId = conn.id;
       const key = id < neighborId ? `${id}-${neighborId}` : `${neighborId}-${id}`;
       if (drawn.has(key)) continue;
