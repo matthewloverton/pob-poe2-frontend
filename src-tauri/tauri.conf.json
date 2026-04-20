@@ -27,6 +27,7 @@
     "active": true,
     "targets": ["nsis"],
     "icon": ["icons/icon.ico"],
-    "externalBin": ["binaries/luajit"]
+    "externalBin": ["binaries/luajit"],
+    "resources": ["../sidecar/main.lua"]
   }
 }
