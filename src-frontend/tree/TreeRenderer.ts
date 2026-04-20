@@ -31,6 +31,8 @@ export class TreeRenderer {
 
     const worldWidth = this.tree.max_x - this.tree.min_x;
     const worldHeight = this.tree.max_y - this.tree.min_y;
+    const centerX = (this.tree.min_x + this.tree.max_x) / 2;
+    const centerY = (this.tree.min_y + this.tree.max_y) / 2;
 
     this.viewport = new Viewport({
       screenWidth: this.app.renderer.width,
@@ -40,8 +42,12 @@ export class TreeRenderer {
       events: this.app.renderer.events,
     });
     this.viewport.drag().pinch().wheel().decelerate();
-    this.viewport.moveCenter(0, 0);
-    this.viewport.setZoom(0.2);
+    const fitZoom = Math.min(
+      this.app.renderer.width / worldWidth,
+      this.app.renderer.height / worldHeight,
+    ) * 0.9;
+    this.viewport.setZoom(fitZoom);
+    this.viewport.moveCenter(centerX, centerY);
 
     this.app.stage.addChild(this.viewport);
     this.viewport.addChild(this.connectionLayer);

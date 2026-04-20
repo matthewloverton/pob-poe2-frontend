@@ -5,4 +5,5 @@ import "./styles.css";
 
 const root = document.getElementById("root");
 if (!root) throw new Error("root element missing");
-createRoot(root).render(<React.StrictMode><App /></React.StrictMode>);
+// StrictMode disabled: its double-mount races with async Pixi teardown on the shared canvas.
+createRoot(root).render(<App />);
