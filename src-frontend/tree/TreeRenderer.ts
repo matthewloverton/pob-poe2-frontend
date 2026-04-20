@@ -53,7 +53,10 @@ export class TreeRenderer {
     this.viewport.addChild(this.connectionLayer);
     this.viewport.addChild(this.nodeLayer);
 
-    drawConnections(this.connectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants);
+    const showConnections = !new URLSearchParams(window.location.search).has("no-lines");
+    if (showConnections) {
+      drawConnections(this.connectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants);
+    }
 
     for (const [idStr, node] of Object.entries(this.tree.nodes)) {
       const id = Number(idStr);
