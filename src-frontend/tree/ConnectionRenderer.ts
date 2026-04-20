@@ -1,9 +1,7 @@
 import { Graphics } from "pixi.js";
 import type { PassiveNode, PassiveGroup, TreeConstants } from "../types/tree";
-import { nodeWorldPosition } from "./geometry";
+import { nodeWorldPosition, nodesShareOrbit } from "./geometry";
 
-// v0.1: straight lines only. Arc rendering for same-orbit connections is a follow-up —
-// trying to batch arcs with Graphics.arc produced spurious path continuations.
 export function drawConnections(
   g: Graphics,
   nodes: Record<string, PassiveNode>,
@@ -28,14 +26,21 @@ export function drawConnections(
       const to = nodeWorldPosition(neighbor, groups, constants);
       if (!Number.isFinite(to.x) || !Number.isFinite(to.y)) continue;
 
-      g.moveTo(from.x, from.y);
-      g.lineTo(to.x, to.y);
+      if (nodesShareOrbit(node, neighbor)) {
+        drawArcPolyline(g, node, neighbor, groups, constants);
+      } else {
+        g.moveTo(from.x, from.y);
+        g.lineTo(to.x, to.y);
+      }
     }
   }
   g.stroke({ color: 0x3f3f46, width: 1.5 });
 }
 
-function drawArc(
+// Approximate a same-orbit arc as a short polyline using the same world-position
+// math nodeWorldPosition uses. Avoids Pixi's Graphics.arc (which interacted
+// badly with path batching) and guarantees endpoints land exactly on the nodes.
+function drawArcPolyline(
   g: Graphics,
   a: PassiveNode,
   b: PassiveNode,
@@ -53,15 +58,16 @@ function drawArc(
   const angleB = angles[b.orbitIndex ?? 0];
   if (angleA == null || angleB == null) return;
 
+  // Pick the shorter angular direction so arcs follow the tree's layout.
   const diff = (((angleB - angleA) % 360) + 540) % 360 - 180;
-  const startRad = ((angleA - 90) * Math.PI) / 180;
-  const endRad = ((angleA + diff - 90) * Math.PI) / 180;
-
-  // Start a fresh subpath at the arc's first endpoint so the arc isn't
-  // joined to the previous segment (which otherwise causes spurious lines
-  // spanning the whole tree).
-  const startX = group.x + radius * Math.cos(startRad);
-  const startY = group.y + radius * Math.sin(startRad);
-  g.moveTo(startX, startY);
-  g.arc(group.x, group.y, radius, startRad, endRad, diff < 0);
+  const steps = Math.max(4, Math.ceil(Math.abs(diff) / 6));
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const angleDeg = angleA + diff * t;
+    const rad = (angleDeg * Math.PI) / 180;
+    const x = group.x + radius * Math.sin(rad);
+    const y = group.y - radius * Math.cos(rad);
+    if (i === 0) g.moveTo(x, y);
+    else g.lineTo(x, y);
+  }
 }
