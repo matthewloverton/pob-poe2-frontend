@@ -1,9 +1,9 @@
-import { Application, Circle, Container, Graphics } from "pixi.js";
+import { Application, Assets, Circle, Container, Graphics, Texture } from "pixi.js";
 import { Viewport } from "pixi-viewport";
 import type { PassiveTree } from "../types/tree";
 import { nodeWorldPosition } from "./geometry";
 import { drawConnections } from "./ConnectionRenderer";
-import { drawNode, type NodeVisualState } from "./NodeSprite";
+import { NodeDisplay, iconUrl, type NodeVisualState } from "./NodeSprite";
 
 export class TreeRenderer {
   private app: Application;
@@ -12,7 +12,7 @@ export class TreeRenderer {
   private allocatedConnectionLayer = new Graphics();
   private removingConnectionLayer = new Graphics();
   private nodeLayer = new Container();
-  private nodeGraphics = new Map<number, Graphics>();
+  private nodeGraphics = new Map<number, NodeDisplay>();
   private nodeStates = new Map<number, NodeVisualState>();
   private lastAllocated: Set<number> = new Set();
   private lastRemoving: Set<number> = new Set();
@@ -81,18 +81,18 @@ export class TreeRenderer {
       const id = Number(idStr);
       if (!this.isRenderableNode(node)) continue;
       const pos = nodeWorldPosition(node, this.tree.groups, this.tree.constants);
-      const g = new Graphics();
-      g.position.set(pos.x, pos.y);
-      drawNode(g, node, "unallocated");
-      g.eventMode = "static";
-      g.cursor = "pointer";
-      g.on("pointerover", () => this.onNodeHover?.(id));
-      g.on("pointerout", () => this.onNodeHover?.(null));
-      g.on("pointertap", () => this.onNodeClick?.(id));
-      this.nodeLayer.addChild(g);
-      this.nodeGraphics.set(id, g);
+      const display = new NodeDisplay(node);
+      display.position.set(pos.x, pos.y);
+      display.eventMode = "static";
+      display.cursor = "pointer";
+      display.on("pointerover", () => this.onNodeHover?.(id));
+      display.on("pointerout", () => this.onNodeHover?.(null));
+      display.on("pointertap", () => this.onNodeClick?.(id));
+      this.nodeLayer.addChild(display);
+      this.nodeGraphics.set(id, display);
       this.nodeStates.set(id, "unallocated");
     }
+    this.loadIcons();
 
     // Hit areas live in world coords, so at low zoom a fixed world radius
     // collapses to a sub-pixel click target. Rescale on zoom to keep a
@@ -100,13 +100,40 @@ export class TreeRenderer {
     const SCREEN_HIT_PIXELS = 18;
     const updateHitAreas = () => {
       const worldRadius = SCREEN_HIT_PIXELS / Math.max(this.viewport.scale.x, 1e-6);
-      for (const g of this.nodeGraphics.values()) {
-        g.hitArea = new Circle(0, 0, worldRadius);
+      for (const display of this.nodeGraphics.values()) {
+        display.hitArea = new Circle(0, 0, worldRadius);
       }
     };
     updateHitAreas();
     this.viewport.on("zoomed", updateHitAreas);
     this.viewport.on("moved", updateHitAreas);
+  }
+
+  // Group nodes by icon URL and load each URL once via Pixi's Assets cache,
+  // then apply the Texture to every node sharing that icon. Failures are
+  // swallowed — nodes fall back to their shape frame.
+  private loadIcons() {
+    const byUrl = new Map<string, number[]>();
+    for (const [id, display] of this.nodeGraphics) {
+      const node = this.tree.nodes[String(id)];
+      if (!node) continue;
+      const url = iconUrl(node);
+      if (!url) continue;
+      void display; // display is applied after load resolves
+      let ids = byUrl.get(url);
+      if (!ids) { ids = []; byUrl.set(url, ids); }
+      ids.push(id);
+    }
+    for (const [url, ids] of byUrl) {
+      Assets.load<Texture>(url).then((texture) => {
+        for (const id of ids) {
+          const display = this.nodeGraphics.get(id);
+          if (display) display.setIcon(texture);
+        }
+      }).catch(() => {
+        // Missing icon on the CDN — keep the shape frame.
+      });
+    }
   }
 
   // Mirror PoB's render filter: proxy nodes, proxy groups, and nodes without a
@@ -136,7 +163,7 @@ export class TreeRenderer {
     hovered: number | null,
     removing: Set<number> = new Set(),
   ) {
-    for (const [id, g] of this.nodeGraphics) {
+    for (const [id, display] of this.nodeGraphics) {
       let state: NodeVisualState;
       if (removing.has(id)) state = "removing";
       else if (hovered === id) state = "hovered";
@@ -144,9 +171,7 @@ export class TreeRenderer {
       else if (pathing.has(id)) state = "pathing";
       else state = "unallocated";
       if (this.nodeStates.get(id) === state) continue;
-      const node = this.tree.nodes[String(id)];
-      if (!node) continue;
-      drawNode(g, node, state);
+      display.setState(state);
       this.nodeStates.set(id, state);
     }
 
