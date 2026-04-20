@@ -3,12 +3,16 @@ import { TreeRenderer } from "./TreeRenderer";
 import { TreeInteraction } from "./TreeInteraction";
 import type { PassiveTree, NodeId } from "../types/tree";
 import { useBuildStore } from "../build/buildStore";
+import { NodeTooltip } from "../ui/NodeTooltip";
+import { useFocusStore } from "./focusStore";
 
 export function TreeCanvas({ tree }: { tree: PassiveTree }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<TreeRenderer | null>(null);
   const interactionRef = useRef<TreeInteraction | null>(null);
   const [hovered, setHovered] = useState<NodeId | null>(null);
+  const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
 
   const allocated = useBuildStore((s) => s.allocated);
   const allocate = useBuildStore((s) => s.allocate);
@@ -73,5 +77,27 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
     r.applyAllocations(allocated, pathing, hovered, removing);
   }, [allocated, hovered]);
 
-  return <canvas ref={canvasRef} className="block h-full w-full" />;
+  const pendingFocus = useFocusStore((s) => s.pendingFocus);
+  const clearFocus = useFocusStore((s) => s.clear);
+  useEffect(() => {
+    if (pendingFocus == null) return;
+    const r = rendererRef.current;
+    if (!r) return;
+    r.focusNode(pendingFocus);
+    clearFocus();
+  }, [pendingFocus, clearFocus]);
+
+  const hoveredNode = hovered != null ? tree.nodes[String(hovered)] : null;
+
+  return (
+    <div
+      ref={wrapperRef}
+      className="relative h-full w-full"
+      onPointerMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
+      onPointerLeave={() => setCursor(null)}
+    >
+      <canvas ref={canvasRef} className="block h-full w-full" />
+      {hoveredNode && cursor && <NodeTooltip node={hoveredNode} x={cursor.x} y={cursor.y} />}
+    </div>
+  );
 }

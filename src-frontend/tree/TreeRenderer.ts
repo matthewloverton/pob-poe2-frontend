@@ -121,6 +121,15 @@ export class TreeRenderer {
     return true;
   }
 
+  focusNode(id: number) {
+    const node = this.tree.nodes[String(id)];
+    if (!node) return;
+    const pos = nodeWorldPosition(node, this.tree.groups, this.tree.constants);
+    const minZoom = 0.5;
+    if (this.viewport.scale.x < minZoom) this.viewport.setZoom(minZoom, true);
+    this.viewport.moveCenter(pos.x, pos.y);
+  }
+
   applyAllocations(
     allocated: Set<number>,
     pathing: Set<number>,

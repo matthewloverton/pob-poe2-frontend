@@ -7,6 +7,7 @@ import {
 } from "../build/loadSave";
 import { useBuildStore } from "../build/buildStore";
 import { useDialogStore } from "./dialogStore";
+import { NodeSearch } from "./NodeSearch";
 
 async function handleImportCode() {
   const { openPrompt, pushToast } = useDialogStore.getState();
@@ -65,6 +66,8 @@ export function Toolbar() {
       </Button>
       <Button onClick={handleCopyCode} disabled={!hasBuild}>Copy Code</Button>
       <Button onClick={() => reset()}>Reset</Button>
+      <div className="flex-1" />
+      <NodeSearch />
     </div>
   );
 }
