@@ -11,6 +11,7 @@ export class TreeRenderer {
   private connectionLayer = new Graphics();
   private nodeLayer = new Container();
   private nodeGraphics = new Map<number, Graphics>();
+  private nodeStates = new Map<number, NodeVisualState>();
   private tree: PassiveTree;
   private resizeObserver: ResizeObserver | null = null;
 
@@ -84,18 +85,23 @@ export class TreeRenderer {
       g.on("pointertap", () => this.onNodeClick?.(id));
       this.nodeLayer.addChild(g);
       this.nodeGraphics.set(id, g);
+      this.nodeStates.set(id, "unallocated");
     }
   }
 
   applyAllocations(allocated: Set<number>, pathing: Set<number>, hovered: number | null) {
+    // Only redraw nodes whose visual state changed. Redrawing all ~4700 nodes
+    // on every hover was enough to stutter pan/drag interactions.
     for (const [id, g] of this.nodeGraphics) {
-      const node = this.tree.nodes[String(id)];
-      if (!node) continue;
       let state: NodeVisualState = "unallocated";
       if (allocated.has(id)) state = "allocated";
       else if (pathing.has(id)) state = "pathing";
       if (hovered === id) state = "hovered";
+      if (this.nodeStates.get(id) === state) continue;
+      const node = this.tree.nodes[String(id)];
+      if (!node) continue;
       drawNode(g, node, state);
+      this.nodeStates.set(id, state);
     }
   }
 
