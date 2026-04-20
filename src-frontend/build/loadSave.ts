@@ -11,10 +11,9 @@ import type { NodeId, PassiveTree } from "../types/tree";
 const tree = treeData as unknown as PassiveTree;
 
 function findClassStartNodeId(classId: number): NodeId | null {
-  const classes = tree.constants["classes"];
+  const classes = (tree as unknown as { classes?: Array<{ name?: string; integerId?: number }> }).classes;
   if (!Array.isArray(classes)) return null;
-  const className = (classes as Array<{ name?: string; integerId?: number }>)
-    .find((c) => c.integerId === classId)?.name;
+  const className = classes.find((c) => c.integerId === classId)?.name;
   if (!className) return null;
   for (const [idStr, node] of Object.entries(tree.nodes)) {
     if (Array.isArray(node.classesStart) && node.classesStart.includes(className)) {
