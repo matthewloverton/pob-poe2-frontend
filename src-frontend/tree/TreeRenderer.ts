@@ -80,7 +80,6 @@ export class TreeRenderer {
       drawNode(g, node, "unallocated");
       g.eventMode = "static";
       g.cursor = "pointer";
-      g.hitArea = new Circle(0, 0, 30);
       g.on("pointerover", () => this.onNodeHover?.(id));
       g.on("pointerout", () => this.onNodeHover?.(null));
       g.on("pointertap", () => this.onNodeClick?.(id));
@@ -88,6 +87,20 @@ export class TreeRenderer {
       this.nodeGraphics.set(id, g);
       this.nodeStates.set(id, "unallocated");
     }
+
+    // Hit areas live in world coords, so at low zoom a fixed world radius
+    // collapses to a sub-pixel click target. Rescale on zoom to keep a
+    // consistent ~18-pixel click region regardless of camera scale.
+    const SCREEN_HIT_PIXELS = 18;
+    const updateHitAreas = () => {
+      const worldRadius = SCREEN_HIT_PIXELS / Math.max(this.viewport.scale.x, 1e-6);
+      for (const g of this.nodeGraphics.values()) {
+        g.hitArea = new Circle(0, 0, worldRadius);
+      }
+    };
+    updateHitAreas();
+    this.viewport.on("zoomed", updateHitAreas);
+    this.viewport.on("moved", updateHitAreas);
   }
 
   // Mirror PoB's render filter: proxy nodes, proxy groups, and nodes without a
