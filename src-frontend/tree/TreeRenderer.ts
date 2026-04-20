@@ -12,6 +12,7 @@ export class TreeRenderer {
   private nodeLayer = new Container();
   private nodeGraphics = new Map<number, Graphics>();
   private tree: PassiveTree;
+  private resizeObserver: ResizeObserver | null = null;
 
   onNodeHover?: (id: number | null) => void;
   onNodeClick?: (id: number) => void;
@@ -22,12 +23,26 @@ export class TreeRenderer {
   }
 
   async init(canvas: HTMLCanvasElement) {
+    const parent = canvas.parentElement;
     await this.app.init({
       canvas,
-      resizeTo: canvas.parentElement ?? window,
+      resizeTo: parent ?? window,
       backgroundColor: 0x0e0e11,
       antialias: true,
     });
+
+    // Pixi's resizeTo only listens to window resize. In Tauri, maximising can
+    // change the parent's size without a window resize event (especially across
+    // HMR reloads). A ResizeObserver on the parent catches those cases.
+    if (parent) {
+      this.resizeObserver = new ResizeObserver(() => {
+        const w = parent.clientWidth;
+        const h = parent.clientHeight;
+        this.app.renderer.resize(w, h);
+        if (this.viewport) this.viewport.resize(w, h);
+      });
+      this.resizeObserver.observe(parent);
+    }
 
     const worldWidth = this.tree.max_x - this.tree.min_x;
     const worldHeight = this.tree.max_y - this.tree.min_y;
@@ -85,6 +100,8 @@ export class TreeRenderer {
   }
 
   destroy() {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = null;
     this.app.destroy(true, { children: true });
   }
 }
