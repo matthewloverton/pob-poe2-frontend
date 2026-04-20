@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^2.1.0",
+    "@tauri-apps/plugin-dialog": "^2.7.0",
     "@tauri-apps/plugin-shell": "^2.0.1",
     "fast-xml-parser": "^4.5.0",
     "pixi-viewport": "^6.0.3",
