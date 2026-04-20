@@ -48,7 +48,7 @@ export function drawConnections(
 }
 
 function shouldSkipConnection(a: PassiveNode, b: PassiveNode): boolean {
-  if (a["type"] === "OnlyImage" || b["type"] === "OnlyImage") return true;
+  if (a["isOnlyImage"] === true || b["isOnlyImage"] === true) return true;
   if ((a.ascendancyName ?? null) !== (b.ascendancyName ?? null)) return true;
   if (Array.isArray(a.classesStart) || Array.isArray(b.classesStart)) return true;
   return false;

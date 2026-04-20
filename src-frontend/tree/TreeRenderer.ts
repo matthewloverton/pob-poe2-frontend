@@ -107,11 +107,11 @@ export class TreeRenderer {
   // usable skill effect aren't drawn in the main view.
   private isRenderableNode(node: import("../types/tree").PassiveNode): boolean {
     if (node["isProxy"] === true) return false;
+    if (node["isOnlyImage"] === true) return false;  // mastery placeholders, decorative art
     if (node.group != null) {
       const group = this.tree.groups[String(node.group)] as (import("../types/tree").PassiveGroup & { isProxy?: boolean }) | undefined;
       if (group?.isProxy) return false;
     }
-    if (node["type"] === "OnlyImage") return false;
     return true;
   }
 
