@@ -5,6 +5,31 @@ import { serializeBuild } from "../xml/xmlExport";
 import { decodeTreeUrl, encodeTreeUrl } from "../xml/treeUrlCodec";
 import { decodeBuildCode, encodeBuildCode } from "./buildCode";
 import { useBuildStore } from "./buildStore";
+import treeData from "../data/tree.json";
+import type { NodeId, PassiveTree } from "../types/tree";
+
+const tree = treeData as unknown as PassiveTree;
+
+function findClassStartNodeId(classId: number): NodeId | null {
+  const classes = tree.constants["classes"];
+  if (!Array.isArray(classes)) return null;
+  const className = (classes as Array<{ name?: string; integerId?: number }>)
+    .find((c) => c.integerId === classId)?.name;
+  if (!className) return null;
+  for (const [idStr, node] of Object.entries(tree.nodes)) {
+    if (Array.isArray(node.classesStart) && node.classesStart.includes(className)) {
+      return Number(idStr);
+    }
+  }
+  return null;
+}
+
+function nodesWithClassStart(classId: number, nodes: NodeId[]): NodeId[] {
+  const startId = findClassStartNodeId(classId);
+  if (startId == null) return nodes;
+  if (nodes.includes(startId)) return nodes;
+  return [startId, ...nodes];
+}
 
 export async function importBuildFromFile(): Promise<void> {
   const path = await openDialog({
@@ -16,14 +41,14 @@ export async function importBuildFromFile(): Promise<void> {
   const xml = await invoke<string>("load_build", { path });
   const parsed = parseBuildXml(xml);
   const decoded = decodeTreeUrl(parsed.activeSpec.treeUrl);
-  useBuildStore.getState().loadFromParsed(parsed, decoded.nodes);
+  useBuildStore.getState().loadFromParsed(parsed, nodesWithClassStart(decoded.classId, decoded.nodes));
 }
 
 export async function importBuildFromCode(code: string): Promise<void> {
   const xml = await decodeBuildCode(code);
   const parsed = parseBuildXml(xml);
   const decoded = decodeTreeUrl(parsed.activeSpec.treeUrl);
-  useBuildStore.getState().loadFromParsed(parsed, decoded.nodes);
+  useBuildStore.getState().loadFromParsed(parsed, nodesWithClassStart(decoded.classId, decoded.nodes));
 }
 
 export async function exportBuildAsCode(): Promise<string> {
