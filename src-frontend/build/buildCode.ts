@@ -12,18 +12,18 @@ function base64urlToBytes(s: string): Uint8Array {
 
 function bytesToBase64url(bytes: Uint8Array): string {
   let bin = "";
-  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]!);
   return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
 async function inflate(compressed: Uint8Array): Promise<Uint8Array> {
-  const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream("deflate"));
+  const stream = new Blob([compressed as BlobPart]).stream().pipeThrough(new DecompressionStream("deflate"));
   const buf = await new Response(stream).arrayBuffer();
   return new Uint8Array(buf);
 }
 
 async function deflate(raw: Uint8Array): Promise<Uint8Array> {
-  const stream = new Blob([raw]).stream().pipeThrough(new CompressionStream("deflate"));
+  const stream = new Blob([raw as BlobPart]).stream().pipeThrough(new CompressionStream("deflate"));
   const buf = await new Response(stream).arrayBuffer();
   return new Uint8Array(buf);
 }
