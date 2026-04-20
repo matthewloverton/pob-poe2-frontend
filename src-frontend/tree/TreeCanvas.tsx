@@ -17,10 +17,9 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    let cancelled = false;
     const renderer = new TreeRenderer(tree);
     const interaction = new TreeInteraction(tree.nodes);
-    rendererRef.current = renderer;
-    interactionRef.current = interaction;
     renderer.onNodeHover = setHovered;
     renderer.onNodeClick = (id) => {
       const i = interactionRef.current;
@@ -33,8 +32,24 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
         if (path.length > 0) allocate(path);
       }
     };
-    renderer.init(canvas);
-    return () => { renderer.destroy(); rendererRef.current = null; interactionRef.current = null; };
+    renderer.init(canvas).then(() => {
+      if (cancelled) {
+        renderer.destroy();
+        return;
+      }
+      rendererRef.current = renderer;
+      interactionRef.current = interaction;
+    }).catch((err) => {
+      console.error("TreeRenderer init failed", err);
+    });
+    return () => {
+      cancelled = true;
+      if (rendererRef.current === renderer) {
+        renderer.destroy();
+        rendererRef.current = null;
+        interactionRef.current = null;
+      }
+    };
   }, [tree, allocate, deallocate]);
 
   useEffect(() => {
