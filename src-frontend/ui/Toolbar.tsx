@@ -6,24 +6,47 @@ import {
   exportBuildAsCode,
 } from "../build/loadSave";
 import { useBuildStore } from "../build/buildStore";
+import { useDialogStore } from "./dialogStore";
 
 async function handleImportCode() {
-  const code = window.prompt("Paste a PoB-PoE2 build code (pobb.in):");
+  const { openPrompt, pushToast } = useDialogStore.getState();
+  const code = await openPrompt("Import build code", "Paste a PoB-PoE2 / pobb.in build code");
   if (!code) return;
   try {
     await importBuildFromCode(code);
+    pushToast("Build imported.", "success");
   } catch (e) {
-    alert("Couldn't decode build code: " + String(e));
+    pushToast("Couldn't decode build code: " + String(e), "error");
   }
 }
 
 async function handleCopyCode() {
+  const { pushToast } = useDialogStore.getState();
   try {
     const code = await exportBuildAsCode();
     await navigator.clipboard.writeText(code);
-    alert("Build code copied to clipboard.");
+    pushToast("Build code copied to clipboard.", "success");
   } catch (e) {
-    alert("Couldn't copy build code: " + String(e));
+    pushToast("Couldn't copy build code: " + String(e), "error");
+  }
+}
+
+async function handleImportFile() {
+  const { pushToast } = useDialogStore.getState();
+  try {
+    await importBuildFromFile();
+  } catch (e) {
+    pushToast(String(e), "error");
+  }
+}
+
+async function handleSave() {
+  const { pushToast } = useDialogStore.getState();
+  try {
+    await exportBuildToFile();
+    pushToast("Build saved.", "success");
+  } catch (e) {
+    pushToast(String(e), "error");
   }
 }
 
@@ -35,9 +58,9 @@ export function Toolbar() {
 
   return (
     <div className="flex items-center gap-2 border-b border-border bg-bg px-4 py-2">
-      <Button onClick={() => importBuildFromFile().catch((e) => alert(String(e)))}>Import XML</Button>
+      <Button onClick={handleImportFile}>Import XML</Button>
       <Button onClick={handleImportCode}>Import Code</Button>
-      <Button onClick={() => exportBuildToFile().catch((e) => alert(String(e)))} disabled={!hasBuild}>
+      <Button onClick={handleSave} disabled={!hasBuild}>
         {dirty ? "Save *" : "Save"}
       </Button>
       <Button onClick={handleCopyCode} disabled={!hasBuild}>Copy Code</Button>

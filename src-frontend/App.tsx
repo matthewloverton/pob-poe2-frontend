@@ -5,6 +5,7 @@ import { StatusPill } from "./ui/StatusPill";
 import { TreeCanvas } from "./tree/TreeCanvas";
 import { Toolbar } from "./ui/Toolbar";
 import { Sidebar } from "./ui/Sidebar";
+import { DialogHost } from "./ui/DialogHost";
 
 const tree = treeData as unknown as PassiveTree;
 
@@ -24,6 +25,7 @@ export default function App() {
           <TreeCanvas tree={tree} />
         </main>
       </div>
+      <DialogHost />
     </div>
   );
 }
