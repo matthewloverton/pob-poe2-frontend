@@ -97,10 +97,10 @@ function tryDrawSameOrbitArc(
   const angleB = angles[b.orbitIndex ?? 0];
   if (angleA == null || angleB == null) return false;
 
-  // Tree-coord angle convention: 0 deg = straight up, increasing clockwise.
-  // Convert to Pixi-canonical (0 = +x, counter-clockwise negative in screen Y).
-  const pixiA = ((angleA - 90) * Math.PI) / 180;
-  const pixiB = ((angleB - 90) * Math.PI) / 180;
+  // Tree-coord angle (radians): 0 = straight up, increasing clockwise.
+  // Convert to Pixi-canonical (0 = +x, increasing ccw in math terms).
+  const pixiA = angleA - Math.PI / 2;
+  const pixiB = angleB - Math.PI / 2;
   return drawArcPolyline(g, group.x, group.y, radius, pixiA, pixiB);
 }
 

@@ -2,15 +2,17 @@ import { describe, expect, test } from "vitest";
 import { nodeWorldPosition, nodesShareOrbit } from "./geometry";
 import type { PassiveNode, PassiveGroup, TreeConstants } from "../types/tree";
 
+// orbitAnglesByOrbit values are in radians, matching the upstream data shape.
+const D2R = Math.PI / 180;
 const constants: TreeConstants = {
   skillsPerOrbit: [1, 6, 12, 12, 40],
   orbitRadii: [0, 82, 162, 335, 493],
   orbitAnglesByOrbit: [
     [0],
-    [0, 60, 120, 180, 240, 300],
-    [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330],
-    [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330],
-    Array.from({ length: 40 }, (_, i) => i * 9),
+    [0, 60 * D2R, 120 * D2R, 180 * D2R, 240 * D2R, 300 * D2R],
+    [0, 30 * D2R, 60 * D2R, 90 * D2R, 120 * D2R, 150 * D2R, 180 * D2R, 210 * D2R, 240 * D2R, 270 * D2R, 300 * D2R, 330 * D2R],
+    [0, 30 * D2R, 60 * D2R, 90 * D2R, 120 * D2R, 150 * D2R, 180 * D2R, 210 * D2R, 240 * D2R, 270 * D2R, 300 * D2R, 330 * D2R],
+    Array.from({ length: 40 }, (_, i) => i * 9 * D2R),
   ],
 };
 

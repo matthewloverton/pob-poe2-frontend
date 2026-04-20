@@ -16,9 +16,9 @@ export function nodeWorldPosition(
   const radius = constants.orbitRadii[node.orbit] ?? 0;
   if (radius === 0) return { x: group.x, y: group.y };
 
-  const angleDeg = constants.orbitAnglesByOrbit?.[node.orbit]?.[node.orbitIndex];
-  if (angleDeg == null) return { x: group.x, y: group.y };
-  const angle = (angleDeg * Math.PI) / 180;
+  // orbitAnglesByOrbit values are already in radians in the upstream data.
+  const angle = constants.orbitAnglesByOrbit?.[node.orbit]?.[node.orbitIndex];
+  if (angle == null) return { x: group.x, y: group.y };
 
   return {
     x: group.x + radius * Math.sin(angle),
