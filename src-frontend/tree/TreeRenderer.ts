@@ -53,7 +53,9 @@ export class TreeRenderer {
     this.viewport.addChild(this.connectionLayer);
     this.viewport.addChild(this.nodeLayer);
 
-    const showConnections = !new URLSearchParams(window.location.search).has("no-lines");
+    // Temporarily hiding connections by default to verify node positions.
+    // Restore with `?lines` query param, or remove this guard once positions verified.
+    const showConnections = new URLSearchParams(window.location.search).has("lines");
     if (showConnections) {
       drawConnections(this.connectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants);
     }
