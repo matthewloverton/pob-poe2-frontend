@@ -1,0 +1,14 @@
+<PathOfBuilding>
+  <Build level="1" targetVersion="0_2" className="Witch" ascendClassName="Infernalist" />
+  <Tree activeSpec="1">
+    <Spec title="Default" classId="1" ascendClassId="0" treeVersion="0_2">
+      <URL>https://www.pathofexile.com/passive-skill-tree/AAAABAEAAAAA</URL>
+      <Sockets />
+    </Spec>
+  </Tree>
+  <Items />
+  <Skills />
+  <Calcs />
+  <Notes />
+  <Config />
+</PathOfBuilding>
