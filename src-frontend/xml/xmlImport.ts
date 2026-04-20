@@ -27,8 +27,8 @@ function firstOrOnly<T>(value: T | T[] | undefined): T | undefined {
 
 export function parseBuildXml(xml: string): ParsedBuild {
   const raw = parser.parse(xml);
-  const root = raw.PathOfBuilding;
-  if (!root) throw new Error("missing <PathOfBuilding> root element");
+  const root = raw.PathOfBuilding2 ?? raw.PathOfBuilding;
+  if (!root) throw new Error("missing <PathOfBuilding> / <PathOfBuilding2> root element");
 
   const tree = root.Tree;
   if (!tree) throw new Error("missing <Tree> element");
