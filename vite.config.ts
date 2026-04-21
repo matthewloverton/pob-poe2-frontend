@@ -5,6 +5,7 @@ import path from "node:path";
 
 export default defineConfig({
   root: "src-frontend",
+  publicDir: path.resolve(__dirname, "public"),
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: { "@": path.resolve(__dirname, "src-frontend") },

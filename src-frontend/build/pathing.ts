@@ -32,6 +32,7 @@ export function findOrphansOnRemove(
   removeId: NodeId,
   graph: Graph,
   nodes: Record<string, import("../types/tree").PassiveNode>,
+  forbidden: Set<NodeId> = new Set(),
 ): Set<NodeId> {
   const anchors = new Set<NodeId>();
   for (const id of allocated) {
@@ -47,6 +48,7 @@ export function findOrphansOnRemove(
     const current = queue.shift()!;
     for (const next of graph.get(current) ?? []) {
       if (next === removeId) continue;
+      if (forbidden.has(next)) continue;
       if (!allocated.has(next)) continue;
       if (reached.has(next)) continue;
       reached.add(next);
@@ -66,7 +68,9 @@ export function shortestPath(
   allocated: Set<NodeId>,
   to: NodeId,
   graph: Graph,
+  forbidden: Set<NodeId> = new Set(),
 ): NodeId[] | null {
+  if (forbidden.has(to)) return null;
   if (allocated.has(to)) return [];
   if (allocated.size === 0) return null;
 
@@ -79,6 +83,7 @@ export function shortestPath(
     const neighbors = graph.get(current) ?? [];
     for (const next of neighbors) {
       if (visited.has(next)) continue;
+      if (forbidden.has(next)) continue;
       visited.add(next);
       parent.set(next, current);
       if (next === to) {

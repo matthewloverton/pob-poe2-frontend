@@ -1,26 +1,77 @@
-import { Application, Assets, Circle, Container, Graphics, Texture } from "pixi.js";
+import {
+  Application,
+  Container,
+  Culler,
+  FederatedPointerEvent,
+  Graphics,
+  Rectangle,
+  Sprite,
+} from "pixi.js";
 import { Viewport } from "pixi-viewport";
-import type { PassiveTree } from "../types/tree";
+import type { PassiveTree, PassiveNode } from "../types/tree";
 import { nodeWorldPosition } from "./geometry";
 import { drawConnections } from "./ConnectionRenderer";
-import { NodeDisplay, iconUrl, type NodeVisualState } from "./NodeSprite";
+import {
+  classifyNode,
+  FILL_COLORS,
+  iconTint,
+  KIND_STROKE,
+  RADII,
+  STROKE_WIDTH,
+  strokeColor,
+  type NodeKind,
+  type NodeVisualState,
+} from "./NodeSprite";
+import { frameTexture, loadAtlases, manifestKey, type AtlasFrame } from "./atlas";
+
+const HIT_CELL_SIZE = 500;
+const SCREEN_HIT_PIXELS = 18;
+
+type RenderableNode = {
+  id: number;
+  node: PassiveNode;
+  kind: NodeKind;
+  x: number;
+  y: number;
+};
+
+type NodePos = { id: number; x: number; y: number };
 
 export class TreeRenderer {
   private app: Application;
   private viewport!: Viewport;
+
+  // Base (static) layers — drawn once at init.
   private connectionLayer = new Graphics();
+  private bgFillLayer = new Graphics();
+  private bgStrokeLayer = new Graphics();
+  private iconContainer = new Container();
+
+  // Dynamic overlay layers — redrawn on allocation/hover state change.
   private allocatedConnectionLayer = new Graphics();
+  private pathingConnectionLayer = new Graphics();
   private removingConnectionLayer = new Graphics();
-  private nodeLayer = new Container();
-  private nodeGraphics = new Map<number, NodeDisplay>();
+  private overlayFillLayer = new Graphics();
+  private overlayStrokeLayer = new Graphics();
+
+  private lastPathingEdgeKey: string = "";
+
+  private nodes = new Map<number, RenderableNode>();
+  private iconSprites = new Map<number, Sprite>();
   private nodeStates = new Map<number, NodeVisualState>();
   private lastAllocated: Set<number> = new Set();
   private lastRemoving: Set<number> = new Set();
+
+  private spatialGrid = new Map<string, NodePos[]>();
+  private lastHoveredId: number | null = null;
+
   private tree: PassiveTree;
   private resizeObserver: ResizeObserver | null = null;
 
   onNodeHover?: (id: number | null) => void;
   onNodeClick?: (id: number) => void;
+  onProgress?: (pct: number, label: string) => void;
+  onReady?: () => void;
 
   constructor(tree: PassiveTree) {
     this.tree = tree;
@@ -28,6 +79,8 @@ export class TreeRenderer {
   }
 
   async init(canvas: HTMLCanvasElement) {
+    this.onProgress?.(0, "Initialising renderer");
+
     const parent = canvas.parentElement;
     await this.app.init({
       canvas,
@@ -36,9 +89,6 @@ export class TreeRenderer {
       antialias: true,
     });
 
-    // Pixi's resizeTo only listens to window resize. In Tauri, maximising can
-    // change the parent's size without a window resize event (especially across
-    // HMR reloads). A ResizeObserver on the parent catches those cases.
     if (parent) {
       this.resizeObserver = new ResizeObserver(() => {
         const w = parent.clientWidth;
@@ -61,86 +111,192 @@ export class TreeRenderer {
       worldHeight,
       events: this.app.renderer.events,
     });
-    this.viewport.drag().pinch().wheel().decelerate();
     const fitZoom = Math.min(
       this.app.renderer.width / worldWidth,
       this.app.renderer.height / worldHeight,
-    ) * 0.9;
-    this.viewport.setZoom(fitZoom);
+    );
+    this.viewport
+      .drag()
+      .pinch()
+      .wheel()
+      .decelerate()
+      .clampZoom({ minScale: fitZoom * 1.3, maxScale: fitZoom * 25 });
+    this.viewport.setZoom(fitZoom * 2.5);
     this.viewport.moveCenter(centerX, centerY);
 
     this.app.stage.addChild(this.viewport);
     this.viewport.addChild(this.connectionLayer);
     this.viewport.addChild(this.allocatedConnectionLayer);
+    this.viewport.addChild(this.pathingConnectionLayer);
     this.viewport.addChild(this.removingConnectionLayer);
-    this.viewport.addChild(this.nodeLayer);
+    this.viewport.addChild(this.bgFillLayer);
+    this.viewport.addChild(this.overlayFillLayer);
+    this.viewport.addChild(this.iconContainer);
+    this.viewport.addChild(this.bgStrokeLayer);
+    this.viewport.addChild(this.overlayStrokeLayer);
+
+    this.collectRenderableNodes();
+    this.buildSpatialGrid();
 
     drawConnections(this.connectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants);
 
+    this.drawBaseNodes();
+
+    this.onProgress?.(0.3, "Loading atlases");
+    const { manifest, sources } = await loadAtlases();
+    this.onProgress?.(0.8, "Building sprites");
+    this.buildIconSprites(manifest.frames, sources);
+
+    this.setupHitTesting();
+    this.setupCulling();
+
+    this.onProgress?.(1, "Ready");
+    this.onReady?.();
+  }
+
+  private collectRenderableNodes() {
     for (const [idStr, node] of Object.entries(this.tree.nodes)) {
       const id = Number(idStr);
       if (!this.isRenderableNode(node)) continue;
       const pos = nodeWorldPosition(node, this.tree.groups, this.tree.constants);
-      const display = new NodeDisplay(node);
-      display.position.set(pos.x, pos.y);
-      display.eventMode = "static";
-      display.cursor = "pointer";
-      display.on("pointerover", () => this.onNodeHover?.(id));
-      display.on("pointerout", () => this.onNodeHover?.(null));
-      display.on("pointertap", () => this.onNodeClick?.(id));
-      this.nodeLayer.addChild(display);
-      this.nodeGraphics.set(id, display);
+      this.nodes.set(id, { id, node, kind: classifyNode(node), x: pos.x, y: pos.y });
       this.nodeStates.set(id, "unallocated");
     }
-    this.loadIcons();
-
-    // Hit areas live in world coords, so at low zoom a fixed world radius
-    // collapses to a sub-pixel click target. Rescale on zoom to keep a
-    // consistent ~18-pixel click region regardless of camera scale.
-    const SCREEN_HIT_PIXELS = 18;
-    const updateHitAreas = () => {
-      const worldRadius = SCREEN_HIT_PIXELS / Math.max(this.viewport.scale.x, 1e-6);
-      for (const display of this.nodeGraphics.values()) {
-        display.hitArea = new Circle(0, 0, worldRadius);
-      }
-    };
-    updateHitAreas();
-    this.viewport.on("zoomed", updateHitAreas);
-    this.viewport.on("moved", updateHitAreas);
   }
 
-  // Group nodes by icon URL and load each URL once via Pixi's Assets cache,
-  // then apply the Texture to every node sharing that icon. Failures are
-  // swallowed — nodes fall back to their shape frame.
-  private loadIcons() {
-    const byUrl = new Map<string, number[]>();
-    for (const [id, display] of this.nodeGraphics) {
-      const node = this.tree.nodes[String(id)];
-      if (!node) continue;
-      const url = iconUrl(node);
-      if (!url) continue;
-      void display; // display is applied after load resolves
-      let ids = byUrl.get(url);
-      if (!ids) { ids = []; byUrl.set(url, ids); }
-      ids.push(id);
+  private buildSpatialGrid() {
+    for (const n of this.nodes.values()) {
+      const key = this.cellKey(n.x, n.y);
+      let bucket = this.spatialGrid.get(key);
+      if (!bucket) { bucket = []; this.spatialGrid.set(key, bucket); }
+      bucket.push({ id: n.id, x: n.x, y: n.y });
     }
-    for (const [url, ids] of byUrl) {
-      Assets.load<Texture>(url).then((texture) => {
-        for (const id of ids) {
-          const display = this.nodeGraphics.get(id);
-          if (display) display.setIcon(texture);
-        }
-      }).catch(() => {
-        // Missing icon on the CDN — keep the shape frame.
+  }
+
+  // Static fill + stroke for every node in its unallocated state. Drawn once;
+  // the overlay layers render on top for any node whose state differs.
+  private drawBaseNodes() {
+    this.bgFillLayer.clear();
+    this.bgStrokeLayer.clear();
+    for (const n of this.nodes.values()) {
+      const r = RADII[n.kind];
+      this.bgFillLayer.circle(n.x, n.y, r).fill({ color: FILL_COLORS.unallocated });
+      this.bgStrokeLayer.circle(n.x, n.y, r).stroke({
+        color: KIND_STROKE[n.kind],
+        width: STROKE_WIDTH[n.kind],
       });
     }
   }
 
-  // Mirror PoB's render filter: proxy nodes, proxy groups, and nodes without a
-  // usable skill effect aren't drawn in the main view.
-  private isRenderableNode(node: import("../types/tree").PassiveNode): boolean {
+  private buildIconSprites(frames: Record<string, AtlasFrame>, sources: import("pixi.js").TextureSource[]) {
+    for (const n of this.nodes.values()) {
+      const iconPath = n.node.icon;
+      if (typeof iconPath !== "string" || !iconPath) continue;
+      const frame = frames[manifestKey(iconPath)];
+      if (!frame) continue;
+
+      const sprite = new Sprite(frameTexture(sources, frame));
+      sprite.anchor.set(0.5);
+      sprite.position.set(n.x, n.y);
+      const target = RADII[n.kind] * 2;
+      const maxDim = Math.max(frame.w, frame.h);
+      sprite.scale.set(target / maxDim);
+      sprite.tint = iconTint("unallocated");
+      sprite.cullable = true;
+      // cullArea is in the sprite's local (pre-scale) coordinate space, centred
+      // on the anchor — Pixi multiplies it by the world transform on cull check.
+      sprite.cullArea = new Rectangle(-frame.w / 2, -frame.h / 2, frame.w, frame.h);
+      this.iconContainer.addChild(sprite);
+      this.iconSprites.set(n.id, sprite);
+    }
+  }
+
+  private setupCulling() {
+    // Only icons are numerous enough to benefit from culling. Graphics layers
+    // are single objects whose geometry lives on the GPU — cheap to render.
+    this.iconContainer.cullableChildren = true;
+    // skipUpdateTransform=false forces Pixi to compute fresh world transforms
+    // before testing each sprite. Without it, mid-drag cull checks see stale
+    // positions and cull sprites that should still be visible.
+    const cull = () => Culler.shared.cull(this.iconContainer, this.app.renderer.screen, false);
+    cull();
+    this.viewport.on("moved", cull);
+    this.viewport.on("zoomed", cull);
+  }
+
+  private setupHitTesting() {
+    this.viewport.eventMode = "static";
+
+    const resolve = (e: FederatedPointerEvent): number | null => {
+      const world = this.viewport.toWorld(e.global);
+      const radius = SCREEN_HIT_PIXELS / Math.max(this.viewport.scale.x, 1e-6);
+      return this.findNodeAt(world.x, world.y, radius);
+    };
+
+    // Suppress click-to-allocate if the pointer moved more than a few pixels
+    // between pointerdown and pointerup — that was a pan drag, not a tap.
+    const DRAG_TOLERANCE_PX = 4;
+    let pointerDown: { x: number; y: number } | null = null;
+
+    this.viewport.on("pointerdown", (e: FederatedPointerEvent) => {
+      pointerDown = { x: e.global.x, y: e.global.y };
+    });
+
+    this.viewport.on("pointermove", (e: FederatedPointerEvent) => {
+      const id = resolve(e);
+      if (id !== this.lastHoveredId) {
+        this.lastHoveredId = id;
+        this.onNodeHover?.(id);
+      }
+    });
+
+    this.viewport.on("pointerup", (e: FederatedPointerEvent) => {
+      const start = pointerDown;
+      pointerDown = null;
+      if (!start) return;
+      const dx = e.global.x - start.x;
+      const dy = e.global.y - start.y;
+      if (dx * dx + dy * dy > DRAG_TOLERANCE_PX * DRAG_TOLERANCE_PX) return;
+      const id = resolve(e);
+      if (id != null) this.onNodeClick?.(id);
+    });
+
+    this.viewport.on("pointerleave", () => {
+      pointerDown = null;
+      if (this.lastHoveredId != null) {
+        this.lastHoveredId = null;
+        this.onNodeHover?.(null);
+      }
+    });
+  }
+
+  private cellKey(x: number, y: number): string {
+    return `${Math.floor(x / HIT_CELL_SIZE)},${Math.floor(y / HIT_CELL_SIZE)}`;
+  }
+
+  private findNodeAt(wx: number, wy: number, radius: number): number | null {
+    const cellsRadius = Math.ceil(radius / HIT_CELL_SIZE);
+    const cx = Math.floor(wx / HIT_CELL_SIZE);
+    const cy = Math.floor(wy / HIT_CELL_SIZE);
+    const maxDistSq = radius * radius;
+    let bestId: number | null = null;
+    let bestDistSq = maxDistSq;
+    for (let dx = -cellsRadius; dx <= cellsRadius; dx++) {
+      for (let dy = -cellsRadius; dy <= cellsRadius; dy++) {
+        const bucket = this.spatialGrid.get(`${cx + dx},${cy + dy}`);
+        if (!bucket) continue;
+        for (const { id, x, y } of bucket) {
+          const d = (x - wx) ** 2 + (y - wy) ** 2;
+          if (d < bestDistSq) { bestDistSq = d; bestId = id; }
+        }
+      }
+    }
+    return bestId;
+  }
+
+  private isRenderableNode(node: PassiveNode): boolean {
     if (node["isProxy"] === true) return false;
-    if (node["isOnlyImage"] === true) return false;  // mastery placeholders, decorative art
+    if (node["isOnlyImage"] === true) return false;
     if (node.group != null) {
       const group = this.tree.groups[String(node.group)] as (import("../types/tree").PassiveGroup & { isProxy?: boolean }) | undefined;
       if (group?.isProxy) return false;
@@ -149,12 +305,11 @@ export class TreeRenderer {
   }
 
   focusNode(id: number) {
-    const node = this.tree.nodes[String(id)];
-    if (!node) return;
-    const pos = nodeWorldPosition(node, this.tree.groups, this.tree.constants);
+    const n = this.nodes.get(id);
+    if (!n) return;
     const minZoom = 0.5;
     if (this.viewport.scale.x < minZoom) this.viewport.setZoom(minZoom, true);
-    this.viewport.moveCenter(pos.x, pos.y);
+    this.viewport.moveCenter(n.x, n.y);
   }
 
   applyAllocations(
@@ -162,21 +317,56 @@ export class TreeRenderer {
     pathing: Set<number>,
     hovered: number | null,
     removing: Set<number> = new Set(),
+    pathingEdges: Array<[number, number]> = [],
   ) {
-    for (const [id, display] of this.nodeGraphics) {
+    let stateChanged = false;
+    const stateById = new Map<number, NodeVisualState>();
+    for (const [id] of this.nodes) {
       let state: NodeVisualState;
       if (removing.has(id)) state = "removing";
       else if (hovered === id) state = "hovered";
       else if (allocated.has(id)) state = "allocated";
       else if (pathing.has(id)) state = "pathing";
       else state = "unallocated";
-      if (this.nodeStates.get(id) === state) continue;
-      display.setState(state);
-      this.nodeStates.set(id, state);
+      stateById.set(id, state);
+      if (this.nodeStates.get(id) !== state) {
+        stateChanged = true;
+        this.nodeStates.set(id, state);
+        const sprite = this.iconSprites.get(id);
+        if (sprite) sprite.tint = iconTint(state);
+      }
+    }
+
+    if (stateChanged) this.redrawOverlays(stateById);
+
+    // Path-preview edges. Rebuild the filter only when the edge set changes so
+    // we aren't redrawing thousands of arcs on every pointermove.
+    const pathingEdgeKey = pathingEdges
+      .map(([a, b]) => (a < b ? `${a}-${b}` : `${b}-${a}`))
+      .sort()
+      .join("|");
+    if (pathingEdgeKey !== this.lastPathingEdgeKey) {
+      this.lastPathingEdgeKey = pathingEdgeKey;
+      if (pathingEdges.length === 0) {
+        this.pathingConnectionLayer.clear();
+      } else {
+        const edgeSet = new Set(pathingEdgeKey.split("|"));
+        drawConnections(
+          this.pathingConnectionLayer,
+          this.tree.nodes,
+          this.tree.groups,
+          this.tree.constants,
+          {
+            color: 0x06b6d4,
+            width: 4,
+            includeClassStartEdges: true,
+            filter: (a, b) => edgeSet.has(a < b ? `${a}-${b}` : `${b}-${a}`),
+          },
+        );
+      }
     }
 
     if (!sameSet(this.lastAllocated, allocated) || !sameSet(this.lastRemoving, removing)) {
-      // Allocated connections (white), excluding any about-to-be-removed endpoints.
       drawConnections(
         this.allocatedConnectionLayer,
         this.tree.nodes,
@@ -184,12 +374,12 @@ export class TreeRenderer {
         this.tree.constants,
         {
           color: 0xfafafa,
-          width: 2,
+          width: 4,
+          includeClassStartEdges: true,
           filter: (a, b) =>
             allocated.has(a) && allocated.has(b) && !removing.has(a) && !removing.has(b),
         },
       );
-      // Removing-preview connections (red) — edges where at least one endpoint is doomed.
       drawConnections(
         this.removingConnectionLayer,
         this.tree.nodes,
@@ -197,13 +387,32 @@ export class TreeRenderer {
         this.tree.constants,
         {
           color: 0xf43f5e,
-          width: 2,
+          width: 4,
+          includeClassStartEdges: true,
           filter: (a, b) =>
             (removing.has(a) || removing.has(b)) && allocated.has(a) && allocated.has(b),
         },
       );
       this.lastAllocated = new Set(allocated);
       this.lastRemoving = new Set(removing);
+    }
+  }
+
+  // Redraw the overlay fill + stroke layers from scratch with every non-unallocated
+  // node. Typical sizes are well under a hundred, so this is cheap.
+  private redrawOverlays(stateById: Map<number, NodeVisualState>) {
+    this.overlayFillLayer.clear();
+    this.overlayStrokeLayer.clear();
+    for (const [id, state] of stateById) {
+      if (state === "unallocated") continue;
+      const n = this.nodes.get(id);
+      if (!n) continue;
+      const r = RADII[n.kind];
+      this.overlayFillLayer.circle(n.x, n.y, r).fill({ color: FILL_COLORS[state] });
+      this.overlayStrokeLayer.circle(n.x, n.y, r).stroke({
+        color: strokeColor(n.kind, state),
+        width: STROKE_WIDTH[n.kind],
+      });
     }
   }
 
