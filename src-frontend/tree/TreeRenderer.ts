@@ -48,13 +48,16 @@ export class TreeRenderer {
   private iconContainer = new Container();
 
   // Dynamic overlay layers — redrawn on allocation/hover state change.
-  private allocatedConnectionLayer = new Graphics();
+  private allocatedMainLayer = new Graphics();
+  private allocatedWs1Layer = new Graphics();
+  private allocatedWs2Layer = new Graphics();
   private pathingConnectionLayer = new Graphics();
   private removingConnectionLayer = new Graphics();
   private overlayFillLayer = new Graphics();
   private overlayStrokeLayer = new Graphics();
 
   private lastPathingEdgeKey: string = "";
+  private lastAllocKey: string = "";
 
   private nodes = new Map<number, RenderableNode>();
   private iconSprites = new Map<number, Sprite>();
@@ -126,7 +129,9 @@ export class TreeRenderer {
 
     this.app.stage.addChild(this.viewport);
     this.viewport.addChild(this.connectionLayer);
-    this.viewport.addChild(this.allocatedConnectionLayer);
+    this.viewport.addChild(this.allocatedMainLayer);
+    this.viewport.addChild(this.allocatedWs1Layer);
+    this.viewport.addChild(this.allocatedWs2Layer);
     this.viewport.addChild(this.pathingConnectionLayer);
     this.viewport.addChild(this.removingConnectionLayer);
     this.viewport.addChild(this.bgFillLayer);
@@ -318,6 +323,8 @@ export class TreeRenderer {
     hovered: number | null,
     removing: Set<number> = new Set(),
     pathingEdges: Array<[number, number]> = [],
+    allocMode: 0 | 1 | 2 = 0,
+    nodeModes: Record<number, 0 | 1 | 2> = {},
   ) {
     let stateChanged = false;
     const stateById = new Map<number, NodeVisualState>();
@@ -341,23 +348,29 @@ export class TreeRenderer {
 
     // Path-preview edges. Rebuild the filter only when the edge set changes so
     // we aren't redrawing thousands of arcs on every pointermove.
-    const pathingEdgeKey = pathingEdges
+    const edgeOnly = pathingEdges
       .map(([a, b]) => (a < b ? `${a}-${b}` : `${b}-${a}`))
       .sort()
       .join("|");
+    // Include allocMode so switching modes recolours the preview even when the
+    // edge set itself didn't change.
+    const pathingEdgeKey = `${allocMode}|${edgeOnly}`;
     if (pathingEdgeKey !== this.lastPathingEdgeKey) {
       this.lastPathingEdgeKey = pathingEdgeKey;
       if (pathingEdges.length === 0) {
         this.pathingConnectionLayer.clear();
       } else {
-        const edgeSet = new Set(pathingEdgeKey.split("|"));
+        const edgeSet = new Set(edgeOnly.split("|"));
         drawConnections(
           this.pathingConnectionLayer,
           this.tree.nodes,
           this.tree.groups,
           this.tree.constants,
           {
-            color: 0x06b6d4,
+            // Mode-coloured preview: cyan for main tree, red/green for the two
+            // weapon-set banks so the user can see which bank they're about to
+            // spend into.
+            color: allocMode === 1 ? 0xf87171 : allocMode === 2 ? 0x4ade80 : 0x06b6d4,
             width: 4,
             includeClassStartEdges: true,
             filter: (a, b) => edgeSet.has(a < b ? `${a}-${b}` : `${b}-${a}`),
@@ -366,29 +379,49 @@ export class TreeRenderer {
       }
     }
 
-    if (!sameSet(this.lastAllocated, allocated) || !sameSet(this.lastRemoving, removing)) {
+    // Rebuild allocated-edge layers when allocation, removing-preview, or any
+    // node-mode assignment changes. Keying on the JSON of nodeModes is cheap
+    // because the object is small and only mutated on allocate/deallocate.
+    const allocKey =
+      [...allocated].sort().join(",") +
+      "|" + [...removing].sort().join(",") +
+      "|" + JSON.stringify(nodeModes);
+    if (allocKey !== this.lastAllocKey) {
+      this.lastAllocKey = allocKey;
+      const isKept = (id: number) => allocated.has(id) && !removing.has(id);
+      const edgeMode = (a: number, b: number): 0 | 1 | 2 => {
+        const ma = nodeModes[a] ?? 0;
+        const mb = nodeModes[b] ?? 0;
+        // If either endpoint belongs to a weapon set, the edge does too.
+        if (ma !== 0) return ma;
+        if (mb !== 0) return mb;
+        return 0;
+      };
       drawConnections(
-        this.allocatedConnectionLayer,
-        this.tree.nodes,
-        this.tree.groups,
-        this.tree.constants,
+        this.allocatedMainLayer, this.tree.nodes, this.tree.groups, this.tree.constants,
         {
-          color: 0xfafafa,
-          width: 4,
-          includeClassStartEdges: true,
-          filter: (a, b) =>
-            allocated.has(a) && allocated.has(b) && !removing.has(a) && !removing.has(b),
+          color: 0xfafafa, width: 4, includeClassStartEdges: true,
+          filter: (a, b) => isKept(a) && isKept(b) && edgeMode(a, b) === 0,
         },
       );
       drawConnections(
-        this.removingConnectionLayer,
-        this.tree.nodes,
-        this.tree.groups,
-        this.tree.constants,
+        this.allocatedWs1Layer, this.tree.nodes, this.tree.groups, this.tree.constants,
         {
-          color: 0xf43f5e,
-          width: 4,
-          includeClassStartEdges: true,
+          color: 0xf87171, width: 4, includeClassStartEdges: true,
+          filter: (a, b) => isKept(a) && isKept(b) && edgeMode(a, b) === 1,
+        },
+      );
+      drawConnections(
+        this.allocatedWs2Layer, this.tree.nodes, this.tree.groups, this.tree.constants,
+        {
+          color: 0x4ade80, width: 4, includeClassStartEdges: true,
+          filter: (a, b) => isKept(a) && isKept(b) && edgeMode(a, b) === 2,
+        },
+      );
+      drawConnections(
+        this.removingConnectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants,
+        {
+          color: 0xf43f5e, width: 4, includeClassStartEdges: true,
           filter: (a, b) =>
             (removing.has(a) || removing.has(b)) && allocated.has(a) && allocated.has(b),
         },

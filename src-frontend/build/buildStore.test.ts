@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, test } from "vitest";
 import { useBuildStore, countUserAllocated } from "./buildStore";
-import { classStartId } from "./classStarts";
+import { ascendStartIdFor, classStartId, CLASS_NAMES, DEFAULT_CLASS_ID } from "./classStarts";
 
-const RANGER_ID = 2;
+const RANGER_ID = DEFAULT_CLASS_ID;
 const RANGER_START = classStartId(RANGER_ID)!;
-const WITCH_ID = 1;
+const WITCH_ID = Number(Object.keys(CLASS_NAMES).find((k) => CLASS_NAMES[Number(k)] === "Witch")!);
 const WITCH_START = classStartId(WITCH_ID)!;
 
 describe("buildStore", () => {
@@ -31,7 +31,8 @@ describe("buildStore", () => {
     const s = useBuildStore.getState();
     expect(s.classId).toBe(RANGER_ID);
     expect(s.ascendancyId).toBe(1);
-    expect([...s.allocated].sort((a, b) => a - b)).toEqual([1, 2, 3, RANGER_START].sort((a, b) => a - b));
+    const rangerAsc1 = ascendStartIdFor(RANGER_ID, 1)!;
+    expect([...s.allocated].sort((a, b) => a - b)).toEqual([1, 2, 3, RANGER_START, rangerAsc1].sort((a, b) => a - b));
     expect(s.dirty).toBe(false);
     expect(s.sourceXml).toBe("<PathOfBuilding/>");
   });
