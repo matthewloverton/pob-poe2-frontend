@@ -1,11 +1,36 @@
 use anyhow::{anyhow, Context, Result};
 use serde_json::Value;
 use std::collections::HashMap;
+use std::path::PathBuf;
 use std::sync::Arc;
 use tauri::{AppHandle, Manager};
 use tauri_plugin_shell::process::{CommandChild, CommandEvent};
 use tauri_plugin_shell::ShellExt;
 use tokio::sync::{oneshot, Mutex};
+
+// Resource resolution differs between `tauri dev` and a bundled build. In dev
+// the `resources` config doesn't materialise into a predictable folder on
+// Windows, so we first try the official Resource base dir and then fall back
+// to looking at the sidecar/main.lua path relative to the current working
+// directory (the repo root when launched via `just dev`).
+fn resolve_sidecar_script(app: &AppHandle) -> Result<PathBuf> {
+    if let Ok(path) = app.path().resolve("main.lua", tauri::path::BaseDirectory::Resource) {
+        if path.exists() {
+            return Ok(path);
+        }
+        eprintln!("[lua_sidecar] Resource path missing: {}", path.display());
+    }
+    let candidates = [
+        PathBuf::from("sidecar/main.lua"),
+        PathBuf::from("../sidecar/main.lua"),
+    ];
+    for candidate in &candidates {
+        if candidate.exists() {
+            return Ok(candidate.canonicalize().unwrap_or_else(|_| candidate.clone()));
+        }
+    }
+    Err(anyhow!("could not locate sidecar/main.lua via any known path"))
+}
 
 pub struct LuaSidecar {
     child: Mutex<Option<CommandChild>>,
@@ -28,39 +53,53 @@ impl LuaSidecar {
             return Ok(());
         }
 
-        let script_path = app
-            .path()
-            .resolve("main.lua", tauri::path::BaseDirectory::Resource)
-            .context("resolve sidecar script path")?;
+        let script_path = resolve_sidecar_script(app)?;
+        eprintln!("[lua_sidecar] launching with script: {}", script_path.display());
 
         let cmd = app
             .shell()
             .sidecar("luajit")
             .context("get luajit sidecar command")?
-            .arg(script_path);
+            .arg(&script_path);
 
         let (mut rx, child) = cmd.spawn().context("spawn luajit")?;
 
         let pending = Arc::clone(&self.pending);
         tauri::async_runtime::spawn(async move {
             while let Some(event) = rx.recv().await {
-                if let CommandEvent::Stdout(bytes) = event {
-                    if let Ok(line) = std::str::from_utf8(&bytes) {
-                        for part in line.split('\n').filter(|s| !s.trim().is_empty()) {
-                            if let Ok(v) = serde_json::from_str::<Value>(part) {
-                                let id = v.get("id").and_then(|i| i.as_u64()).unwrap_or(0);
-                                let mut guard = pending.lock().await;
-                                if let Some(tx) = guard.remove(&id) {
-                                    let result = if let Some(err) = v.get("error") {
-                                        Err(err.as_str().unwrap_or("unknown error").to_string())
-                                    } else {
-                                        Ok(v.get("result").cloned().unwrap_or(Value::Null))
-                                    };
-                                    let _ = tx.send(result);
+                match event {
+                    CommandEvent::Stdout(bytes) => {
+                        if let Ok(line) = std::str::from_utf8(&bytes) {
+                            for part in line.split('\n').filter(|s| !s.trim().is_empty()) {
+                                if let Ok(v) = serde_json::from_str::<Value>(part) {
+                                    let id = v.get("id").and_then(|i| i.as_u64()).unwrap_or(0);
+                                    let mut guard = pending.lock().await;
+                                    if let Some(tx) = guard.remove(&id) {
+                                        let result = if let Some(err) = v.get("error") {
+                                            Err(err.as_str().unwrap_or("unknown error").to_string())
+                                        } else {
+                                            Ok(v.get("result").cloned().unwrap_or(Value::Null))
+                                        };
+                                        let _ = tx.send(result);
+                                    }
+                                } else {
+                                    eprintln!("[lua_sidecar] non-JSON stdout: {}", part);
                                 }
                             }
                         }
                     }
+                    CommandEvent::Stderr(bytes) => {
+                        if let Ok(s) = std::str::from_utf8(&bytes) {
+                            eprintln!("[lua_sidecar stderr] {}", s.trim_end());
+                        }
+                    }
+                    CommandEvent::Error(err) => {
+                        eprintln!("[lua_sidecar error] {}", err);
+                    }
+                    CommandEvent::Terminated(payload) => {
+                        eprintln!("[lua_sidecar terminated] code={:?} signal={:?}", payload.code, payload.signal);
+                    }
+                    _ => {}
                 }
             }
         });

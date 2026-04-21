@@ -1,0 +1,3790 @@
+{
+  "atlasSize": 2048,
+  "atlases": [
+    "atlas-0.webp",
+    "atlas-1.webp",
+    "atlas-2.webp"
+  ],
+  "frames": {
+    "Art/2DArt/SkillIcons/passives/AltAttackDamageMastery.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/AltMasteryAuras.webp": {
+      "a": 0,
+      "x": 258,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/AltMasteryChannelling.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 258,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/AltMinionDamageHeraldMastery.webp": {
+      "a": 0,
+      "x": 258,
+      "y": 258,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/AreaofEffectSpellsMastery.webp": {
+      "a": 0,
+      "x": 516,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/AttackBlindMastery.webp": {
+      "a": 0,
+      "x": 516,
+      "y": 258,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/AttackTotemMastery.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 516,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/BloodMastery.webp": {
+      "a": 0,
+      "x": 258,
+      "y": 516,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/ChannellingAttacksMasterySymbol.webp": {
+      "a": 0,
+      "x": 516,
+      "y": 516,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/EnduranceFrenzyChargeMastery.webp": {
+      "a": 0,
+      "x": 774,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/FortifyMasterySymbol.webp": {
+      "a": 0,
+      "x": 774,
+      "y": 258,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/ImpaleMasterySymbol.webp": {
+      "a": 0,
+      "x": 774,
+      "y": 516,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MarkMastery.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 774,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryArmourandEnergyShield.webp": {
+      "a": 0,
+      "x": 258,
+      "y": 774,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryAuras.webp": {
+      "a": 0,
+      "x": 516,
+      "y": 774,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryChaos.webp": {
+      "a": 0,
+      "x": 774,
+      "y": 774,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryCurse.webp": {
+      "a": 0,
+      "x": 1032,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryDuration.webp": {
+      "a": 0,
+      "x": 1032,
+      "y": 258,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryElementalDamage.webp": {
+      "a": 0,
+      "x": 1032,
+      "y": 516,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryFlasks.webp": {
+      "a": 0,
+      "x": 1032,
+      "y": 774,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupAccuracy.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 1032,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupArmour.webp": {
+      "a": 0,
+      "x": 258,
+      "y": 1032,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupAxe.webp": {
+      "a": 0,
+      "x": 516,
+      "y": 1032,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupBow.webp": {
+      "a": 0,
+      "x": 774,
+      "y": 1032,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupCast.webp": {
+      "a": 0,
+      "x": 1032,
+      "y": 1032,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupCold.webp": {
+      "a": 0,
+      "x": 1290,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupCrit.webp": {
+      "a": 0,
+      "x": 1290,
+      "y": 258,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupDualWield.webp": {
+      "a": 0,
+      "x": 1290,
+      "y": 516,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupEnergyShield.webp": {
+      "a": 0,
+      "x": 1290,
+      "y": 774,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupEnergyShieldMana.webp": {
+      "a": 0,
+      "x": 1290,
+      "y": 1032,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupEvasion.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 1290,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupExtra.webp": {
+      "a": 0,
+      "x": 258,
+      "y": 1290,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupFire.webp": {
+      "a": 0,
+      "x": 516,
+      "y": 1290,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupLife.webp": {
+      "a": 0,
+      "x": 774,
+      "y": 1290,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupLifeMana.webp": {
+      "a": 0,
+      "x": 1032,
+      "y": 1290,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupLightning.webp": {
+      "a": 0,
+      "x": 1290,
+      "y": 1290,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupMace.webp": {
+      "a": 0,
+      "x": 1548,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupMana.webp": {
+      "a": 0,
+      "x": 1548,
+      "y": 258,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupMinions.webp": {
+      "a": 0,
+      "x": 1548,
+      "y": 516,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupShield.webp": {
+      "a": 0,
+      "x": 1548,
+      "y": 774,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupStaff.webp": {
+      "a": 0,
+      "x": 1548,
+      "y": 1032,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupSword.webp": {
+      "a": 0,
+      "x": 1548,
+      "y": 1290,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryGroupTwoHands.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 1548,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryPhysicalDamage.webp": {
+      "a": 0,
+      "x": 258,
+      "y": 1548,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryPoison.webp": {
+      "a": 0,
+      "x": 516,
+      "y": 1548,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryProjectiles.webp": {
+      "a": 0,
+      "x": 774,
+      "y": 1548,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryTotem.webp": {
+      "a": 0,
+      "x": 1032,
+      "y": 1548,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryTraps.webp": {
+      "a": 0,
+      "x": 1290,
+      "y": 1548,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/MinionMastery.webp": {
+      "a": 0,
+      "x": 1548,
+      "y": 1548,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/Fireblood.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 0,
+      "w": 176,
+      "h": 176
+    },
+    "Art/2DArt/SkillIcons/passives/MasteryBlank.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 178,
+      "w": 172,
+      "h": 172
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaBreachFlameDoubles.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 352,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaBreachWalk.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 482,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaDarknessProtectsLonger.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 612,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaExtraChaosDamage.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 742,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaExtraChaosDamageBlue.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 872,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaExtraChaosDamagePerDarkness.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 1002,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaExtraChaosDamageRed.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 1132,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaExtraChaosResistance.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 1262,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaFlameSelector.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 1392,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaManaLeechInstant.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 1522,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaReplaceSpiritWithDarkness.webp": {
+      "a": 0,
+      "x": 1806,
+      "y": 1652,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaUnravelling.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonConsumeFrenzyChargeGainElementalInstillation.webp": {
+      "a": 0,
+      "x": 130,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonDoubleEvasionfromGlovesBootsHelmsHalvedBodyArmour.webp": {
+      "a": 0,
+      "x": 260,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonElementalDamageReductionperElementalInstillation.webp": {
+      "a": 0,
+      "x": 390,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonExcessChancetoHitConvertedtoCritHitChance.webp": {
+      "a": 0,
+      "x": 520,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonGainPhysicalDamageWeaponsAccuracy.webp": {
+      "a": 0,
+      "x": 650,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonIncreasedLifeRecoveryRatePerMissingLife.webp": {
+      "a": 0,
+      "x": 780,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonLifeFlasksRecoverManaViceVersa.webp": {
+      "a": 0,
+      "x": 910,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonRareUniqueBloodlusted.webp": {
+      "a": 0,
+      "x": 1040,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonSpeedBloodlustedEnemy.webp": {
+      "a": 0,
+      "x": 1170,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Annihilation.webp": {
+      "a": 0,
+      "x": 1300,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ArchonGenericNotable.webp": {
+      "a": 0,
+      "x": 1430,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ashfrostandstorm.webp": {
+      "a": 0,
+      "x": 1560,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AspectOfTheLynx.webp": {
+      "a": 0,
+      "x": 1690,
+      "y": 1806,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AuraNotable.webp": {
+      "a": 0,
+      "x": 1820,
+      "y": 1782,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/ExplosiveGrenade.webp": {
+      "a": 0,
+      "x": 0,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/icongroundslam.webp": {
+      "a": 0,
+      "x": 66,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/2handeddamage.webp": {
+      "a": 0,
+      "x": 132,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/accuracydex.webp": {
+      "a": 0,
+      "x": 198,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/accuracystr.webp": {
+      "a": 0,
+      "x": 264,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AcolyteofChayula/AcolyteOfChayulaNode.webp": {
+      "a": 0,
+      "x": 330,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Amazon/AmazonNode.webp": {
+      "a": 0,
+      "x": 396,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ArchonGeneric.webp": {
+      "a": 0,
+      "x": 462,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AreaDmgNode.webp": {
+      "a": 0,
+      "x": 528,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/areaofeffect.webp": {
+      "a": 0,
+      "x": 594,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ArmourAndEnergyShieldNode.webp": {
+      "a": 0,
+      "x": 660,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ArmourAndEvasionNode.webp": {
+      "a": 0,
+      "x": 726,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ArmourBreak1BuffIcon.webp": {
+      "a": 0,
+      "x": 792,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ArmourBreak2BuffIcon.webp": {
+      "a": 0,
+      "x": 858,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Ascendants/SkillPoint.webp": {
+      "a": 0,
+      "x": 924,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/attackspeed.webp": {
+      "a": 0,
+      "x": 990,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/attackspeedbow.webp": {
+      "a": 0,
+      "x": 1056,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/auraareaofeffect.webp": {
+      "a": 0,
+      "x": 1122,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/auraeffect.webp": {
+      "a": 0,
+      "x": 1188,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/avoidchilling.webp": {
+      "a": 0,
+      "x": 1254,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/axedmgspeed.webp": {
+      "a": 0,
+      "x": 1320,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriPrimalMonkey.webp": {
+      "a": 0,
+      "x": 1386,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriPrimalOwl.webp": {
+      "a": 0,
+      "x": 1452,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriPrimalSnake.webp": {
+      "a": 0,
+      "x": 1518,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriSacredFox.webp": {
+      "a": 0,
+      "x": 1584,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriSacredRabbit.webp": {
+      "a": 0,
+      "x": 1650,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriVividCat.webp": {
+      "a": 0,
+      "x": 1716,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriVividStag.webp": {
+      "a": 0,
+      "x": 1782,
+      "y": 1936,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriVividWolf.webp": {
+      "a": 0,
+      "x": 1848,
+      "y": 1912,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriWildBear.webp": {
+      "a": 0,
+      "x": 1914,
+      "y": 1912,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriWildBoar.webp": {
+      "a": 0,
+      "x": 1984,
+      "y": 0,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriWildOx.webp": {
+      "a": 0,
+      "x": 1984,
+      "y": 66,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/BannerResourceAreaNode.webp": {
+      "a": 0,
+      "x": 1984,
+      "y": 132,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/blankDex.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 198,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/blankInt.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 264,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/blankStr.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 330,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/blockstr.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 396,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageNode.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 462,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/BucklerNode1.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 528,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/castspeed.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 594,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ChannellingAttacksNode.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 660,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ChannellingDamage.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 726,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ChannellingSpeed.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 792,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ChaosDamage.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 858,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ChaosDamagenode.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 924,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/chargedex.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 990,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/chargeint.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1056,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/chargestr.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1122,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/CharmNode1.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1188,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/colddamage.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1254,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ColdDamagenode.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1320,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/coldresist.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1386,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ColdResistNode.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1452,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/CompanionsNode1.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1518,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/CorpseDamage.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1584,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/criticaldaggerint.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1650,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/criticalstrikechance.webp": {
+      "a": 0,
+      "x": 1936,
+      "y": 1716,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/criticalstrikechance2.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1782,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/CurseEffectNode.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1848,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/CursemitigationclusterNode.webp": {
+      "a": 0,
+      "x": 1980,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/StaffMasterySymbol.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/WarcryMastery.webp": {
+      "a": 1,
+      "x": 258,
+      "y": 0,
+      "w": 256,
+      "h": 256
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriPrimalMonkeyNotable.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 258,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriPrimalOwlNotable.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 258,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriPrimalSnakeNotable.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 258,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriSacredFoxNotable.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 388,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriSacredRabbitNotable.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 388,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriVividCatNotable.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 388,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriVividStagNotable.webp": {
+      "a": 1,
+      "x": 516,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriVividWolfNotable.webp": {
+      "a": 1,
+      "x": 516,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriWildBearNotable.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriWildBoarNotable.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 518,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/AzmeriWildOxNotable.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 518,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/BannerAreaNotable.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 518,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Blood2.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageCritDamagePerLife.webp": {
+      "a": 1,
+      "x": 646,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageCurseInfiniteDuration.webp": {
+      "a": 1,
+      "x": 646,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageDamageLeechedLife.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageGainLifeEnergyShield.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageHigherSpellBaseCritStrike.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 648,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageLeaveBloodOrbs.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 648,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageLifeLoss.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 648,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodMageSaguineTides.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Bloodmage/BloodPhysicalDamageExtraGore.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/bodysoul.webp": {
+      "a": 1,
+      "x": 776,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/BowDamage.webp": {
+      "a": 1,
+      "x": 776,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/BucklersNotable1.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/BulwarkKeystone.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ChainingProjectiles.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ChannellingAttacksNotable2.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 778,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ChaosDamage2.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 778,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/CharmNotable1.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 778,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ClawsOfTheMagpie.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/CompanionsNotable1.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/CrimsonAssaultKeystone.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/CriticalStrikesNotable.webp": {
+      "a": 1,
+      "x": 906,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/CursemitigationclusterNotable.webp": {
+      "a": 1,
+      "x": 906,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DancewithDeathKeystone.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeDealMoreProjectileDamageClose.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeDealMoreProjectileDamageFarAway.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeFrenzyChargesGeneration.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeFrenzyChargesHaveMoreEffect.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 908,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeGrantsTwoAdditionalProjectiles.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 908,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeLingeringMirage.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 908,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeMarkEnemiesSpread.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeMoreAccuracy.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeProjectileDamageChoose.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeTailwind.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/deepwisdom.webp": {
+      "a": 1,
+      "x": 1036,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/ElementalDamageTakenFromMana.webp": {
+      "a": 1,
+      "x": 1036,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/EnergyShieldPhyDmgReduction.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/FireDjinnEmberSlash.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/FireDjinnFlameRunes.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/FireDjinnMeteoricSlam.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/FocusStaff.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/MoreEnergyShieldRechargeRate.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1038,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/SandDjinnCorpseBeetles.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 1038,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/SandDjinnDaggerslamSkill.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 1038,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/SandDjinnExplosiveTeleport.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/SummonFireDjinn.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/SummonSandDjinn.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/SummonWaterDjinn.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/TimelostJewelsLargerRadius.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/WaterDjinnChiilldedGroundBurst.webp": {
+      "a": 1,
+      "x": 1166,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/WaterDjinnCommandOasis.webp": {
+      "a": 1,
+      "x": 1166,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/WaterDjinnESRechargeCommand.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidAlternateEnergyShield.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidAnimism.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidGenericShapeshiftNotable.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidRageKeystone.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidShapeshiftBearNotable.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidShapeshiftWolfNotable.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1168,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidShapeshiftWyvernNotable.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 1168,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/DruidWildsurgeIncantation.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 1168,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/eagleeye.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ElementalDamagewithAttacks2.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ElementalDominion2.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ElementalResistance2.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/EternalYouth.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/EvasionAndBlindNotable.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/executioner.webp": {
+      "a": 1,
+      "x": 1296,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/finesse.webp": {
+      "a": 1,
+      "x": 1296,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/FireSpellsBecomeChaosSpellsKeystone.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/flameborn.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/FlaskNotableCritStrikeRecharge.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/FlaskNotableFlasksLastLonger.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/frostborn.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingBuffSkillsReserveLessSpirit.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingHighestAttributeSatisfiesGemRequirements.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingInherentBonusesFromAttributesDouble.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1298,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingLevelAllSkillGems.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 1298,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingLevelDexSkillGems.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 1298,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingLevelIntSkillGems.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingLevelStrSkillGems.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingMaxElementalResistanceSupportColour.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingSameSupportMultipleTimes.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingSkillGemQuality.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingSkillsAdditionalSupport.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/GiantBloodKeystone.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/GlancingBlows.webp": {
+      "a": 1,
+      "x": 1426,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Harrier.webp": {
+      "a": 1,
+      "x": 1426,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/HeartstopperKeystone.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Hearty.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/heroicspirit.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/HiredKiller2.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/HollowPalmTechniqueKeystone.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Hunter.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/IncreasedAttackDamageNotable.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/IncreasedChaosDamage.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/IncreasedManaCostNotable.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1428,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/IncreasedMaximumLifeNotable.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 1428,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/IncreasedPhysicalDamage.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 1428,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/FuryManifest.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalFamiliar.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalistConvertLifeToEnergyShield.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalistConvertLifeToMana.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalistConvertLifeToSpirit.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalistInfernalHeat.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalistTransformIntoDemon1.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalistTransformIntoDemon2.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/MoltenFury.webp": {
+      "a": 1,
+      "x": 1556,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/ScorchTheEarth.webp": {
+      "a": 1,
+      "x": 1556,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/InstillationsNotable1.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerChillChanceBasedOnDamage.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerCriticalStrikesIgnoreResistances.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerEnergyDoubled.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerEvasionEnergyShieldGrantsSpirit.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerEvasionGrantsPhysicalDamageReduction.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerGrantsMeditate.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerShockMagnitude.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerUnboundAvatar.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerWildStrike.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1558,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneAvatarOfFire.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 1558,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneBloodMagic.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 1558,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneChaosInoculation.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneConduit.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneEldritchBattery.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneElementalEquilibrium.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneIronReflexes.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystonePainAttunement.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneResoluteTechnique.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneUnwaveringStance.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/KeystoneWhispersOfDoom.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/legstrength.webp": {
+      "a": 1,
+      "x": 1686,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichApplyAdditionalCurses.webp": {
+      "a": 1,
+      "x": 1686,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichCursedEnemiesExplodeChaos.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichImprovedUnholyMight.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichLifeCannotChangeWhileES.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichManaRegenBasedOnMaxLife.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichSpellCostESandMoreDMG.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichSpellsConsumePowerCharges.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichUnholyMight.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/LifeandMana.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/lifeleech.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/liferegentoenergyshield.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Meleerange.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1688,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MineManaReservationNotable.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 1688,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MiracleMaker.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 1688,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MonkAccuracyChakra.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MonkElementalChakra.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MonkEnergyShieldChakra.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MonkHealthChakra.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MonkManaChakra.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MonkStrengthChakra.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MonkStunChakra.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MovementSpeedandEvasion.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/MultipleBeastCompanionsKeystone.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/NecromanticTalismanKeystone.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/newnewattackspeed.webp": {
+      "a": 1,
+      "x": 1816,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/OasisKeystone2.webp": {
+      "a": 1,
+      "x": 1816,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleDiffChoices.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleEnemiesActionsUnlucky.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleLifeManaHits.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OraclePassiveTreeAllocation.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleRerollingCrit.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleRipFromTime.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleSpellFlux.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleTotemLimit.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderAdditionalPoints.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 1300,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderBrewConcoction.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 1430,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderBrewConcoctionBleed.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 1560,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderBrewConcoctionCold.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1818,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderBrewConcoctionFire.webp": {
+      "a": 1,
+      "x": 130,
+      "y": 1818,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderBrewConcoctionLightning.webp": {
+      "a": 1,
+      "x": 260,
+      "y": 1818,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderBrewConcoctionPoison.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderCannotBeSlowed.webp": {
+      "a": 1,
+      "x": 520,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderEnemiesMultiplePoisons.webp": {
+      "a": 1,
+      "x": 650,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderEvasionDmgReducVsElementalDmg.webp": {
+      "a": 1,
+      "x": 780,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderLifeFlasks.webp": {
+      "a": 1,
+      "x": 910,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderMoreMovemenSpeedUsingSkills.webp": {
+      "a": 1,
+      "x": 1040,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderMultichoicePath.webp": {
+      "a": 1,
+      "x": 1170,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderPathoftheSorceress.webp": {
+      "a": 1,
+      "x": 1300,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderPathoftheWarrior.webp": {
+      "a": 1,
+      "x": 1430,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/PhysicalDamageOverTimeNotable.webp": {
+      "a": 1,
+      "x": 1560,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Poison.webp": {
+      "a": 1,
+      "x": 1690,
+      "y": 1690,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/damage.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 260,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/damageaxe.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 326,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/damagedualwield.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 392,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/damagespells.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 458,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/damagestaff.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 524,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/damagesword.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 590,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/damage_blue.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 656,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/DeadEye/DeadeyeNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 722,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/DiscipleoftheDjinn/DjinnNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 788,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/dmgreduction.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 854,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/DruidGenericShapeshiftNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 920,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/DruidShapeshiftBearNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 986,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/DruidShapeshiftWolfNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1052,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/DruidShapeshiftWyvernNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1118,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/elementaldamage.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1184,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ElementalDamagenode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1250,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/energyshield.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1316,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/EnergyShieldNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1382,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/evade.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1448,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/EvasionandEnergyShieldNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1514,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/EvasionNode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1580,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/firedamage.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1646,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/firedamageint.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1712,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/FireDamagenode.webp": {
+      "a": 1,
+      "x": 1820,
+      "y": 1778,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/firedamagestr.webp": {
+      "a": 1,
+      "x": 390,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/fireresist.webp": {
+      "a": 1,
+      "x": 456,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/FireResistNode.webp": {
+      "a": 1,
+      "x": 522,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/flaskdex.webp": {
+      "a": 1,
+      "x": 588,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/flaskint.webp": {
+      "a": 1,
+      "x": 654,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/flaskstr.webp": {
+      "a": 1,
+      "x": 720,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Gemling/GemlingNode.webp": {
+      "a": 1,
+      "x": 786,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/GreenAttackSmallPassive.webp": {
+      "a": 1,
+      "x": 852,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/HeraldBuffEffectNode2.webp": {
+      "a": 1,
+      "x": 918,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/IncreasedAttackDamageNode.webp": {
+      "a": 1,
+      "x": 984,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/IncreasedProjectileSpeedNode.webp": {
+      "a": 1,
+      "x": 1050,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/increasedrunspeeddex.webp": {
+      "a": 1,
+      "x": 1116,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Infernalist/InfernalistNode.webp": {
+      "a": 1,
+      "x": 1182,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Inquistitor/IncreasedElementalDamageAttackCasteSpeed.webp": {
+      "a": 1,
+      "x": 1248,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/InstillationsNode1.webp": {
+      "a": 1,
+      "x": 1314,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Invoker/InvokerNode.webp": {
+      "a": 1,
+      "x": 1380,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/knockback.webp": {
+      "a": 1,
+      "x": 1446,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Lich/LichNode.webp": {
+      "a": 1,
+      "x": 1512,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/life1.webp": {
+      "a": 1,
+      "x": 1578,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/lifepercentage.webp": {
+      "a": 1,
+      "x": 1644,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/LifeRecoupNode.webp": {
+      "a": 1,
+      "x": 1710,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/LightningDamagenode.webp": {
+      "a": 1,
+      "x": 1776,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/lightningint.webp": {
+      "a": 1,
+      "x": 1842,
+      "y": 1844,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/LightningResistNode.webp": {
+      "a": 1,
+      "x": 1946,
+      "y": 0,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/lightningstr.webp": {
+      "a": 1,
+      "x": 1946,
+      "y": 66,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/macedmg.webp": {
+      "a": 1,
+      "x": 1946,
+      "y": 132,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/mana.webp": {
+      "a": 1,
+      "x": 1946,
+      "y": 198,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ManaLeechThemedNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 264,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/manaregeneration.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 330,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/manastr.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 396,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/MarkNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 462,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/MeleeAoENode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 528,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/MineAreaOfEffectNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 594,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/minionattackspeed.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 660,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/MinionChaosResistanceNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 726,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/miniondamageBlue.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 792,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/MinionElementalResistancesNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 858,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/minionlife.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 924,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/MinionsandManaNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 990,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/minionstr.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1056,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/NodeDualWieldingDamage.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1122,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/onehanddamage.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1188,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Oracle/OracleNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1254,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/PathFinder/PathfinderNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1320,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/PhysicalDamageChaosNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1386,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/PhysicalDamageNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1452,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/PhysicalDamageOverTimeNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1518,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/plusattribute.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1584,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/plusdexterity.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1650,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/plusintelligence.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1716,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/plusstrength.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1782,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp": {
+      "a": 1,
+      "x": 1908,
+      "y": 1848,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ProjectileDmgNode.webp": {
+      "a": 1,
+      "x": 0,
+      "y": 1948,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/projectilespeed.webp": {
+      "a": 1,
+      "x": 66,
+      "y": 1948,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Rage.webp": {
+      "a": 1,
+      "x": 132,
+      "y": 1948,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/RangedTotemDamage.webp": {
+      "a": 1,
+      "x": 198,
+      "y": 1948,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ReducedSkillEffectDurationNode.webp": {
+      "a": 1,
+      "x": 264,
+      "y": 1948,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Remnant.webp": {
+      "a": 1,
+      "x": 330,
+      "y": 1948,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanNode.webp": {
+      "a": 1,
+      "x": 396,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/shieldblock.webp": {
+      "a": 1,
+      "x": 462,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ShieldNodeOffensive.webp": {
+      "a": 1,
+      "x": 528,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithofKitavaNode.webp": {
+      "a": 1,
+      "x": 594,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/SpearsNode1.webp": {
+      "a": 1,
+      "x": 660,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/spellcritical.webp": {
+      "a": 1,
+      "x": 726,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/SpellSuppresionNode.webp": {
+      "a": 1,
+      "x": 792,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/StormweaverNode.webp": {
+      "a": 1,
+      "x": 858,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/stun2h.webp": {
+      "a": 1,
+      "x": 924,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/stunstr.webp": {
+      "a": 1,
+      "x": 990,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianNode.webp": {
+      "a": 1,
+      "x": 1056,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/tempint.webp": {
+      "a": 1,
+      "x": 1122,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistNode.webp": {
+      "a": 1,
+      "x": 1188,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/ThornsNode1.webp": {
+      "a": 1,
+      "x": 1254,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanNode.webp": {
+      "a": 1,
+      "x": 1320,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/totemandbrandlife.webp": {
+      "a": 1,
+      "x": 1386,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/trapdamage.webp": {
+      "a": 1,
+      "x": 1452,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/trapsmax.webp": {
+      "a": 1,
+      "x": 1518,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerNode.webp": {
+      "a": 1,
+      "x": 1584,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/WarCryEffect.webp": {
+      "a": 1,
+      "x": 1650,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterNode.webp": {
+      "a": 1,
+      "x": 1716,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/WitchBoneStorm.webp": {
+      "a": 1,
+      "x": 1782,
+      "y": 1914,
+      "w": 64,
+      "h": 64
+    },
+    "Art/2DArt/SkillIcons/passives/PressurePoints.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistBloodBoils.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistDrainManaActivateCharms.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistIncreasedEffectOfJewellery.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistLifeLeechFromElementalOrChaos.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistPlusOneMaxCharm.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistPlusOneRingSlot.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Primalist/PrimalistStabCorpse.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ProjectileDmgNotable.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ProjectilesNotable.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/RageNotable.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/RemnantNotable.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ResonanceKeystone.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanAdaptToElements.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanEvenMoreAdaptation.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanGainSpiritEmptyCharmSlot.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanPickEleDmg.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanRageAffectsSpells.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanRageonHit.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanRunesTalismans.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Shaman/ShamanUnleashTheElements.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaCanOnlyWearNormalRarityBodyArmour.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaCreateMinionMeleeWeapon.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaFireResistAppliesToColdLightning.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaImbueMainHandWeapon.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaImprovedFireResistAppliesToColdLightning.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus1.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus10.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus11.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus12.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus2.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus3.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus4.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus5.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus6.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus7.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus8.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithOfKitavaNormalArmourBonus9.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SmithofKitava/SmithofKitavaTriggerFireSpellsMeleeWeapon.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SorceressInvocationSpellsKeystone.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SpearsNotable1.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SpellMultiplyer2.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/SpellSupressionNotable1.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/steelspan.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Storm Weaver.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/stormborn.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/AllDamageCanChill.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/AllDamageCanShock.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/ChillAddditionalTime.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/GrantsArcaneSurge.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/GrantsElementalStorm.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/ImprovedArcaneSurge.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/ImprovedElementalStorm.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/ShockAddditionalTime.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/StormweaverRemnant1.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Stormweaver/StormweaverRemnant2.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/strongarm.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianAlliesGainAttack.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianDeathFromAboveCommand.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianEvasionArmourHigher.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianGainStunThresholdArmour.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianLessSpiritCostBuff.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianMultipleBanners.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianPinnedEnemiesCannotAct.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianProjectileBuildsPin.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianTotemAura.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Tactician/TacticianTotems.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistChanceSkillNoCooldownSkill.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistFasterRecoup.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistGainMoreCastSpeed8Seconds.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistGrantsReloadCooldownsSkill.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistGrantsTemporalRiftSkill.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistGrantsTimeStopSkill.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistNearbyEnemiesProjectilesSlowed.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Temporalist/TemporalistSynchronisationofPain.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/ThornsNotable1.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanAdditionalInventory.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanMoreBodyArmour.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanMoreMaxLife.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanMountainSplitter.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanSlamSkillsAftershock.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanSlamSkillsFistOfWar.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanSmallPassiveDoubled.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Titan/TitanYourHitsCrushEnemies.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/totemmax.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Trap.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 520,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/vaalpact.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 650,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerBlockChance.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 780,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerBreakEnemyArmour.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 910,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerCanBlockAllDamageShieldNotRaised.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 1040,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerDamageTakenByTotems.webp": {
+      "a": 2,
+      "x": 0,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerEncasedInJade.webp": {
+      "a": 2,
+      "x": 130,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerEnemyArmourBrokenBelowZero.webp": {
+      "a": 2,
+      "x": 260,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerTotemsDefendedByAncestors.webp": {
+      "a": 2,
+      "x": 390,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warbringer/WarbringerWarcryExplodesCorpses.webp": {
+      "a": 2,
+      "x": 520,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Warrior.webp": {
+      "a": 2,
+      "x": 650,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterArmourEvasionConvertedSpellAegis.webp": {
+      "a": 2,
+      "x": 780,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterCullingStrike.webp": {
+      "a": 2,
+      "x": 910,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterDamageMonsterMissingFocus.webp": {
+      "a": 2,
+      "x": 1040,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterDrainMonsterFocus.webp": {
+      "a": 2,
+      "x": 1170,
+      "y": 1170,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterMonsterHolyExplosion.webp": {
+      "a": 2,
+      "x": 1300,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterRemovePercentageFullLifeEnemies.webp": {
+      "a": 2,
+      "x": 1300,
+      "y": 130,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterSpecPoints.webp": {
+      "a": 2,
+      "x": 1300,
+      "y": 260,
+      "w": 128,
+      "h": 128
+    },
+    "Art/2DArt/SkillIcons/passives/Witchhunter/WitchunterStrongerSpellAegis.webp": {
+      "a": 2,
+      "x": 1300,
+      "y": 390,
+      "w": 128,
+      "h": 128
+    }
+  }
+}

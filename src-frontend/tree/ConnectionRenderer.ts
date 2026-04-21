@@ -6,6 +6,10 @@ export interface DrawConnectionsOptions {
   color: number;
   width: number;
   filter?: (aId: number, bId: number) => boolean;
+  // Overlays (allocated / pathing / removing) need the edges from class-start
+  // nodes so a path visibly begins at the class anchor. The base connection
+  // layer leaves them hidden to avoid visual clutter under the class portrait.
+  includeClassStartEdges?: boolean;
 }
 
 export function drawConnections(
@@ -13,7 +17,7 @@ export function drawConnections(
   nodes: Record<string, PassiveNode>,
   groups: Record<string, PassiveGroup>,
   constants: TreeConstants,
-  opts: DrawConnectionsOptions = { color: 0x3f3f46, width: 1.5 },
+  opts: DrawConnectionsOptions = { color: 0x52525b, width: 3 },
 ) {
   g.clear();
   const drawn = new Set<string>();
@@ -26,7 +30,7 @@ export function drawConnections(
       if (neighborId === id) continue;
       const neighbor = nodes[String(neighborId)];
       if (!neighbor) continue;
-      if (shouldSkipConnection(node, neighbor)) continue;
+      if (shouldSkipConnection(node, neighbor, opts.includeClassStartEdges ?? false)) continue;
       if (opts.filter && !opts.filter(id, neighborId)) continue;
 
       const key = id < neighborId ? `${id}-${neighborId}` : `${neighborId}-${id}`;
@@ -55,10 +59,10 @@ export function drawConnections(
   g.stroke({ color: opts.color, width: opts.width });
 }
 
-function shouldSkipConnection(a: PassiveNode, b: PassiveNode): boolean {
+function shouldSkipConnection(a: PassiveNode, b: PassiveNode, allowClassStart: boolean): boolean {
   if (a["isOnlyImage"] === true || b["isOnlyImage"] === true) return true;
   if ((a.ascendancyName ?? null) !== (b.ascendancyName ?? null)) return true;
-  if (Array.isArray(a.classesStart) || Array.isArray(b.classesStart)) return true;
+  if (!allowClassStart && (Array.isArray(a.classesStart) || Array.isArray(b.classesStart))) return true;
   return false;
 }
 

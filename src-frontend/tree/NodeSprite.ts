@@ -1,17 +1,30 @@
-import { Graphics } from "pixi.js";
 import type { PassiveNode } from "../types/tree";
 
+export type NodeKind = "keystone" | "notable" | "socket" | "normal";
 export type NodeVisualState = "unallocated" | "allocated" | "pathing" | "hovered" | "removing";
 
-export function classifyNode(node: PassiveNode): "keystone" | "notable" | "socket" | "normal" {
+export function classifyNode(node: PassiveNode): NodeKind {
   if (node.isKeystone) return "keystone";
   if (node.isNotable) return "notable";
   if (node.isJewelSocket) return "socket";
   return "normal";
 }
 
-const RADII = { keystone: 18, notable: 14, socket: 12, normal: 8 } as const;
-const COLORS: Record<NodeVisualState, number> = {
+export const RADII: Record<NodeKind, number> = {
+  keystone: 64,
+  notable: 48,
+  socket: 40,
+  normal: 22,
+};
+
+export const STROKE_WIDTH: Record<NodeKind, number> = {
+  keystone: 8,
+  notable: 7,
+  socket: 6,
+  normal: 4,
+};
+
+export const FILL_COLORS: Record<NodeVisualState, number> = {
   unallocated: 0x27272a,
   allocated: 0xfafafa,
   pathing: 0x06b6d4,
@@ -19,11 +32,19 @@ const COLORS: Record<NodeVisualState, number> = {
   removing: 0xf43f5e,
 };
 
-export function drawNode(g: Graphics, node: PassiveNode, state: NodeVisualState) {
-  g.clear();
-  const kind = classifyNode(node);
-  const r = RADII[kind];
-  g.circle(0, 0, r);
-  g.fill({ color: COLORS[state] });
-  g.stroke({ color: 0x1d1d20, width: 1 });
+// Kind-specific stroke colour when unallocated; for any other state the stroke
+// matches the fill of that state.
+export const KIND_STROKE: Record<NodeKind, number> = {
+  keystone: 0xa1a1aa,
+  notable: 0x71717a,
+  socket: 0x52525b,
+  normal: 0x3f3f46,
+};
+
+export function strokeColor(kind: NodeKind, state: NodeVisualState): number {
+  return state === "unallocated" ? KIND_STROKE[kind] : FILL_COLORS[state];
+}
+
+export function iconTint(state: NodeVisualState): number {
+  return state === "unallocated" ? 0xe4e4e7 : 0xffffff;
 }
