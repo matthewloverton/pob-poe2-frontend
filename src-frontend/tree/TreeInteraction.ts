@@ -5,47 +5,80 @@ export class TreeInteraction {
   private graph: Graph;
   private nodes: Record<string, PassiveNode>;
   private allClassStarts: Set<NodeId>;
-  // Permanently off-limits: ascendancy nodes. Class starts connect to every
-  // ascendancy-root of their class (Ranger → Deadeye, Pathfinder, Amazon,
-  // Ritualist), and those sit tens of thousands of units away in their own
-  // sub-trees. Without excluding them, BFS happily threads through an ascendancy
-  // and emerges somewhere unrelated, so the visible path looks like it starts
-  // in a different part of the tree.
-  private ascendancyNodes: Set<NodeId>;
+  // Every node tagged with an ascendancyName, bucketed by ascendancy name so we
+  // can selectively unlock the active ascendancy subtree while still walling
+  // off the others.
+  private ascendancyNodesByName = new Map<string, Set<NodeId>>();
   private forbidden: Set<NodeId> = new Set();
   private activeClassStartId: NodeId | null = null;
+  private activeAscendStartId: NodeId | null = null;
+  private activeAscendancyName: string | null = null;
 
   constructor(nodes: Record<string, PassiveNode>) {
     this.nodes = nodes;
     this.graph = buildGraph(nodes);
     this.allClassStarts = new Set();
-    this.ascendancyNodes = new Set();
     for (const [idStr, node] of Object.entries(nodes)) {
       const id = Number(idStr);
       if (Array.isArray(node.classesStart)) this.allClassStarts.add(id);
-      if (node.ascendancyName != null) this.ascendancyNodes.add(id);
+      const ascName = (node as unknown as { ascendancyName?: string }).ascendancyName;
+      if (typeof ascName === "string") {
+        let bucket = this.ascendancyNodesByName.get(ascName);
+        if (!bucket) { bucket = new Set(); this.ascendancyNodesByName.set(ascName, bucket); }
+        bucket.add(id);
+      }
     }
   }
 
-  setActiveClassStart(startId: NodeId | null) {
-    this.activeClassStartId = startId;
-    this.forbidden = new Set(this.ascendancyNodes);
-    for (const sid of this.allClassStarts) this.forbidden.add(sid);
-    if (startId != null) this.forbidden.delete(startId);
+  // Call whenever class or ascendancy changes. Forbids every class start that
+  // isn't the active one, and every ascendancy subtree except the active one.
+  setActiveAnchors(opts: {
+    classStartId: NodeId | null;
+    ascendStartId: NodeId | null;
+    ascendancyName: string | null;
+  }) {
+    this.activeClassStartId = opts.classStartId;
+    this.activeAscendStartId = opts.ascendStartId;
+    this.activeAscendancyName = opts.ascendancyName;
+
+    const forbidden = new Set<NodeId>();
+    for (const sid of this.allClassStarts) forbidden.add(sid);
+    for (const [name, bucket] of this.ascendancyNodesByName) {
+      if (name === opts.ascendancyName) continue;
+      for (const id of bucket) forbidden.add(id);
+    }
+    if (opts.classStartId != null) forbidden.delete(opts.classStartId);
+    if (opts.ascendStartId != null) forbidden.delete(opts.ascendStartId);
+    this.forbidden = forbidden;
   }
 
-  // BFS from the class anchor to `target`. Returns the full parent chain so the
-  // caller can derive both the ordered node list and the ordered edge list and
-  // be sure the visible path always emerges from the class start.
+  // Kept for callers that only know about the main class start; delegates to
+  // setActiveAnchors with no active ascendancy.
+  setActiveClassStart(startId: NodeId | null) {
+    this.setActiveAnchors({ classStartId: startId, ascendStartId: null, ascendancyName: null });
+  }
+
+  private anchors(): Set<NodeId> {
+    const s = new Set<NodeId>();
+    if (this.activeClassStartId != null) s.add(this.activeClassStartId);
+    if (this.activeAscendStartId != null) s.add(this.activeAscendStartId);
+    return s;
+  }
+
+  // Multi-source BFS from every active anchor (main class + active ascend root).
+  // Returns the parent chain so callers can derive both the node list and edge
+  // list. When both anchors exist BFS naturally emerges from whichever is
+  // closer to `target` — so ascendancy paths trace from the ascend root, main
+  // tree paths from the class start.
   private bfsFromAnchor(target: NodeId): Map<NodeId, NodeId> | null {
-    if (this.activeClassStartId == null) return null;
-    if (target === this.activeClassStartId) return new Map();
+    const sources = this.anchors();
+    if (sources.size === 0) return null;
+    if (sources.has(target)) return new Map();
     if (this.forbidden.has(target)) return null;
 
-    const start = this.activeClassStartId;
-    const visited = new Set<NodeId>([start]);
+    const visited = new Set<NodeId>(sources);
     const parent = new Map<NodeId, NodeId>();
-    const queue: NodeId[] = [start];
+    const queue: NodeId[] = [...sources];
 
     while (queue.length > 0) {
       const current = queue.shift()!;

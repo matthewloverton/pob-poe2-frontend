@@ -32,6 +32,31 @@ fn resolve_sidecar_script(app: &AppHandle) -> Result<PathBuf> {
     Err(anyhow!("could not locate sidecar/main.lua via any known path"))
 }
 
+// Windows loads a process' imported DLLs by searching the exe directory, the
+// system directories, the current directory, and PATH — in that order. Tauri
+// copies `luajit.exe` into target/debug/ (dev) or alongside the main app exe
+// (release) but does NOT copy the `lua51.dll` LuaJIT depends on. We locate the
+// binaries/ directory that ships lua51.dll and prepend it to the child's PATH
+// so the DLL resolves regardless of where Tauri drops the sidecar exe.
+fn resolve_binaries_dir(app: &AppHandle) -> Option<PathBuf> {
+    let candidates = [
+        PathBuf::from("binaries"),
+        PathBuf::from("src-tauri/binaries"),
+        PathBuf::from("../src-tauri/binaries"),
+    ];
+    for c in &candidates {
+        if c.join("lua51.dll").exists() {
+            return Some(c.canonicalize().unwrap_or_else(|_| c.clone()));
+        }
+    }
+    if let Ok(resource) = app.path().resolve("binaries", tauri::path::BaseDirectory::Resource) {
+        if resource.join("lua51.dll").exists() {
+            return Some(resource);
+        }
+    }
+    None
+}
+
 pub struct LuaSidecar {
     child: Mutex<Option<CommandChild>>,
     pending: Arc<Mutex<HashMap<u64, oneshot::Sender<Result<Value, String>>>>>,
@@ -56,11 +81,21 @@ impl LuaSidecar {
         let script_path = resolve_sidecar_script(app)?;
         eprintln!("[lua_sidecar] launching with script: {}", script_path.display());
 
-        let cmd = app
+        let mut cmd = app
             .shell()
             .sidecar("luajit")
             .context("get luajit sidecar command")?
             .arg(&script_path);
+
+        if let Some(dll_dir) = resolve_binaries_dir(app) {
+            let existing = std::env::var("PATH").unwrap_or_default();
+            let separator = if cfg!(windows) { ";" } else { ":" };
+            let new_path = format!("{}{}{}", dll_dir.display(), separator, existing);
+            eprintln!("[lua_sidecar] prepending to PATH: {}", dll_dir.display());
+            cmd = cmd.env("PATH", new_path);
+        } else {
+            eprintln!("[lua_sidecar] warning: could not locate binaries dir with lua51.dll");
+        }
 
         let (mut rx, child) = cmd.spawn().context("spawn luajit")?;
 
@@ -130,7 +165,9 @@ impl LuaSidecar {
             child.write(line.as_bytes()).context("write to sidecar")?;
         }
 
-        match tokio::time::timeout(std::time::Duration::from_secs(5), rx).await {
+        // 60s covers slow bootstrap paths like loading HeadlessWrapper (tree
+        // data, skill data, item bases). ping/version still resolve in ms.
+        match tokio::time::timeout(std::time::Duration::from_secs(60), rx).await {
             Ok(Ok(Ok(value))) => Ok(value),
             Ok(Ok(Err(msg))) => Err(anyhow!(msg)),
             Ok(Err(_)) => Err(anyhow!("sidecar closed channel")),

@@ -38,7 +38,18 @@ export function findOrphansOnRemove(
   for (const id of allocated) {
     if (id === removeId) continue;
     const node = nodes[String(id)];
-    if (node && Array.isArray(node.classesStart)) anchors.add(id);
+    if (!node) continue;
+    // Anchors: main class-start nodes AND ascendancy roots (node name equals
+    // its ascendancyName). Without the ascend root as an anchor, deallocating
+    // any ascendancy passive orphans the whole subtree.
+    if (Array.isArray(node.classesStart)) {
+      anchors.add(id);
+    } else if (
+      typeof node.ascendancyName === "string" &&
+      node.name === node.ascendancyName
+    ) {
+      anchors.add(id);
+    }
   }
   if (anchors.size === 0) return new Set();
 
