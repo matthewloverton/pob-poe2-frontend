@@ -43,9 +43,9 @@ export function ConfigPanel() {
       {filtered.map((section) => (
         <Panel key={section.name} title={section.name}>
           <div className="config-grid">
-            {section.options.map((opt: ConfigOption) => (
+            {section.options.map((opt: ConfigOption, i: number) => (
               <ConfigRow
-                key={opt.var}
+                key={`${section.name}:${opt.var}:${i}`}
                 option={opt}
                 value={values[opt.var]}
                 onChange={(v) => setValue(opt.var, v)}
