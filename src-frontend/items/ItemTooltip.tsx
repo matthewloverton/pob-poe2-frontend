@@ -119,7 +119,15 @@ export function ItemTooltip({
       className="pointer-events-none fixed z-[100] border border-border bg-bg-elevated/95 px-3 py-2 font-mono text-[11px] text-fg shadow-xl backdrop-blur-sm"
       style={{ left: pos.left, top: pos.top, width: MAIN_W }}
     >
-      <div className={`text-sm font-semibold ${RARITY_COLOR[item.rarity]}`}>{item.name}</div>
+      {(() => {
+        const ilvl = item.properties.find((p) => p.key === "ItemLevel");
+        return ilvl ? (
+          <span className="absolute top-2 right-3 text-[9px] uppercase tracking-widest text-fg-muted">
+            iLvl: <span className="text-fg">{ilvl.value}</span>
+          </span>
+        ) : null;
+      })()}
+      <div className={`text-sm font-semibold ${RARITY_COLOR[item.rarity]} pr-14`}>{item.name}</div>
       {item.baseType !== item.name && (
         <div className={`text-[10px] ${RARITY_COLOR[item.rarity]} opacity-80`}>{item.baseType}</div>
       )}
@@ -137,16 +145,23 @@ export function ItemTooltip({
         </div>
       )}
 
-      {item.properties.length > 0 && (
-        <div className="mt-2 space-y-0.5">
-          {item.properties.map((p, i) => (
-            <div key={i} className="flex justify-between gap-4">
-              <span className="text-fg-muted">{p.key}</span>
-              <span className="text-fg">{p.value}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      {(() => {
+        // LevelReq is already surfaced as "Requires Level N" above; ItemLevel
+        // lives in the top-right badge. Everything else (Quality, Sockets,
+        // Armour/Evasion/Energy Shield) stays in the properties block.
+        const visible = item.properties.filter((p) => p.key !== "LevelReq" && p.key !== "ItemLevel");
+        if (visible.length === 0) return null;
+        return (
+          <div className="mt-2 space-y-0.5">
+            {visible.map((p, i) => (
+              <div key={i} className="flex justify-between gap-4">
+                <span className="text-fg-muted">{p.key}</span>
+                <span className="text-fg">{p.value}</span>
+              </div>
+            ))}
+          </div>
+        );
+      })()}
 
       {/* Enchant / rune mods — socketed into the item; shown as their own
           block in gold/amber above implicits. Bonded: runes only apply to
