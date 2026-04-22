@@ -61,10 +61,11 @@ body { font-family: var(--font-sans); font-feature-settings: "tnum", "ss01"; }
 }
 .config-toolbar {
   position: sticky;
-  top: 0;
-  z-index: 1;
+  top: -12px;
+  z-index: 10;
   background: var(--color-bg);
-  padding-bottom: 8px;
+  margin: -12px -12px 0;
+  padding: 12px 12px 8px;
   border-bottom: 1px solid var(--color-border-subtle);
 }
 .config-toolbar input {
