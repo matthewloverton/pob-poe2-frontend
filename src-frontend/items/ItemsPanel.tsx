@@ -363,7 +363,14 @@ function SocketableIcon({
           <img src={`/items/${file}`} alt={name} className="h-full w-full object-contain" />
         ) : null}
       </div>
-      {hover && <TextTooltip text={name} x={hover.x} y={hover.y} />}
+      {hover && (
+        <TextTooltip
+          text={name}
+          x={hover.x}
+          y={hover.y}
+          iconSrc={file ? `/items/${file}` : undefined}
+        />
+      )}
     </>
   );
 }
