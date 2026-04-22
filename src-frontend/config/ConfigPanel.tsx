@@ -40,20 +40,22 @@ export function ConfigPanel() {
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
-      {filtered.map((section) => (
-        <Panel key={section.name} title={section.name}>
-          <div className="config-grid">
-            {section.options.map((opt: ConfigOption, i: number) => (
-              <ConfigRow
-                key={`${section.name}:${opt.var}:${i}`}
-                option={opt}
-                value={values[opt.var]}
-                onChange={(v) => setValue(opt.var, v)}
-              />
-            ))}
-          </div>
-        </Panel>
-      ))}
+      <div className="config-sections">
+        {filtered.map((section) => (
+          <Panel key={section.name} title={section.name}>
+            <div className="config-grid">
+              {section.options.map((opt: ConfigOption, i: number) => (
+                <ConfigRow
+                  key={`${section.name}:${opt.var}:${i}`}
+                  option={opt}
+                  value={values[opt.var]}
+                  onChange={(v) => setValue(opt.var, v)}
+                />
+              ))}
+            </div>
+          </Panel>
+        ))}
+      </div>
     </div>
   );
 }
