@@ -38,7 +38,7 @@ export function ConfigRow({ option, value, onChange }: Props) {
   }
 
   // list
-  const items = option.list ?? [];
+  const items = (option.list ?? []).filter((i): i is NonNullable<typeof i> => i != null);
   if (items.length === 0) {
     return (
       <label className="cfg-row cfg-row-list" title={option.tooltip}>
