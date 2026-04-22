@@ -657,8 +657,8 @@ export class TreeRenderer {
       s.width = asc.background.width * DRAW_SCALE;
       s.height = asc.background.height * DRAW_SCALE;
       // Active ascendancy gets full alpha; inactive ones (and ascendancies of
-      // non-active classes) dim to 0.75 so they recede without disappearing.
-      s.alpha = activeAscend && activeAscend.name === asc.name ? 1.0 : 0.75;
+      // non-active classes) dim substantially so they recede without disappearing.
+      s.alpha = activeAscend && activeAscend.name === asc.name ? 1.0 : 0.3;
       s.visible = true;
     }
   }
