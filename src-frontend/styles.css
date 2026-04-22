@@ -46,3 +46,11 @@ body { font-family: var(--font-sans); font-feature-settings: "tnum", "ss01"; }
   animation: indeterminate-slide 1.1s ease-in-out infinite;
   width: 25%;
 }
+
+/* Config panel */
+.config-panel { display: flex; flex-direction: column; gap: 12px; padding: 12px; overflow-y: auto; }
+.config-toolbar input { width: 320px; padding: 4px 8px; }
+.config-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 18px; }
+.cfg-row { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.cfg-row-count input, .cfg-row-list select { flex: 0 0 auto; }
+.cfg-row-check { cursor: pointer; }
