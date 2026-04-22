@@ -38,7 +38,15 @@ export function ConfigRow({ option, value, onChange }: Props) {
   }
 
   // list
-  const items = (option.list ?? []).filter((i): i is NonNullable<typeof i> => i != null);
+  const rawList = Array.isArray(option.list)
+    ? option.list
+    : option.list && typeof option.list === "object"
+      ? Object.values(option.list as Record<string, unknown>)
+      : [];
+  const items = rawList.filter(
+    (i): i is { val: number | string; label: string } =>
+      i != null && typeof i === "object" && "val" in (i as object),
+  );
   if (items.length === 0) {
     return (
       <label className="cfg-row cfg-row-list" title={option.tooltip}>
