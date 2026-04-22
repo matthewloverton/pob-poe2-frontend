@@ -38,7 +38,16 @@ export function ConfigRow({ option, value, onChange }: Props) {
   }
 
   // list
-  const current = value ?? option.list[(option.defaultIndex ?? 1) - 1]?.val ?? "";
+  const items = option.list ?? [];
+  if (items.length === 0) {
+    return (
+      <label className="cfg-row cfg-row-list" title={option.tooltip}>
+        <span>{option.label}</span>
+        <em style={{ opacity: 0.5 }}>(no options)</em>
+      </label>
+    );
+  }
+  const current = value ?? items[(option.defaultIndex ?? 1) - 1]?.val ?? items[0].val;
   return (
     <label htmlFor={id} className="cfg-row cfg-row-list" title={option.tooltip}>
       <span>{option.label}</span>
@@ -47,12 +56,12 @@ export function ConfigRow({ option, value, onChange }: Props) {
         value={String(current)}
         onChange={(e) => {
           const raw = e.target.value;
-          const match = option.list.find((i) => String(i.val) === raw);
+          const match = items.find((i) => String(i.val) === raw);
           onChange(match ? match.val : raw);
         }}
       >
-        {option.list.map((item) => (
-          <option key={String(item.val)} value={String(item.val)}>
+        {items.map((item, idx) => (
+          <option key={`${String(item.val)}:${idx}`} value={String(item.val)}>
             {item.label}
           </option>
         ))}
