@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { TreeRenderer } from "./TreeRenderer";
 import { TreeInteraction } from "./TreeInteraction";
 import type { PassiveTree, NodeId } from "../types/tree";
 import { countUserAllocated, useBuildStore } from "../build/buildStore";
+import { useItemsStore } from "../items/itemsStore";
 import { ascendanciesFor, classStartId as classStartIdFor } from "../build/classStarts";
 import { checkAllocation, computePoints } from "../build/pointCounts";
 import { buildGraph, shortestPath } from "../build/pathing";
 import { NodeTooltip } from "../ui/NodeTooltip";
+import { ItemTooltip } from "../items/ItemTooltip";
 import { useFocusStore } from "./focusStore";
 
 export function TreeCanvas({ tree }: { tree: PassiveTree }) {
@@ -150,6 +152,30 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
         ascendancyId: s0b.ascendancyId,
         classStartId: s0b.classStartId,
       });
+      // Initial jewel-radius + icon draw in case a build was already loaded
+      // before the renderer finished initialising. Uses the same iconUrl
+      // lookup as the effect below.
+      const s0i = useItemsStore.getState();
+      const resolveIcon = (itemId: number): string | undefined => {
+        const it = s0i.items.find((i) => i.id === itemId);
+        if (!it) return undefined;
+        if ((it.rarity === "UNIQUE" || it.rarity === "RELIC") && s0i.uniqueIcons[it.name]) {
+          return `/items/${s0i.uniqueIcons[it.name]!.file}`;
+        }
+        const base = s0i.icons[it.baseType];
+        return base ? `/items/${base.file}` : undefined;
+      };
+      void renderer.applyJewels(
+        s0i.jewelSockets.length > 0
+          ? s0i.jewelSockets.map((s) => ({
+              nodeId: s.nodeId, radius: s.outerRadius ?? 0,
+              iconUrl: resolveIcon(s.itemId),
+            }))
+          : Object.entries(s0i.treeSockets).map(([nodeId, itemId]) => ({
+              nodeId: Number(nodeId),
+              iconUrl: resolveIcon(Number(itemId)),
+            })),
+      );
     }).catch((err) => {
       console.error("TreeRenderer init failed", err);
     });
@@ -183,6 +209,60 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
     r.applyOverrideIcons(nodeOverrides);
   }, [nodeOverrides]);
 
+  // Jewel sockets with equipped jewels: subscribe to the items store and
+  // redraw the jewel layer (per-jewel radius + glow + gem icon) whenever
+  // the sidecar provides fresh socket info or the XML is re-parsed.
+  const treeSockets = useItemsStore((s) => s.treeSockets);
+  const itemSets = useItemsStore((s) => s.itemSets);
+  const activeItemSet = useItemsStore((s) => s.activeItemSet);
+  const jewelSockets = useItemsStore((s) => s.jewelSockets);
+  const allItems = useItemsStore((s) => s.items);
+  const icons = useItemsStore((s) => s.icons);
+  const uniqueIcons = useItemsStore((s) => s.uniqueIcons);
+
+  // Look up the right webp url for a given socketed jewel item id. Uniques
+  // prefer their own distinct art; other rarities use the base-type icon.
+  const jewelIconUrl = (itemId: number): string | undefined => {
+    const item = allItems.find((i) => i.id === itemId);
+    if (!item) return undefined;
+    if ((item.rarity === "UNIQUE" || item.rarity === "RELIC") && uniqueIcons[item.name]) {
+      return `/items/${uniqueIcons[item.name]!.file}`;
+    }
+    const base = icons[item.baseType];
+    return base ? `/items/${base.file}` : undefined;
+  };
+
+  useEffect(() => {
+    const r = rendererRef.current;
+    if (!r) return;
+    if (jewelSockets.length > 0) {
+      void r.applyJewels(
+        jewelSockets.map((s) => ({
+          nodeId: s.nodeId,
+          radius: s.outerRadius ?? 0,
+          iconUrl: jewelIconUrl(s.itemId),
+        })),
+      );
+      return;
+    }
+    // Fallback before sidecar info arrives: draw default rings + look up
+    // the jewel item via the treeSockets mapping for the icon.
+    const primary = Object.entries(treeSockets);
+    if (primary.length > 0) {
+      void r.applyJewels(
+        primary.map(([nodeId, itemId]) => ({
+          nodeId: Number(nodeId),
+          iconUrl: jewelIconUrl(Number(itemId)),
+        })),
+      );
+      return;
+    }
+    const set = itemSets.find((s) => s.id === activeItemSet) ?? itemSets[0];
+    void r.applyJewels(
+      set ? Object.keys(set.socketedJewels).map((k) => ({ nodeId: Number(k) })) : [],
+    );
+  }, [jewelSockets, treeSockets, itemSets, activeItemSet, allItems, icons, uniqueIcons]);
+
   useEffect(() => {
     const r = rendererRef.current;
     const i = interactionRef.current;
@@ -208,6 +288,42 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
   }, [pendingFocus, clearFocus]);
 
   const hoveredNode = hovered != null ? tree.nodes[String(hovered)] : null;
+  // If the hovered node is a jewel socket with a jewel attached, look up
+  // the parsed item so we can render its ItemTooltip alongside the node
+  // tooltip. Falls back to ItemSet SocketIdURL mapping if the primary
+  // <Sockets> block isn't present (rare older exports).
+  const hoveredJewel = useMemo(() => {
+    if (hovered == null) return undefined;
+    const itemId = treeSockets[hovered];
+    if (itemId == null) return undefined;
+    return allItems.find((i) => i.id === itemId);
+  }, [hovered, treeSockets, allItems]);
+
+  // Reverse index: for each allocated tree node that falls inside a jewel
+  // socket's radius, collect which jewels affect it + each jewel's mod
+  // text. Used by NodeTooltip to show "From <jewel>: ..." blocks.
+  const jewelEffectsByNode = useMemo(() => {
+    const out = new Map<number, Array<{ jewelName: string; mods: string[] }>>();
+    for (const socket of jewelSockets) {
+      if (!socket.nodesInRadius || socket.nodesInRadius.length === 0) continue;
+      const jewel = allItems.find((i) => i.id === socket.itemId);
+      if (!jewel) continue;
+      const mods = [
+        ...jewel.implicits.map((m) => m.text),
+        ...jewel.explicits.map((m) => m.text),
+      ];
+      if (mods.length === 0) continue;
+      const jewelName = socket.itemName ?? jewel.name;
+      for (const nid of socket.nodesInRadius) {
+        const list = out.get(nid) ?? [];
+        list.push({ jewelName, mods });
+        out.set(nid, list);
+      }
+    }
+    return out;
+  }, [jewelSockets, allItems]);
+
+  const hoveredJewelAffects = hovered != null ? jewelEffectsByNode.get(hovered) : undefined;
 
   return (
     <div
@@ -229,12 +345,16 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
         </div>
       )}
       {!loading && hoveredNode && cursor && (
-        <NodeTooltip
-          node={hoveredNode}
-          x={cursor.x}
-          y={cursor.y}
-          overrideIndex={hovered != null ? nodeOverrides[hovered] : undefined}
-        />
+        <>
+          <NodeTooltip
+            node={hoveredNode}
+            x={cursor.x}
+            y={cursor.y}
+            overrideIndex={hovered != null ? nodeOverrides[hovered] : undefined}
+            jewelAffects={hoveredJewelAffects}
+          />
+          {hoveredJewel && <ItemTooltip item={hoveredJewel} x={cursor.x + 260} y={cursor.y} />}
+        </>
       )}
     </div>
   );
