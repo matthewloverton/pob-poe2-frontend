@@ -132,7 +132,7 @@ function stripModTags(line: string): { text: string; tags: ModTags } {
 // when a line is structured metadata vs a mod text line.
 const META_KEYS = new Set([
   "Crafted", "Prefix", "Suffix", "Quality", "Sockets", "Rune",
-  "LevelReq", "ItemLevel", "Implicits", "Evasion", "Armour", "Energy Shield",
+  "LevelReq", "ItemLevel", "Item Level", "Implicits", "Evasion", "Armour", "Energy Shield",
   "Requires", "Requires Class", "Requires Level",
   "Limited to", "Radius", "Charm Limit", "Socketable",
   "Unique ID", "Shaper Item", "Elder Item",
@@ -244,9 +244,13 @@ export function parseItemRaw(id: number, raw: string): ParsedItem {
       if (key === "Implicits") {
         implicitsRemaining = Number(value) || 0;
       } else if (key === "Quality" || key === "LevelReq" || key === "ItemLevel" ||
+                 key === "Item Level" ||
                  key === "Armour" || key === "Evasion" || key === "Energy Shield" ||
                  key === "Sockets") {
-        item.properties.push({ key, value: value ?? "" });
+        // Normalise "Item Level" (game-clipboard format) → "ItemLevel" so the
+        // tooltip's iLvl badge finds it in one place.
+        const storeKey = key === "Item Level" ? "ItemLevel" : key;
+        item.properties.push({ key: storeKey, value: value ?? "" });
         if (key === "LevelReq") item.requirements.level = Number(value) || undefined;
       } else if (key === "Rune" && value && value !== "None") {
         // PoB emits one `Rune: <name>` line per socket slot. "None" means
