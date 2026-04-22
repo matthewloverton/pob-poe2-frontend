@@ -20,10 +20,22 @@ interface ConfirmState {
   resolve: (value: boolean) => void;
 }
 
+export interface ChoiceOption {
+  label: string;
+  description?: string;
+}
+
+interface ChoiceState {
+  title: string;
+  options: ChoiceOption[];
+  resolve: (index: number | null) => void;
+}
+
 interface DialogStore {
   toasts: Toast[];
   prompt: PromptState | null;
   confirm: ConfirmState | null;
+  choice: ChoiceState | null;
 
   pushToast: (message: string, kind?: ToastKind) => void;
   dismissToast: (id: number) => void;
@@ -33,6 +45,9 @@ interface DialogStore {
 
   openConfirm: (title: string, message?: string) => Promise<boolean>;
   resolveConfirm: (value: boolean) => void;
+
+  openChoice: (title: string, options: ChoiceOption[]) => Promise<number | null>;
+  resolveChoice: (index: number | null) => void;
 }
 
 let toastIdCounter = 1;
@@ -41,6 +56,7 @@ export const useDialogStore = create<DialogStore>((set, get) => ({
   toasts: [],
   prompt: null,
   confirm: null,
+  choice: null,
 
   pushToast: (message, kind = "info") =>
     set((state) => {
@@ -73,6 +89,18 @@ export const useDialogStore = create<DialogStore>((set, get) => ({
     if (c) {
       c.resolve(value);
       set({ confirm: null });
+    }
+  },
+
+  openChoice: (title, options) =>
+    new Promise<number | null>((resolve) => {
+      set({ choice: { title, options, resolve } });
+    }),
+  resolveChoice: (index) => {
+    const c = get().choice;
+    if (c) {
+      c.resolve(index);
+      set({ choice: null });
     }
   },
 }));

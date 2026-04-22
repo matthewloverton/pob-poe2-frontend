@@ -25,6 +25,7 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
   const classId = useBuildStore((s) => s.classId);
   const ascendStartId = useBuildStore((s) => s.ascendStartId);
   const ascendancyId = useBuildStore((s) => s.ascendancyId);
+  const nodeOverrides = useBuildStore((s) => s.nodeOverrides);
   const allocMode = useBuildStore((s) => s.allocMode);
   const nodeModes = useBuildStore((s) => s.nodeModes);
   const allocate = useBuildStore((s) => s.allocate);
@@ -50,7 +51,7 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
     renderer.onReady = () => {
       if (!cancelled) setLoading(null);
     };
-    renderer.onNodeClick = (id) => {
+    renderer.onNodeClick = async (id) => {
       const i = interactionRef.current;
       if (!i) return;
       const s = useBuildStore.getState();
@@ -61,10 +62,9 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
         return;
       }
       const path = i.nodesToAllocate(s.allocated, id);
+      const { useDialogStore } = await import("../ui/dialogStore");
       if (path.length === 0) {
-        import("../ui/dialogStore").then(({ useDialogStore }) => {
-          useDialogStore.getState().pushToast(`No path to node ${id} from your allocation.`, "error");
-        });
+        useDialogStore.getState().pushToast(`No path to node ${id} from your allocation.`, "error");
         return;
       }
       const current = computePoints({
@@ -75,11 +75,41 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
       });
       const check = checkAllocation(current, path, s.allocMode);
       if (!check.ok) {
-        import("../ui/dialogStore").then(({ useDialogStore }) => {
-          useDialogStore.getState().pushToast(check.reason, "error");
-        });
+        useDialogStore.getState().pushToast(check.reason, "error");
         return;
       }
+      // Any multi-option nodes newly in the path need a choice before we
+      // commit. All the attribute nodes share the same 3 options (Str/Dex/Int)
+      // so we collect them into ONE prompt and apply the user's pick to every
+      // matching node in the path — avoiding a dialog-per-node mash.
+      const needsChoice: number[] = [];
+      for (const nid of path) {
+        const n = tree.nodes[String(nid)];
+        if (n?.options && n.options.length > 0 && s.nodeOverrides[nid] === undefined) {
+          needsChoice.push(nid);
+        }
+      }
+      const picks: Record<number, number> = {};
+      if (needsChoice.length > 0) {
+        // Use the first node's options as the canonical choice set. In practice
+        // every "+5 to any Attribute" uses the same Str/Dex/Int trio so they
+        // share a choice; if a path ever contained heterogeneous multi-option
+        // nodes (none exist today), this fallback would still apply the same
+        // index and the frontend would silently pick option[idx] on each.
+        const first = tree.nodes[String(needsChoice[0])]!;
+        const options = (first.options ?? []).map((o) => ({
+          label: o.name,
+          description: Array.isArray(o.stats) ? o.stats.join(" · ") : undefined,
+        }));
+        const title = needsChoice.length === 1
+          ? (first.name ? `${first.name}: Choose Option` : "Choose Option")
+          : `Choose Option (applies to ${needsChoice.length} nodes)`;
+        const chosen = await useDialogStore.getState().openChoice(title, options);
+        if (chosen == null) return; // cancelled — abort the whole allocation
+        for (const nid of needsChoice) picks[nid] = chosen;
+      }
+      const setOverride = useBuildStore.getState().setNodeOverride;
+      for (const [nidStr, idx] of Object.entries(picks)) setOverride(Number(nidStr), idx);
       allocate(path);
     };
     renderer.init(canvas).then(() => {
@@ -89,6 +119,17 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
       }
       rendererRef.current = renderer;
       interactionRef.current = interaction;
+      // Apply any existing overrides (from a build import that resolved before
+      // init) now that atlas textures are available.
+      renderer.applyOverrideIcons(useBuildStore.getState().nodeOverrides);
+      // Initial class/ascendancy background pass — effect-driven updates kick
+      // in afterwards but we need this first draw once textures are loaded.
+      const s0b = useBuildStore.getState();
+      void renderer.applyBackgrounds({
+        classId: s0b.classId,
+        ascendancyId: s0b.ascendancyId,
+        classStartId: s0b.classStartId,
+      });
     }).catch((err) => {
       console.error("TreeRenderer init failed", err);
     });
@@ -107,7 +148,20 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
     if (!i) return;
     const ascName = ascendancyId > 0 ? ascendanciesFor(classId)[ascendancyId - 1] ?? null : null;
     i.setActiveAnchors({ classStartId, ascendStartId, ascendancyName: ascName });
-  }, [classStartId, classId, ascendStartId, ascendancyId]);
+    const r = rendererRef.current;
+    if (r) {
+      void r.applyBackgrounds({ classId, ascendancyId, classStartId });
+    }
+  }, [classStartId, classId, ascendStartId, ascendancyId, tree]);
+
+  // Swap icon textures for overridden multi-option nodes (attribute picks).
+  // Fires after init + whenever the user's selections change. No-op before the
+  // renderer has finished loading atlases.
+  useEffect(() => {
+    const r = rendererRef.current;
+    if (!r) return;
+    r.applyOverrideIcons(nodeOverrides);
+  }, [nodeOverrides]);
 
   useEffect(() => {
     const r = rendererRef.current;
@@ -154,7 +208,14 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
           </div>
         </div>
       )}
-      {!loading && hoveredNode && cursor && <NodeTooltip node={hoveredNode} x={cursor.x} y={cursor.y} />}
+      {!loading && hoveredNode && cursor && (
+        <NodeTooltip
+          node={hoveredNode}
+          x={cursor.x}
+          y={cursor.y}
+          overrideIndex={hovered != null ? nodeOverrides[hovered] : undefined}
+        />
+      )}
     </div>
   );
 }

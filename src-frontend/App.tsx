@@ -17,6 +17,7 @@ const tree = treeData as unknown as PassiveTree;
 export default function App() {
   const sourceXml = useBuildStore((s) => s.sourceXml);
   const allocated = useBuildStore((s) => s.allocated);
+  const nodeOverrides = useBuildStore((s) => s.nodeOverrides);
   const refresh = useLiveStatsStore((s) => s.refresh);
   const setAllocated = useLiveStatsStore((s) => s.setAllocated);
 
@@ -31,10 +32,10 @@ export default function App() {
     if (!useLiveStatsStore.getState().data) return;
     const t = setTimeout(() => {
       if (!useLiveStatsStore.getState().data) return;
-      void setAllocated([...allocated]);
+      void setAllocated([...allocated], nodeOverrides);
     }, 250);
     return () => clearTimeout(t);
-  }, [allocated, setAllocated]);
+  }, [allocated, nodeOverrides, setAllocated]);
 
   return (
     <div className="h-full flex flex-col relative">
@@ -47,7 +48,7 @@ export default function App() {
       </header>
       <Toolbar />
       <BuildMeta />
-      <div className="flex-1 flex">
+      <div className="flex-1 flex min-h-0">
         <Sidebar />
         <main className="flex-1 relative">
           <TreeCanvas tree={tree} />

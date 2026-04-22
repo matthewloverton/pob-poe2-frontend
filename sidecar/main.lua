@@ -314,18 +314,70 @@ end
 -- Curated slice of build.calcsTab.mainOutput so we never round-trip the whole
 -- blob (it's huge, cyclic, and full of tables that blow up JSON encoding).
 -- Extend this whitelist as the sidebar surfaces more numbers.
+-- Mirrors STAT_WHITELIST in src-frontend/build/statFields.ts. Keep these in
+-- sync when panels gain new stats. The TS side is the canonical list — if
+-- you're adding a row, add the key there and append it here in the same PR.
 local STAT_FIELDS = {
-    "AverageDamage", "TotalDPS", "CombinedDPS", "FullDPS",
-    "Life", "LifeUnreserved", "LifeRegenRecovery",
-    "EnergyShield", "EnergyShieldRegenRecovery",
-    "Mana", "ManaUnreserved", "ManaRegenRecovery",
-    "Spirit", "SpiritUnreserved",
-    "Armour", "Evasion", "Ward",
-    "FireResist", "ColdResist", "LightningResist", "ChaosResist",
-    "Str", "Dex", "Int",
-    "TotalEHP",
+    -- Attributes + hero block
+    "Str", "Dex", "Int", "TotalAttr",
+    "CombinedDPS", "TotalEHP",
     "PhysicalMaximumHitTaken", "FireMaximumHitTaken", "ColdMaximumHitTaken",
     "LightningMaximumHitTaken", "ChaosMaximumHitTaken",
+    -- Offence
+    "TotalDPS", "AverageDamage", "Speed", "HitChance",
+    "FullDPS", "TotalDotDPS", "ReservationDPS", "CullingDPS",
+    "AccuracyHitChance", "AreaOfEffectRadiusMetres", "DurationMod",
+    "PhysicalStoredCombinedAvg", "FireStoredCombinedAvg", "ColdStoredCombinedAvg",
+    "LightningStoredCombinedAvg", "ChaosStoredCombinedAvg",
+    "PhysicalEnemyPen", "FireEnemyPen", "ColdEnemyPen", "LightningEnemyPen", "ChaosEnemyPen",
+    "WithBleedDPS", "WithIgniteDPS", "WithPoisonDPS",
+    -- Crit
+    "CritChance", "CritMultiplier", "PreEffectiveCritChance", "PreEffectiveCritMultiplier",
+    "CritEffect", "CritBifurcates", "IgniteChanceOnCrit", "ShockChanceOnCrit",
+    -- Ailments
+    "IgniteChance", "IgniteDPS", "IgniteDamage", "IgniteDuration", "IgniteStacksMax",
+    "ShockChance", "ShockEffectMod", "ShockDuration", "MaximumShock",
+    "ChillEffectMod", "ChillDuration", "MaximumChill",
+    "FreezeBuildupAvg", "FreezeAvoidChance", "BleedAvoidChance",
+    "HeavyStunBuildupAvg", "StunThreshold", "StunAvoidChance", "AilmentThreshold",
+    -- Pools
+    "Life", "LifeUnreserved", "LifeReserved", "LifeRegenRecovery",
+    "LifeLeechRate", "LifeOnHit", "LifeOnKill", "LifeRecoup",
+    "LifeFlaskRecovery", "LifeDegen",
+    "EnergyShield", "EnergyShieldRegenRecovery", "EnergyShieldRecharge",
+    "EnergyShieldRechargeDelay", "EnergyShieldLeechRate", "EnergyShieldRecoup",
+    "EnergyShieldRecoveryRateMod",
+    "Mana", "ManaUnreserved", "ManaReserved", "ManaRegenRecovery",
+    "ManaLeechRate", "ManaCost", "ManaDegen",
+    "Spirit", "SpiritReserved", "SpiritUnreserved", "SpiritReservedPercent",
+    "Rage", "MaximumRage", "InherentRageLoss",
+    -- Defence
+    "Armour", "Evasion", "Ward",
+    "PhysicalDamageReduction", "FireDamageReduction", "ColdDamageReduction",
+    "LightningDamageReduction", "ChaosDamageReduction",
+    "BlockChance", "SpellBlockChance", "EvadeChance", "ProjectileEvadeChance",
+    "SpellSuppressionChance", "AttackDodgeChance", "SpellDodgeChance",
+    "MovementSpeedMod", "ActionSpeedMod",
+    -- Resists
+    "FireResist", "ColdResist", "LightningResist", "ChaosResist",
+    "FireResistTotal", "ColdResistTotal", "LightningResistTotal", "ChaosResistTotal",
+    "FireResistOverCap", "ColdResistOverCap", "LightningResistOverCap", "ChaosResistOverCap",
+    -- Max hit / DoT EHP
+    "SecondMinimalMaximumHitTaken", "EHPSurvivalTime",
+    "PhysicalDotEHP", "FireDotEHP", "ColdDotEHP", "LightningDotEHP", "ChaosDotEHP",
+    -- Charges
+    "EnduranceCharges", "EnduranceChargesMax", "FrenzyCharges", "FrenzyChargesMax",
+    "PowerCharges", "PowerChargesMax",
+    "BloodCharges", "BloodChargesMax", "InspirationCharges", "InspirationChargesMax",
+    "AbsorptionCharges", "AfflictionCharges", "BlitzCharges", "BrutalCharges",
+    "ChallengerCharges", "SiphoningCharges", "SpiritCharges",
+    "CrabBarriers", "GhostShrouds", "WarcryPower",
+    -- Minions
+    "SummonedMinionsPerCast", "MinionRevivalSpeed", "RallyingHitEffect",
+    "SpectreAllyDamageMitigation", "TotemAllyDamageMitigation", "WolfLimit",
+    -- Misc
+    "EffectiveLootRarityMod", "LightRadiusMod", "PresenceRadiusMetres",
+    "GemLevel", "WeaponSwapSpeedMod", "CurseEffectOnSelf",
 }
 
 local function collect_skill_groups()
@@ -363,7 +415,13 @@ local function count_points()
 
     local level = _G.build.characterLevel or 1
     -- PoE2 awards 24 bonus passives via acts (matches PoB showing 123/123 at lv100).
-    local max_main = math.max(level - 1 + 24, 0)
+    -- `ExtraPoints` is PoB's aggregate of "+N Passive Skill Points" sources from
+    -- items, ascendancy notables, and tree — without it the main cap reads low
+    -- for any build that grabs them.
+    local extra_points = 0
+    local out = _G.build.calcsTab and _G.build.calcsTab.mainOutput
+    if out and type(out.ExtraPoints) == "number" then extra_points = out.ExtraPoints end
+    local max_main = math.max(level - 1 + 24 + extra_points, 0)
     return {
         main = normal_main,
         max_main = max_main,
@@ -411,6 +469,10 @@ end
 -- Replace the allocated-nodes set for the current build and recompute stats.
 -- The frontend owns the allocation state; this just pushes deltas into PoB's
 -- spec and re-runs the calc pipeline so mainOutput reflects them.
+-- `overrides` is an optional map of { [nodeId]=optionIndex } for multi-option
+-- nodes like "+5 to any Attribute" — the frontend tracks which option the
+-- user picked and we replay it via PoB's SwitchAttributeNode. Lua indices are
+-- 1-based so the frontend's 0-based option index is adjusted here.
 function handlers.set_allocated(payload)
     if not pob_loaded then error("set_allocated: call load_pob first") end
     if type(payload) ~= "table" or type(payload.ids) ~= "table" then
@@ -427,6 +489,18 @@ function handlers.set_allocated(payload)
         if node then alloc[id] = node end
     end
     spec.allocNodes = alloc
+
+    -- Apply option picks before dependencies so any node re-pathing uses the
+    -- overridden stats. SwitchAttributeNode takes a 1-based attributeIndex.
+    if type(payload.overrides) == "table" and type(spec.SwitchAttributeNode) == "function" then
+        for id, idx in pairs(payload.overrides) do
+            if type(idx) == "number" then
+                local nid = tonumber(id) or id
+                pcall(function() spec:SwitchAttributeNode(nid, idx + 1) end)
+            end
+        end
+    end
+
     if spec.BuildAllDependsAndPaths then
         pcall(function() spec:BuildAllDependsAndPaths() end)
     end
@@ -440,21 +514,42 @@ function handlers.set_allocated(payload)
     return handlers.get_stats(nil)
 end
 
--- Returns the authoritative allocated set + weapon-set mode map after PoB has
--- parsed an imported XML. PoE2 tree URLs only encode main-tree nodes, so the
--- frontend loses the WS1/WS2 slice unless it reconciles with this afterwards.
+-- Returns the authoritative allocated set + weapon-set mode map + multi-option
+-- picks after PoB has parsed an imported XML. PoE2 tree URLs only encode
+-- main-tree nodes, so the frontend loses the WS1/WS2 slice unless it reconciles
+-- with this afterwards. Overrides (e.g. "+5 to any Attribute" picks) are also
+-- invisible to the URL and only appear in <Overrides> XML elements.
 function handlers.get_alloc_state(_payload)
     if not pob_loaded then error("get_alloc_state: call load_pob first") end
     local spec = _G.build and _G.build.spec
-    if not spec or not spec.allocNodes then return { allocated = {}, modes = {} } end
-    local allocated, modes = {}, {}
+    if not spec or not spec.allocNodes then return { allocated = {}, modes = {}, overrides = {} } end
+    local allocated, modes, overrides = {}, {}, {}
     for id, node in pairs(spec.allocNodes) do
         allocated[#allocated + 1] = id
         if node.allocMode and node.allocMode ~= 0 then
             modes[tostring(id)] = node.allocMode
         end
     end
-    return { allocated = allocated, modes = modes }
+    -- hashOverrides: nodeId -> overridden node (with ReplaceNode having copied
+    -- icon/sd/dn from the picked option). ReplaceNode doesn't touch `name`, so
+    -- we match on `icon` which uniquely identifies the option (plusstrength.dds
+    -- vs plusdexterity.dds vs plusintelligence.dds). 0-based for the frontend.
+    local treeNodes = spec.tree and spec.tree.nodes or {}
+    if spec.hashOverrides then
+        for id, override in pairs(spec.hashOverrides) do
+            local base = treeNodes[id] or treeNodes[tostring(id)]
+            if base and type(base.options) == "table" and override then
+                local oicon = override.icon
+                for i, opt in ipairs(base.options) do
+                    if oicon and opt.icon == oicon then
+                        overrides[tostring(id)] = i - 1
+                        break
+                    end
+                end
+            end
+        end
+    end
+    return { allocated = allocated, modes = modes, overrides = overrides }
 end
 
 function handlers.set_main_skill(payload)

@@ -19,6 +19,22 @@
 html, body, #root { height: 100%; overflow: hidden; }
 body { font-family: var(--font-sans); font-feature-settings: "tnum", "ss01"; }
 
+/* Thin dark scrollbar that matches the palette. Firefox gets the narrow
+   variant; WebKit/Chromium gets a pseudo-element with a subtle thumb that
+   lifts on hover. Applied globally so every scrollable region is consistent. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--color-fg-muted); }
+*::-webkit-scrollbar-corner { background: transparent; }
+
 /* Indeterminate progress bar: slides a short strip across the track so the user
    can see something is happening even though the sidecar can't report real
    progress. */

@@ -6,6 +6,13 @@ export interface NodeConnection {
   orbit: number;
 }
 
+export interface NodeOption {
+  id: number;
+  name: string;
+  icon?: string;
+  stats?: string[];
+}
+
 export interface PassiveNode {
   skill: number;
   name?: string;
@@ -18,6 +25,10 @@ export interface PassiveNode {
   isKeystone?: boolean;
   isJewelSocket?: boolean;
   isAscendancyStart?: boolean;
+  isAttribute?: boolean;
+  isMultipleChoiceOption?: boolean;
+  isFreeAllocate?: boolean;
+  options?: NodeOption[];
   ascendancyName?: string;
   classesStart?: string[];
   stats?: string[];
@@ -40,11 +51,37 @@ export interface TreeConstants {
   [key: string]: unknown;
 }
 
+export interface TreeBackground {
+  image: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  /** Inner "bg" frame size — the BGTree ornate ring size per-class. */
+  bg?: { width: number; height: number };
+  active?: { width: number; height: number };
+}
+
+export interface TreeAscendancyClass {
+  id: string;
+  name: string;
+  background?: TreeBackground;
+  [key: string]: unknown;
+}
+
+export interface TreeClass {
+  name: string;
+  integerId: number;
+  background?: TreeBackground;
+  ascendancies?: TreeAscendancyClass[];
+  [key: string]: unknown;
+}
+
 export interface PassiveTree {
   nodes: Record<string, PassiveNode>;
   groups: Record<string, PassiveGroup>;
   constants: TreeConstants;
-  classes?: unknown[];
+  classes?: TreeClass[];
   min_x: number;
   max_x: number;
   min_y: number;

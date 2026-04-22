@@ -4,6 +4,9 @@ export interface NodeTooltipProps {
   node: PassiveNode;
   x: number;
   y: number;
+  /** When the node is a multi-option node and the user has already picked one,
+   *  show the chosen option's name + stats rather than the generic base copy. */
+  overrideIndex?: number;
 }
 
 function nodeKind(node: PassiveNode): string {
@@ -13,9 +16,13 @@ function nodeKind(node: PassiveNode): string {
   return "Passive";
 }
 
-export function NodeTooltip({ node, x, y }: NodeTooltipProps) {
-  const statsArray = Array.isArray(node.stats) ? node.stats : [];
-  const name = (node.name as string | undefined) ?? "Unknown";
+export function NodeTooltip({ node, x, y, overrideIndex }: NodeTooltipProps) {
+  const picked = overrideIndex != null && Array.isArray(node.options)
+    ? node.options[overrideIndex]
+    : undefined;
+  const statsArray = picked?.stats && Array.isArray(picked.stats) ? picked.stats
+                   : Array.isArray(node.stats) ? node.stats : [];
+  const name = picked?.name ?? (node.name as string | undefined) ?? "Unknown";
   const kind = nodeKind(node);
 
   return (

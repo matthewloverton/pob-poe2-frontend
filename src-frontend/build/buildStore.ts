@@ -16,19 +16,28 @@ interface BuildState {
   ascendStartId: number | null;
   allocated: Set<NodeId>;
   nodeModes: Record<number, AllocMode>;
+  // "+5 to any attribute" nodes and other multi-option nodes record the
+  // picked option index here, keyed by node id. 0-based against the node's
+  // `options` array (e.g. 0=Str, 1=Dex, 2=Int for attribute choices).
+  nodeOverrides: Record<number, number>;
   allocMode: AllocMode;
   sourceXml: string | null;
   dirty: boolean;
-  loadFromParsed: (parsed: ParsedBuild, nodes: NodeId[]) => void;
+  loadFromParsed: (parsed: ParsedBuild, nodes: NodeId[], overrides?: Record<number, number>) => void;
   setClass: (classId: number) => void;
   setAscendancy: (ascendancyId: number) => void;
   setAllocMode: (mode: AllocMode) => void;
   allocate: (ids: NodeId[]) => void;
   deallocate: (id: NodeId) => void;
+  setNodeOverride: (nodeId: NodeId, optionIndex: number) => void;
   // Replace allocation + per-node modes in one shot. Used after an import so
-  // the Lua-side-authoritative state (which knows WS1/WS2) overrides our
-  // URL-only derived set.
-  syncAllocation: (allocated: NodeId[], nodeModes: Record<number, AllocMode>) => void;
+  // the Lua-side-authoritative state (which knows WS1/WS2 + overrides)
+  // supersedes our URL-only derived set.
+  syncAllocation: (
+    allocated: NodeId[],
+    nodeModes: Record<number, AllocMode>,
+    overrides?: Record<number, number>,
+  ) => void;
   reset: () => void;
 }
 
@@ -42,6 +51,7 @@ function initialState() {
     ascendStartId: null as number | null,
     allocated,
     nodeModes: {} as Record<number, AllocMode>,
+    nodeOverrides: {} as Record<number, number>,
     allocMode: 0 as AllocMode,
     sourceXml: null,
     dirty: false,
@@ -64,7 +74,7 @@ export function countUserAllocated(state: {
 
 export const useBuildStore = create<BuildState>((set) => ({
   ...initialState(),
-  loadFromParsed: (parsed, nodes) => {
+  loadFromParsed: (parsed, nodes, overrides) => {
     const startId = classStartId(parsed.activeSpec.classId);
     const ascStartId = ascendStartIdFor(parsed.activeSpec.classId, parsed.activeSpec.ascendancyId);
     const allocated = new Set<NodeId>(nodes);
@@ -76,6 +86,7 @@ export const useBuildStore = create<BuildState>((set) => ({
       ascendancyId: parsed.activeSpec.ascendancyId,
       ascendStartId: ascStartId,
       allocated,
+      nodeOverrides: overrides ?? {},
       sourceXml: parsed.sourceXml,
       dirty: false,
     });
@@ -89,6 +100,7 @@ export const useBuildStore = create<BuildState>((set) => ({
         classId: newClassId,
         classStartId: newStartId,
         allocated,
+        nodeOverrides: {},
         ascendancyId: 0,
         ascendStartId: null,
         dirty: false,
@@ -105,12 +117,16 @@ export const useBuildStore = create<BuildState>((set) => ({
       return { ascendancyId, ascendStartId: newAscStart, allocated, dirty: true };
     }),
   setAllocMode: (mode) => set({ allocMode: mode }),
-  syncAllocation: (allocatedArr, modes) =>
+  syncAllocation: (allocatedArr, modes, overrides) =>
     set((state) => {
       const allocated = new Set<NodeId>(allocatedArr);
       if (state.classStartId != null) allocated.add(state.classStartId);
       if (state.ascendStartId != null) allocated.add(state.ascendStartId);
-      return { allocated, nodeModes: { ...modes } };
+      return {
+        allocated,
+        nodeModes: { ...modes },
+        nodeOverrides: overrides ? { ...overrides } : state.nodeOverrides,
+      };
     }),
   allocate: (ids) =>
     set((state) => {
@@ -130,7 +146,14 @@ export const useBuildStore = create<BuildState>((set) => ({
       next.delete(id);
       const modes = { ...state.nodeModes };
       delete modes[id];
-      return { allocated: next, nodeModes: modes, dirty: true };
+      const overrides = { ...state.nodeOverrides };
+      delete overrides[id as unknown as number];
+      return { allocated: next, nodeModes: modes, nodeOverrides: overrides, dirty: true };
     }),
+  setNodeOverride: (nodeId, optionIndex) =>
+    set((state) => ({
+      nodeOverrides: { ...state.nodeOverrides, [nodeId as unknown as number]: optionIndex },
+      dirty: true,
+    })),
   reset: () => set({ ...initialState() }),
 }));

@@ -32,9 +32,17 @@ interface Inputs {
   level?: number; // optional override once the sidecar reports it
 }
 
-function nodeAscendancyName(id: NodeId): string | undefined {
-  const n = tree.nodes[String(id)] as unknown as { ascendancyName?: string } | undefined;
-  return n?.ascendancyName;
+interface NodePointShape {
+  ascendancyName?: string;
+  /** Alternative inside a 2/3-choice notable — allocated but doesn't consume
+   *  a point. PoB's CountAllocNodes skips these. */
+  isMultipleChoiceOption?: boolean;
+  /** Free-allocate nodes (e.g. certain free ascend paths) — also skipped. */
+  isFreeAllocate?: boolean;
+}
+
+function nodePointInfo(id: NodeId): NodePointShape | undefined {
+  return tree.nodes[String(id)] as unknown as NodePointShape | undefined;
 }
 
 export function computePoints(inputs: Inputs): PointBreakdown {
@@ -50,7 +58,11 @@ export function computePoints(inputs: Inputs): PointBreakdown {
   for (const id of inputs.allocated) {
     if (id === inputs.classStartId) continue;
     if (id === inputs.ascendStartId) continue;
-    if (nodeAscendancyName(id)) {
+    const info = nodePointInfo(id);
+    // Match PoB's CountAllocNodes: alternatives inside a multi-choice notable
+    // and explicit free-allocate nodes don't consume a passive point.
+    if (info?.isMultipleChoiceOption || info?.isFreeAllocate) continue;
+    if (info?.ascendancyName) {
       ascend++;
       continue;
     }
@@ -87,7 +99,9 @@ export function checkAllocation(
   let addWs2 = 0;
   let addAscend = 0;
   for (const id of pathIds) {
-    if (nodeAscendancyName(id)) {
+    const info = nodePointInfo(id);
+    if (info?.isMultipleChoiceOption || info?.isFreeAllocate) continue;
+    if (info?.ascendancyName) {
       addAscend++;
       continue;
     }
