@@ -46,4 +46,32 @@ describe("xmlExport Config", () => {
     const out = serializeBuild(parsed, { newTreeUrl: parsed.activeSpec.treeUrl });
     expect(out).toContain('<Input name="conditionLowLife" boolean="true"/>');
   });
+
+  test("replaces self-closing <Config/> form", () => {
+    const src = minimal.replace(/<Config \/>/, "<Config/>");
+    const parsed = parseBuildXml(src);
+    parsed.sourceXml = src;
+    const out = serializeBuild(parsed, { newTreeUrl: parsed.activeSpec.treeUrl });
+    expect(out).toContain('<Input name="conditionLowLife" boolean="true"/>');
+    expect(out).not.toContain("<Config/>");
+    expect((out.match(/<Config/g) ?? []).length).toBe(1);
+  });
+
+  test("replaces self-closing <Config /> form with whitespace", () => {
+    // minimal-build.xml already uses <Config /> — exercise it directly
+    const parsed = parseBuildXml(minimal);
+    const out = serializeBuild(parsed, { newTreeUrl: parsed.activeSpec.treeUrl });
+    expect(out).toContain('<Input name="conditionLowLife" boolean="true"/>');
+    expect(out).not.toContain("<Config />");
+    expect((out.match(/<Config/g) ?? []).length).toBe(1);
+  });
+
+  test("inserts Config when none exists in source", () => {
+    const src = minimal.replace(/<Config \/>/, "");
+    const parsed = parseBuildXml(src);
+    parsed.sourceXml = src;
+    const out = serializeBuild(parsed, { newTreeUrl: parsed.activeSpec.treeUrl });
+    expect(out).toContain('<Input name="conditionLowLife" boolean="true"/>');
+    expect((out.match(/<Config/g) ?? []).length).toBe(1);
+  });
 });

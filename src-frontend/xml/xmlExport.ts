@@ -72,8 +72,11 @@ export function serializeBuild(build: ParsedBuild, opts: SerializeOptions): stri
 
   // Splice in current Config values from configStore.
   const configFragment = useConfigStore.getState().toXml();
-  output = output.replace(/<Config>[\s\S]*?<\/Config>/, configFragment);
-  if (!/<Config>/.test(output)) {
+  const configRe = /<Config\s*\/>|<Config>[\s\S]*?<\/Config>/;
+  if (configRe.test(output)) {
+    output = output.replace(configRe, configFragment);
+  } else {
+    // No existing Config element — insert before the closing root tag.
     output = output.replace(/<\/PathOfBuilding>/, `${configFragment}\n</PathOfBuilding>`);
   }
 
