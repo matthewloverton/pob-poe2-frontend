@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useItemsStore } from "./itemsStore";
 import type { ParsedItem, SlotName } from "./xmlImport";
 import { ItemTooltip } from "./ItemTooltip";
+import { TextTooltip } from "../ui/TextTooltip";
 import { useBuildStore } from "../build/buildStore";
 import { ascendanciesFor } from "../build/classStarts";
 
@@ -287,24 +288,9 @@ function GearSlot({
               icon on a glass background so it reads against any gear art. */}
           {item.socketables.length > 0 && (
             <div className="absolute top-1 right-1 flex flex-wrap-reverse justify-end gap-0.5 max-w-[70%]">
-              {item.socketables.map((name, i) => {
-                const file = socketableIcon(name);
-                return (
-                  <div
-                    key={i}
-                    title={name}
-                    className="h-4 w-4 rounded-full bg-bg/60 backdrop-blur-sm ring-1 ring-border/60 overflow-hidden"
-                  >
-                    {file ? (
-                      <img
-                        src={`/items/${file}`}
-                        alt={name}
-                        className="h-full w-full object-contain"
-                      />
-                    ) : null}
-                  </div>
-                );
-              })}
+              {item.socketables.map((name, i) => (
+                <SocketableIcon key={i} name={name} file={socketableIcon(name)} />
+              ))}
             </div>
           )}
           {/* Glassy text plate so the name / base type stay readable against
@@ -348,4 +334,22 @@ function rarityText(rarity: ParsedItem["rarity"]): string {
     case "MAGIC": return "text-sky-300";
     default: return "text-fg-muted";
   }
+}
+
+function SocketableIcon({ name, file }: { name: string; file: string | undefined }) {
+  const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
+  return (
+    <>
+      <div
+        onMouseEnter={(e) => setHover({ x: e.clientX, y: e.clientY })}
+        onMouseLeave={() => setHover(null)}
+        className="h-4 w-4 rounded-full bg-bg/60 backdrop-blur-sm ring-1 ring-border/60 overflow-hidden"
+      >
+        {file ? (
+          <img src={`/items/${file}`} alt={name} className="h-full w-full object-contain" />
+        ) : null}
+      </div>
+      {hover && <TextTooltip text={name} x={hover.x} y={hover.y} />}
+    </>
+  );
 }
