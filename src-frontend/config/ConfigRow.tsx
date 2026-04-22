@@ -1,3 +1,5 @@
+import { useState, type ReactNode } from "react";
+import { TextTooltip } from "../ui/TextTooltip";
 import type { ConfigOption, ConfigValue } from "./types";
 
 interface Props {
@@ -6,12 +8,41 @@ interface Props {
   onChange: (v: ConfigValue) => void;
 }
 
+function HoverRow({
+  tooltip,
+  className,
+  htmlFor,
+  children,
+}: {
+  tooltip?: string;
+  className: string;
+  htmlFor?: string;
+  children: ReactNode;
+}) {
+  const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
+  const showTip = tooltip && tooltip.trim().length > 0;
+  return (
+    <>
+      <label
+        htmlFor={htmlFor}
+        className={className}
+        onMouseEnter={(e) => showTip && setHover({ x: e.clientX, y: e.clientY })}
+        onMouseMove={(e) => showTip && setHover({ x: e.clientX, y: e.clientY })}
+        onMouseLeave={() => setHover(null)}
+      >
+        {children}
+      </label>
+      {showTip && hover && <TextTooltip text={tooltip!} x={hover.x} y={hover.y} />}
+    </>
+  );
+}
+
 export function ConfigRow({ option, value, onChange }: Props) {
   const id = `cfg-${option.var}`;
 
   if (option.type === "check") {
     return (
-      <label htmlFor={id} className="cfg-row cfg-row-check" title={option.tooltip}>
+      <HoverRow tooltip={option.tooltip} className="cfg-row cfg-row-check" htmlFor={id}>
         <input
           id={id}
           type="checkbox"
@@ -19,13 +50,13 @@ export function ConfigRow({ option, value, onChange }: Props) {
           onChange={(e) => onChange(e.target.checked)}
         />
         <span>{option.label}</span>
-      </label>
+      </HoverRow>
     );
   }
 
   if (option.type === "count") {
     return (
-      <label htmlFor={id} className="cfg-row cfg-row-count" title={option.tooltip}>
+      <HoverRow tooltip={option.tooltip} className="cfg-row cfg-row-count" htmlFor={id}>
         <span>{option.label}</span>
         <input
           id={id}
@@ -33,7 +64,7 @@ export function ConfigRow({ option, value, onChange }: Props) {
           value={typeof value === "number" ? value : ""}
           onChange={(e) => onChange(e.target.value === "" ? 0 : Number(e.target.value))}
         />
-      </label>
+      </HoverRow>
     );
   }
 
@@ -49,15 +80,15 @@ export function ConfigRow({ option, value, onChange }: Props) {
   );
   if (items.length === 0) {
     return (
-      <label className="cfg-row cfg-row-list" title={option.tooltip}>
+      <HoverRow tooltip={option.tooltip} className="cfg-row cfg-row-list">
         <span>{option.label}</span>
         <em style={{ opacity: 0.5 }}>(no options)</em>
-      </label>
+      </HoverRow>
     );
   }
   const current = value ?? items[(option.defaultIndex ?? 1) - 1]?.val ?? items[0].val;
   return (
-    <label htmlFor={id} className="cfg-row cfg-row-list" title={option.tooltip}>
+    <HoverRow tooltip={option.tooltip} className="cfg-row cfg-row-list" htmlFor={id}>
       <span>{option.label}</span>
       <select
         id={id}
@@ -74,6 +105,6 @@ export function ConfigRow({ option, value, onChange }: Props) {
           </option>
         ))}
       </select>
-    </label>
+    </HoverRow>
   );
 }
