@@ -420,10 +420,10 @@ export function Sidebar() {
         </div>
 
         <div className="grid grid-cols-4 gap-2 border-t border-border py-2">
-          {resCell("Fire", merged.FireResistTotal, merged.FireResistOverCap, "text-red-400")}
-          {resCell("Cold", merged.ColdResistTotal, merged.ColdResistOverCap, "text-cyan-400")}
-          {resCell("Lightning", merged.LightningResistTotal, merged.LightningResistOverCap, "text-yellow-400")}
-          {resCell("Chaos", merged.ChaosResistTotal, merged.ChaosResistOverCap, "text-purple-500")}
+          {resCell("Fire", merged.FireResistTotal, undefined, "text-red-400")}
+          {resCell("Cold", merged.ColdResistTotal, undefined, "text-cyan-400")}
+          {resCell("Lightning", merged.LightningResistTotal, undefined, "text-yellow-400")}
+          {resCell("Chaos", merged.ChaosResistTotal, undefined, "text-purple-500")}
         </div>
 
         <div className="grid grid-cols-3 gap-2 border-t border-border py-2">
