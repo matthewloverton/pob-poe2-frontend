@@ -25,7 +25,11 @@ function json.encode(v)
     local t = type(v)
     if v == nil then return "null" end
     if t == "boolean" then return v and "true" or "false" end
-    if t == "number" then return tostring(v) end
+    if t == "number" then
+        if v ~= v then return "null" end                  -- NaN
+        if v == math.huge or v == -math.huge then return "null" end
+        return tostring(v)
+    end
     if t == "string" then return '"' .. json_escape(v) .. '"' end
     if t == "table" then
         if is_array(v) then
