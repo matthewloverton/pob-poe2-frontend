@@ -12,6 +12,7 @@ import { BuildLoader } from "./ui/BuildLoader";
 import { ItemsPanel } from "./items/ItemsPanel";
 import { ConfigPanel } from "./config/ConfigPanel";
 import { useConfigStore } from "./config/configStore";
+import { useSocketablesStore } from "./items/socketables/socketablesStore";
 import { useBuildStore } from "./build/buildStore";
 import { useLiveStatsStore } from "./build/liveStatsStore";
 import { useItemsStore } from "./items/itemsStore";
@@ -30,6 +31,7 @@ export default function App() {
   const refreshJewelSockets = useItemsStore((s) => s.refreshJewelSockets);
   const loadConfigXml = useConfigStore((s) => s.loadXml);
   const loadConfigSchema = useConfigStore((s) => s.loadSchema);
+  const loadSocketables = useSocketablesStore((s) => s.load);
   const tab = useTabStore((s) => s.tab);
   const setTab = useTabStore((s) => s.setTab);
 
@@ -50,6 +52,7 @@ export default function App() {
   }, [loadBasesAndIcons]);
 
   useEffect(() => { loadConfigSchema(); }, [loadConfigSchema]);
+  useEffect(() => { void loadSocketables(); }, [loadSocketables]);
 
   // Push allocation deltas to the sidecar after a short debounce. Skipped until
   // the initial refresh has populated live stats — otherwise the set_allocated
