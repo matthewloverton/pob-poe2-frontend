@@ -10,6 +10,8 @@ import { Sidebar } from "./ui/Sidebar";
 import { DialogHost } from "./ui/DialogHost";
 import { BuildLoader } from "./ui/BuildLoader";
 import { ItemsPanel } from "./items/ItemsPanel";
+import { ConfigPanel } from "./config/ConfigPanel";
+import { useConfigStore } from "./config/configStore";
 import { useBuildStore } from "./build/buildStore";
 import { useLiveStatsStore } from "./build/liveStatsStore";
 import { useItemsStore } from "./items/itemsStore";
@@ -26,6 +28,8 @@ export default function App() {
   const loadItemsXml = useItemsStore((s) => s.loadXml);
   const loadBasesAndIcons = useItemsStore((s) => s.loadBasesAndIcons);
   const refreshJewelSockets = useItemsStore((s) => s.refreshJewelSockets);
+  const loadConfigXml = useConfigStore((s) => s.loadXml);
+  const loadConfigSchema = useConfigStore((s) => s.loadSchema);
   const tab = useTabStore((s) => s.tab);
   const setTab = useTabStore((s) => s.setTab);
 
@@ -34,15 +38,18 @@ export default function App() {
     // Jewel-socket info (radii, affected nodes) only becomes available
     // AFTER PoB has finished computing, so we chain it off refresh.
     loadItemsXml(sourceXml);
+    loadConfigXml(sourceXml);
     void (async () => {
       await refresh(sourceXml);
       await refreshJewelSockets();
     })();
-  }, [sourceXml, refresh, loadItemsXml, refreshJewelSockets]);
+  }, [sourceXml, refresh, loadItemsXml, refreshJewelSockets, loadConfigXml]);
 
   useEffect(() => {
     void loadBasesAndIcons();
   }, [loadBasesAndIcons]);
+
+  useEffect(() => { loadConfigSchema(); }, [loadConfigSchema]);
 
   // Push allocation deltas to the sidecar after a short debounce. Skipped until
   // the initial refresh has populated live stats — otherwise the set_allocated
@@ -78,6 +85,7 @@ export default function App() {
         <main className="flex-1 relative min-w-0">
           {tab === "tree" && <TreeCanvas tree={tree} />}
           {tab === "items" && <ItemsPanel />}
+          {tab === "config" && <ConfigPanel />}
         </main>
       </div>
       <DialogHost />
@@ -89,6 +97,7 @@ function TabSwitcher({ tab, setTab }: { tab: AppTab; setTab: (t: AppTab) => void
   const tabs: Array<{ id: AppTab; label: string }> = [
     { id: "tree", label: "Tree" },
     { id: "items", label: "Items" },
+    { id: "config", label: "Config" },
   ];
   return (
     <div className="flex items-center gap-1 font-mono text-[11px]">

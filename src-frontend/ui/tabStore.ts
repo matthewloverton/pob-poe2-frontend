@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type AppTab = "tree" | "items";
+export type AppTab = "tree" | "items" | "config";
 
 interface TabState {
   tab: AppTab;
