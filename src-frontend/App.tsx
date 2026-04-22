@@ -83,9 +83,15 @@ export default function App() {
       <div className="flex-1 flex min-h-0">
         <Sidebar />
         <main className="flex-1 relative min-w-0">
-          {tab === "tree" && <TreeCanvas tree={tree} />}
-          {tab === "items" && <ItemsPanel />}
-          {tab === "config" && <ConfigPanel />}
+          <div className="absolute inset-0" style={{ display: tab === "tree" ? "block" : "none" }}>
+            <TreeCanvas tree={tree} />
+          </div>
+          <div className="absolute inset-0 overflow-hidden" style={{ display: tab === "items" ? "block" : "none" }}>
+            <ItemsPanel />
+          </div>
+          <div className="absolute inset-0 overflow-hidden" style={{ display: tab === "config" ? "block" : "none" }}>
+            <ConfigPanel />
+          </div>
         </main>
       </div>
       <DialogHost />
