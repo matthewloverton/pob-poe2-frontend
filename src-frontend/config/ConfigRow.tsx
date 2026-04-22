@@ -1,0 +1,62 @@
+import type { ConfigOption, ConfigValue } from "./types";
+
+interface Props {
+  option: ConfigOption;
+  value: ConfigValue | undefined;
+  onChange: (v: ConfigValue) => void;
+}
+
+export function ConfigRow({ option, value, onChange }: Props) {
+  const id = `cfg-${option.var}`;
+
+  if (option.type === "check") {
+    return (
+      <label htmlFor={id} className="cfg-row cfg-row-check" title={option.tooltip}>
+        <input
+          id={id}
+          type="checkbox"
+          checked={value === true}
+          onChange={(e) => onChange(e.target.checked)}
+        />
+        <span>{option.label}</span>
+      </label>
+    );
+  }
+
+  if (option.type === "count") {
+    return (
+      <label htmlFor={id} className="cfg-row cfg-row-count" title={option.tooltip}>
+        <span>{option.label}</span>
+        <input
+          id={id}
+          type="number"
+          value={typeof value === "number" ? value : ""}
+          onChange={(e) => onChange(e.target.value === "" ? 0 : Number(e.target.value))}
+        />
+      </label>
+    );
+  }
+
+  // list
+  const current = value ?? option.list[(option.defaultIndex ?? 1) - 1]?.val ?? "";
+  return (
+    <label htmlFor={id} className="cfg-row cfg-row-list" title={option.tooltip}>
+      <span>{option.label}</span>
+      <select
+        id={id}
+        value={String(current)}
+        onChange={(e) => {
+          const raw = e.target.value;
+          const match = option.list.find((i) => String(i.val) === raw);
+          onChange(match ? match.val : raw);
+        }}
+      >
+        {option.list.map((item) => (
+          <option key={String(item.val)} value={String(item.val)}>
+            {item.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
