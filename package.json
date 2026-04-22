@@ -1,6 +1,6 @@
 {
   "name": "pob-poe2-frontend",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,6 +12,8 @@
     "tauri": "tauri",
     "extract-tree-icons": "node scripts/extract-tree-icons.mjs",
     "extract-tree-backgrounds": "node scripts/extract-tree-backgrounds.mjs",
+    "extract-item-bases": "node scripts/extract-item-bases.mjs",
+    "extract-item-icons": "node scripts/extract-item-icons.mjs",
     "build-tree-atlas": "node scripts/build-tree-atlas.mjs"
   },
   "dependencies": {

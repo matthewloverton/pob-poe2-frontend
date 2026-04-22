@@ -46,3 +46,140 @@ body { font-family: var(--font-sans); font-feature-settings: "tnum", "ss01"; }
   animation: indeterminate-slide 1.1s ease-in-out infinite;
   width: 25%;
 }
+
+/* Config panel */
+.config-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+}
+.config-toolbar {
+  position: sticky;
+  top: -12px;
+  z-index: 10;
+  background: var(--color-bg);
+  margin: -12px -12px 0;
+  padding: 12px 12px 8px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+.config-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+.config-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.cfg-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-fg-dim);
+  min-height: 26px;
+}
+.cfg-row > span {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cfg-row-check { cursor: pointer; user-select: none; }
+.cfg-row-check:hover > span { color: var(--color-fg); }
+
+/* Checkbox — custom accent box */
+.cfg-row-check input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background: var(--color-bg-elevated);
+  cursor: pointer;
+  flex: 0 0 auto;
+  position: relative;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.cfg-row-check input[type="checkbox"]:hover { border-color: var(--color-fg-muted); }
+.cfg-row-check input[type="checkbox"]:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.cfg-row-check input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--color-bg);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.cfg-row-check input[type="checkbox"]:focus-visible {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+/* Number + select — shared chrome */
+.cfg-row-count input[type="number"],
+.cfg-row-list select {
+  flex: 0 0 auto;
+  min-width: 0;
+  width: 140px;
+  padding: 3px 8px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 120ms ease;
+}
+.cfg-row-count input[type="number"]:hover,
+.cfg-row-list select:hover { border-color: var(--color-fg-muted); }
+.cfg-row-count input[type="number"]:focus,
+.cfg-row-list select:focus { border-color: var(--color-accent); }
+
+.cfg-row-count input[type="number"] { text-align: right; }
+
+/* Hide spinner on number input for a cleaner look */
+.cfg-row-count input[type="number"]::-webkit-outer-spin-button,
+.cfg-row-count input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cfg-row-count input[type="number"] { -moz-appearance: textfield; }
+
+/* Native select dropdown styling (arrow stays native — cross-platform safe) */
+.cfg-row-list select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 22px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--color-fg-muted) 50%),
+    linear-gradient(135deg, var(--color-fg-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 12px) 50%,
+    calc(100% - 7px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+.cfg-row-list select option {
+  background: var(--color-bg-elevated);
+  color: var(--color-fg);
+}

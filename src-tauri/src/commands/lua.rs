@@ -108,6 +108,17 @@ pub async fn lua_dump_output_keys(
 }
 
 #[tauri::command]
+pub async fn lua_get_jewel_sockets(
+    app: AppHandle,
+    sidecar: State<'_, LuaSidecar>,
+) -> Result<Value, String> {
+    sidecar
+        .invoke(&app, "get_jewel_sockets", Value::Null)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
 pub async fn lua_set_main_skill(
     app: AppHandle,
     sidecar: State<'_, LuaSidecar>,
@@ -146,6 +157,18 @@ pub async fn lua_set_allocated(
     };
     sidecar
         .invoke(&app, "set_allocated", payload)
+        .await
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub async fn lua_set_config(
+    app: AppHandle,
+    sidecar: State<'_, LuaSidecar>,
+    values: std::collections::HashMap<String, serde_json::Value>,
+) -> Result<Value, String> {
+    sidecar
+        .invoke(&app, "set_config", json!({ "values": values }))
         .await
         .map_err(|e| e.to_string())
 }

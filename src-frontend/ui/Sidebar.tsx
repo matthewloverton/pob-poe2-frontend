@@ -295,15 +295,23 @@ export function Sidebar() {
     // `reserveSubtext` keeps vertical rhythm with the Combined DPS cell which
     // includes a skill-name subtext line — sibling cells render an invisible
     // line of the same height so the row's baseline stays flush.
+    // Sidecar JSON can't carry Lua's `math.huge`, so those fields arrive as
+    // `null`. On fields where PoB uses `inf` to mean "immune" (max hit taken
+    // per element, DoT EHP per element, total EHP, EHP survival time), render
+    // the null as `∞`. Other null values still fall through to "—" via fmtInt.
+    const fmtStat = (value: unknown, immuneOnNull: boolean) =>
+      value === null && immuneOnNull ? "∞" : fmtInt(value);
+
     const minorHeadline = (
       label: string,
       value: unknown,
       accent?: string,
       reserveSubtext = false,
+      immuneOnNull = false,
     ) => (
       <div>
         <div className="text-[9px] uppercase tracking-widest text-fg-muted">{label}</div>
-        <div className={`font-mono text-base leading-tight ${accent ?? "text-fg"}`}>{fmtInt(value)}</div>
+        <div className={`font-mono text-base leading-tight ${accent ?? "text-fg"}`}>{fmtStat(value, immuneOnNull)}</div>
         {reserveSubtext && (
           <div className="mt-0.5 font-mono text-[10px] text-fg-muted opacity-0 select-none" aria-hidden="true">&nbsp;</div>
         )}
@@ -364,13 +372,13 @@ export function Sidebar() {
 
           <div className={span(2)}>
             <div className="text-[9px] uppercase tracking-widest text-fg-muted">Effective HP</div>
-            <div className="font-mono text-base text-fg leading-tight">{fmtInt(defence.TotalEHP)}</div>
+            <div className="font-mono text-base text-fg leading-tight">{fmtStat(defence.TotalEHP, true)}</div>
           </div>
-          <div className={span(2)}>{minorHeadline("Phys Hit", defence.PhysicalMaximumHitTaken)}</div>
-          <div className={span(2)}>{minorHeadline("Fire Hit", defence.FireMaximumHitTaken, "text-red-400")}</div>
-          <div className={span(2)}>{minorHeadline("Cold Hit", defence.ColdMaximumHitTaken, "text-cyan-400")}</div>
-          <div className={span(2)}>{minorHeadline("Lightning", defence.LightningMaximumHitTaken, "text-yellow-400")}</div>
-          <div className={span(2)}>{minorHeadline("Chaos", defence.ChaosMaximumHitTaken, "text-purple-500")}</div>
+          <div className={span(2)}>{minorHeadline("Phys Hit", defence.PhysicalMaximumHitTaken, undefined, false, true)}</div>
+          <div className={span(2)}>{minorHeadline("Fire Hit", defence.FireMaximumHitTaken, "text-red-400", false, true)}</div>
+          <div className={span(2)}>{minorHeadline("Cold Hit", defence.ColdMaximumHitTaken, "text-cyan-400", false, true)}</div>
+          <div className={span(2)}>{minorHeadline("Lightning", defence.LightningMaximumHitTaken, "text-yellow-400", false, true)}</div>
+          <div className={span(2)}>{minorHeadline("Chaos", defence.ChaosMaximumHitTaken, "text-purple-500", false, true)}</div>
         </div>
 
         <div className="grid grid-cols-12 gap-x-3 gap-y-0 border-t border-border py-2">
@@ -409,7 +417,7 @@ export function Sidebar() {
             <div className="mt-0.5 font-mono text-[10px] text-fg-muted">{headline.skill}</div>
           )}
           <div className="mt-2 text-[10px] uppercase tracking-widest text-fg-muted">Effective HP</div>
-          <div className="font-mono text-xl text-fg leading-tight">{fmtInt(defence.TotalEHP)}</div>
+          <div className="font-mono text-xl text-fg leading-tight">{fmtStat(defence.TotalEHP, true)}</div>
         </div>
 
         <div className="grid grid-cols-4 gap-2 border-t border-border py-2">
@@ -420,10 +428,10 @@ export function Sidebar() {
         </div>
 
         <div className="grid grid-cols-4 gap-2 border-t border-border py-2">
-          {resCell("Fire", merged.FireResistTotal, merged.FireResistOverCap, "text-red-400")}
-          {resCell("Cold", merged.ColdResistTotal, merged.ColdResistOverCap, "text-cyan-400")}
-          {resCell("Lightning", merged.LightningResistTotal, merged.LightningResistOverCap, "text-yellow-400")}
-          {resCell("Chaos", merged.ChaosResistTotal, merged.ChaosResistOverCap, "text-purple-500")}
+          {resCell("Fire", merged.FireResistTotal, undefined, "text-red-400")}
+          {resCell("Cold", merged.ColdResistTotal, undefined, "text-cyan-400")}
+          {resCell("Lightning", merged.LightningResistTotal, undefined, "text-yellow-400")}
+          {resCell("Chaos", merged.ChaosResistTotal, undefined, "text-purple-500")}
         </div>
 
         <div className="grid grid-cols-3 gap-2 border-t border-border py-2">

@@ -5,6 +5,7 @@ use std::path::PathBuf;
 mod tree;
 mod sprites;
 mod manifest;
+mod config;
 
 #[derive(Parser, Debug)]
 #[command(about = "Extract PoB-PoE2 data artifacts into frontend-consumable JSON")]
@@ -38,5 +39,8 @@ fn main() -> Result<()> {
 
     manifest::write_manifest(&args.pob, &args.out, &version)?;
     println!("wrote manifest.json");
+
+    config::extract_config(&args.luajit, &args.pob, &args.out.join("config-schema.json"))?;
+    println!("wrote config-schema.json");
     Ok(())
 }

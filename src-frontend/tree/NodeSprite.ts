@@ -46,5 +46,5 @@ export function strokeColor(kind: NodeKind, state: NodeVisualState): number {
 }
 
 export function iconTint(state: NodeVisualState): number {
-  return state === "unallocated" ? 0xe4e4e7 : 0xffffff;
+  return state === "unallocated" ? 0x71717a : 0xffffff;
 }

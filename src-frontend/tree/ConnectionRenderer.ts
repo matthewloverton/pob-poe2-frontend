@@ -17,7 +17,7 @@ export function drawConnections(
   nodes: Record<string, PassiveNode>,
   groups: Record<string, PassiveGroup>,
   constants: TreeConstants,
-  opts: DrawConnectionsOptions = { color: 0x52525b, width: 3 },
+  opts: DrawConnectionsOptions = { color: 0x3f3f46, width: 3 },
 ) {
   g.clear();
   const drawn = new Set<string>();

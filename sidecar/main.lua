@@ -25,7 +25,11 @@ function json.encode(v)
     local t = type(v)
     if v == nil then return "null" end
     if t == "boolean" then return v and "true" or "false" end
-    if t == "number" then return tostring(v) end
+    if t == "number" then
+        if v ~= v then return "null" end                  -- NaN
+        if v == math.huge or v == -math.huge then return "null" end
+        return tostring(v)
+    end
     if t == "string" then return '"' .. json_escape(v) .. '"' end
     if t == "table" then
         if is_array(v) then
@@ -514,6 +518,34 @@ function handlers.set_allocated(payload)
     return handlers.get_stats(nil)
 end
 
+-- Applies one or more config input values, rebuilds the config mod list, then
+-- settles calcs and returns fresh stats. Values are keyed by PoB input var name
+-- (e.g. "usePowerCharges", "critMultiplier"). We do NOT clear existing keys —
+-- the caller sends the full set of non-default values it knows about; anything
+-- not in the payload keeps whatever the tab currently holds.
+function handlers.set_config(payload)
+    if not pob_loaded then error("set_config: call load_pob first") end
+    if type(payload) ~= "table" or type(payload.values) ~= "table" then
+        error("set_config: payload.values must be an object")
+    end
+    local build = _G.build
+    if not build or not build.configTab then
+        error("set_config: build.configTab not ready")
+    end
+    local input = build.configTab.input
+    if type(input) ~= "table" then
+        error("set_config: build.configTab.input missing")
+    end
+    for k, v in pairs(payload.values) do
+        input[k] = v
+    end
+    if type(build.configTab.BuildModList) == "function" then
+        pcall(function() build.configTab:BuildModList() end)
+    end
+    settle_calcs()
+    return handlers.get_stats(nil)
+end
+
 -- Returns the authoritative allocated set + weapon-set mode map + multi-option
 -- picks after PoB has parsed an imported XML. PoE2 tree URLs only encode
 -- main-tree nodes, so the frontend loses the WS1/WS2 slice unless it reconciles
@@ -550,6 +582,52 @@ function handlers.get_alloc_state(_payload)
         end
     end
     return { allocated = allocated, modes = modes, overrides = overrides }
+end
+
+-- Returns data for each tree-socketed jewel: its radius (in tree units),
+-- the radius-index PoB uses internally, the jewel's name, and the set of
+-- allocated tree-node ids that fall inside its radius. The frontend uses
+-- this to draw per-jewel radius rings on the tree and surface "affected
+-- by jewel X" in node tooltips — all without reimplementing PoB's
+-- geometry tables (outer/inner/multiplier) on the JS side.
+function handlers.get_jewel_sockets(_payload)
+    if not pob_loaded then error("get_jewel_sockets: call load_pob first") end
+    local build = _G.build
+    if not build or not build.spec then return { sockets = {} } end
+    local spec = build.spec
+    local gc = (_G.data and _G.data.gameConstants) or {}
+    local mult = gc.PassiveTreeJewelDistanceMultiplier or 1
+    local radiusTable = (_G.data and _G.data.jewelRadius) or {}
+    local items = (build.itemsTab and build.itemsTab.items) or {}
+
+    local sockets = {}
+    for nodeId, itemId in pairs(spec.jewels or {}) do
+        local entry = { nodeId = nodeId, itemId = itemId }
+        local item = items[itemId]
+        if item then
+            entry.itemName = item.name
+            local radIdx = item.jewelRadiusIndex
+            if radIdx and radiusTable[radIdx] then
+                entry.radiusIndex = radIdx
+                entry.outerRadius = (radiusTable[radIdx].outer or 0) * mult
+                entry.innerRadius = (radiusTable[radIdx].inner or 0) * mult
+                entry.radiusLabel = radiusTable[radIdx].label
+            end
+            -- Allocated tree nodes inside this jewel's radius. PoB precomputes
+            -- this under spec.nodes[nodeId].nodesInRadius[radiusIndex].
+            local affected = {}
+            local specNode = spec.nodes and spec.nodes[nodeId]
+            if specNode and specNode.nodesInRadius and radIdx
+               and specNode.nodesInRadius[radIdx] then
+                for nid in pairs(specNode.nodesInRadius[radIdx]) do
+                    affected[#affected + 1] = nid
+                end
+            end
+            entry.nodesInRadius = affected
+        end
+        sockets[#sockets + 1] = entry
+    end
+    return { sockets = sockets }
 end
 
 function handlers.set_main_skill(payload)

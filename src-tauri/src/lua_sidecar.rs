@@ -101,11 +101,19 @@ impl LuaSidecar {
 
         let pending = Arc::clone(&self.pending);
         tauri::async_runtime::spawn(async move {
+            // Line buffer: sidecar stdout arrives in arbitrary chunks. Big
+            // stats payloads (tens of KB) span several Stdout events, so we
+            // accumulate until we see a newline and only then try to parse.
+            let mut buf = String::new();
             while let Some(event) = rx.recv().await {
                 match event {
                     CommandEvent::Stdout(bytes) => {
-                        if let Ok(line) = std::str::from_utf8(&bytes) {
-                            for part in line.split('\n').filter(|s| !s.trim().is_empty()) {
+                        if let Ok(chunk) = std::str::from_utf8(&bytes) {
+                            buf.push_str(chunk);
+                            while let Some(nl) = buf.find('\n') {
+                                let line: String = buf.drain(..=nl).collect();
+                                let part = line.trim_end_matches(['\n', '\r']).trim();
+                                if part.is_empty() { continue; }
                                 if let Ok(v) = serde_json::from_str::<Value>(part) {
                                     let id = v.get("id").and_then(|i| i.as_u64()).unwrap_or(0);
                                     let mut guard = pending.lock().await;

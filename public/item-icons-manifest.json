@@ -1,0 +1,3353 @@
+{
+  "Keyblade": {
+    "file": "TwoHandSword1.webp"
+  },
+  "Golden Blade": {
+    "file": "1HSword01.webp"
+  },
+  "Fishing Rod": {
+    "file": "FishingRod1.webp"
+  },
+  "Golden Hoop": {
+    "file": "DemigodsBand.webp"
+  },
+  "Golden Obi": {
+    "file": "Demibelt1.webp"
+  },
+  "Golden Flame": {
+    "file": "DemigodsShield.webp"
+  },
+  "Golden Wreath": {
+    "file": "Demigodstriumph.webp"
+  },
+  "Golden Visage": {
+    "file": "HelmetStr01.webp"
+  },
+  "Golden Mantle": {
+    "file": "DemigodsArmour.webp"
+  },
+  "Golden Caligae": {
+    "file": "DemigodsStride.webp"
+  },
+  "Timeless Jewel": {
+    "file": "Timeless.webp"
+  },
+  "Ruby": {
+    "file": "RubyJewel.webp"
+  },
+  "Emerald": {
+    "file": "EmeraldJewel.webp"
+  },
+  "Sapphire": {
+    "file": "SapphireJewel.webp"
+  },
+  "Diamond": {
+    "file": "SapphireJewel.webp"
+  },
+  "Time-Lost Ruby": {
+    "file": "SpecialRubyJewel.webp"
+  },
+  "Time-Lost Emerald": {
+    "file": "SpecialEmeraldJewel.webp"
+  },
+  "Time-Lost Sapphire": {
+    "file": "SpecialSapphireJewel.webp"
+  },
+  "Time-Lost Diamond": {
+    "file": "SpecialSapphireJewel.webp"
+  },
+  "Desert Rune": {
+    "file": "FireRune.webp"
+  },
+  "Glacial Rune": {
+    "file": "ColdRune.webp"
+  },
+  "Storm Rune": {
+    "file": "LightningRune.webp"
+  },
+  "Iron Rune": {
+    "file": "EnhanceRune.webp"
+  },
+  "Body Rune": {
+    "file": "LifeRune.webp"
+  },
+  "Mind Rune": {
+    "file": "ManaRune.webp"
+  },
+  "Rebirth Rune": {
+    "file": "LifeRecoveryRune.webp"
+  },
+  "Inspiration Rune": {
+    "file": "ManaRecoveryRune.webp"
+  },
+  "Stone Rune": {
+    "file": "StunRune.webp"
+  },
+  "Vision Rune": {
+    "file": "AccuracyRune.webp"
+  },
+  "Lesser Desert Rune": {
+    "file": "FireRuneTier1.webp"
+  },
+  "Lesser Glacial Rune": {
+    "file": "ColdRuneTier1.webp"
+  },
+  "Lesser Storm Rune": {
+    "file": "LightningRuneTier1.webp"
+  },
+  "Lesser Iron Rune": {
+    "file": "EnhanceRuneTier1.webp"
+  },
+  "Lesser Body Rune": {
+    "file": "LifeRuneTier1.webp"
+  },
+  "Lesser Mind Rune": {
+    "file": "ManaRuneTier1.webp"
+  },
+  "Lesser Rebirth Rune": {
+    "file": "LifeRecoveryRuneTier1.webp"
+  },
+  "Lesser Inspiration Rune": {
+    "file": "ManaRecoveryRuneTier1.webp"
+  },
+  "Lesser Stone Rune": {
+    "file": "StunRuneTier1.webp"
+  },
+  "Lesser Vision Rune": {
+    "file": "AccuracyRuneTier1.webp"
+  },
+  "Greater Desert Rune": {
+    "file": "FireRuneTier2.webp"
+  },
+  "Greater Glacial Rune": {
+    "file": "ColdRuneTier2.webp"
+  },
+  "Greater Storm Rune": {
+    "file": "LightningRuneTier2.webp"
+  },
+  "Greater Iron Rune": {
+    "file": "EnhanceRuneTier2.webp"
+  },
+  "Greater Body Rune": {
+    "file": "LifeRuneTier2.webp"
+  },
+  "Greater Mind Rune": {
+    "file": "ManaRuneTier2.webp"
+  },
+  "Greater Rebirth Rune": {
+    "file": "LifeRecoveryRuneTier2.webp"
+  },
+  "Greater Inspiration Rune": {
+    "file": "ManaRecoveryRuneTier2.webp"
+  },
+  "Greater Stone Rune": {
+    "file": "StunRuneTier2.webp"
+  },
+  "Greater Vision Rune": {
+    "file": "AccuracyRuneTier2.webp"
+  },
+  "Lesser Robust Rune": {
+    "file": "StrengthRuneTier1.webp"
+  },
+  "Robust Rune": {
+    "file": "StrengthRune.webp"
+  },
+  "Greater Robust Rune": {
+    "file": "StrengthRuneTier3.webp"
+  },
+  "Lesser Adept Rune": {
+    "file": "DexRuneTier1.webp"
+  },
+  "Adept Rune": {
+    "file": "DexRune.webp"
+  },
+  "Greater Adept Rune": {
+    "file": "DexRuneTier3.webp"
+  },
+  "Lesser Resolve Rune": {
+    "file": "IntRuneTier1.webp"
+  },
+  "Resolve Rune": {
+    "file": "IntRune.webp"
+  },
+  "Greater Resolve Rune": {
+    "file": "IntRuneTier3.webp"
+  },
+  "Lesser Tempered Rune": {
+    "file": "PhyDmgRuneTier1.webp"
+  },
+  "Tempered Rune": {
+    "file": "PhyDmgRune.webp"
+  },
+  "Greater Tempered Rune": {
+    "file": "PhyDmgRuneTier3.webp"
+  },
+  "Greater Rune of Leadership": {
+    "file": "LightningRuneSpecial1.webp"
+  },
+  "Greater Rune of Tithing": {
+    "file": "LightningRuneSpecial2.webp"
+  },
+  "Greater Rune of Alacrity": {
+    "file": "LightningRuneSpecial3.webp"
+  },
+  "Greater Rune of Nobility": {
+    "file": "LightningRuneSpecial4.webp"
+  },
+  "Hedgewitch Assandra's Rune of Wisdom": {
+    "file": "NewRune1.webp"
+  },
+  "Saqawal's Rune of the Sky": {
+    "file": "NewRune2.webp"
+  },
+  "Fenumus' Rune of Agony": {
+    "file": "NewRune3.webp"
+  },
+  "Farrul's Rune of Grace": {
+    "file": "NewRune4.webp"
+  },
+  "Farrul's Rune of the Chase": {
+    "file": "NewRune5.webp"
+  },
+  "Craiceann's Rune of Warding": {
+    "file": "NewRune6.webp"
+  },
+  "Saqawal's Rune of Memory": {
+    "file": "NewRune7.webp"
+  },
+  "Saqawal's Rune of Erosion": {
+    "file": "NewRune8.webp"
+  },
+  "Farrul's Rune of the Hunt": {
+    "file": "NewRune9.webp"
+  },
+  "Craiceann's Rune of Recovery": {
+    "file": "NewRune10.webp"
+  },
+  "Courtesan Mannan's Rune of Cruelty": {
+    "file": "NewRune11.webp"
+  },
+  "Thane Grannell's Rune of Mastery": {
+    "file": "NewRune12.webp"
+  },
+  "Fenumus' Rune of Spinning": {
+    "file": "NewRune13.webp"
+  },
+  "Countess Seske's Rune of Archery": {
+    "file": "NewRune14.webp"
+  },
+  "Thane Girt's Rune of Wildness": {
+    "file": "NewRune15.webp"
+  },
+  "Fenumus' Rune of Draining": {
+    "file": "NewRune16.webp"
+  },
+  "Thane Myrk's Rune of Summer": {
+    "file": "NewRune17.webp"
+  },
+  "Lady Hestra's Rune of Winter": {
+    "file": "NewRune18.webp"
+  },
+  "Thane Leld's Rune of Spring": {
+    "file": "NewRune19.webp"
+  },
+  "The Greatwolf's Rune of Claws": {
+    "file": "NewRune20.webp"
+  },
+  "The Greatwolf's Rune of Willpower": {
+    "file": "NewRune21.webp"
+  },
+  "Idol of Sirrius": {
+    "file": "AzmeriSocketableWolfSpecial.webp"
+  },
+  "Idol of Thruldana": {
+    "file": "AzmeriSocketableSnakeSpecial.webp"
+  },
+  "Idol of Grold": {
+    "file": "AzmeriSocketableBearSpecial.webp"
+  },
+  "Idol of Eeshta": {
+    "file": "AzmeriSocketableOwlSpecial.webp"
+  },
+  "Idol of Egrin": {
+    "file": "AzmeriSocketableCatSpecial.webp"
+  },
+  "Idol of Maxarius": {
+    "file": "AzmeriSocketableStagSpecial.webp"
+  },
+  "Idol of Ralakesh": {
+    "file": "AzmeriSocketableMonkeySpecial.webp"
+  },
+  "Hayoxi's Soul Core of Heatproofing": {
+    "file": "NewSoulCoreIce.webp"
+  },
+  "Zalatl's Soul Core of Insulation": {
+    "file": "NewSoulCoreLightning.webp"
+  },
+  "Topotante's Soul Core of Dampening": {
+    "file": "NewSoulCoreFire.webp"
+  },
+  "Atmohua's Soul Core of Retreat": {
+    "file": "NewSoulCoreEnergyShield.webp"
+  },
+  "Quipolatl's Soul Core of Flow": {
+    "file": "NewSoulCoreTimeCooldown.webp"
+  },
+  "Tzamoto's Soul Core of Ferocity": {
+    "file": "NewSoulCoreRage.webp"
+  },
+  "Uromoti's Soul Core of Attenuation": {
+    "file": "NewSoulCoreCurses2.webp"
+  },
+  "Opiloti's Soul Core of Assault": {
+    "file": "NewSoulCoreFrenzyCharge.webp"
+  },
+  "Guatelitzi's Soul Core of Endurance": {
+    "file": "NewSoulCoreEnduranceCharge.webp"
+  },
+  "Xopec's Soul Core of Power": {
+    "file": "NewSoulCorePowerCharge.webp"
+  },
+  "Estazunti's Soul Core of Convalescence": {
+    "file": "NewSoulCoreTimeSlow.webp"
+  },
+  "Tacati's Soul Core of Affliction": {
+    "file": "NewSoulCoreChaos1.webp"
+  },
+  "Cholotl's Soul Core of War": {
+    "file": "NewSoulCoreProjectile.webp"
+  },
+  "Citaqualotl's Soul Core of Foulness": {
+    "file": "NewSoulCoreChaos2.webp"
+  },
+  "Xipocado's Soul Core of Dominion": {
+    "file": "NewSoulCoreMinion.webp"
+  },
+  "Soul Core of Tacati": {
+    "file": "GreaterSoulCoreChaos.webp"
+  },
+  "Soul Core of Opiloti": {
+    "file": "GreaterSoulCorePhysical.webp"
+  },
+  "Soul Core of Jiquani": {
+    "file": "GreaterSoulCoreLife.webp"
+  },
+  "Soul Core of Zalatl": {
+    "file": "GreaterSoulCoreMana.webp"
+  },
+  "Soul Core of Citaqualotl": {
+    "file": "GreaterSoulCoreElementalResist.webp"
+  },
+  "Soul Core of Puhuarte": {
+    "file": "GreaterSoulCoreFire.webp"
+  },
+  "Soul Core of Tzamoto": {
+    "file": "GreaterSoulCoreCold.webp"
+  },
+  "Soul Core of Xopec": {
+    "file": "GreaterSoulCoreLightning.webp"
+  },
+  "Soul Core of Azcapa": {
+    "file": "GreaterSoulCoreWealthRarity.webp"
+  },
+  "Soul Core of Topotante": {
+    "file": "GreaterSoulCoreTriElement.webp"
+  },
+  "Soul Core of Quipolatl": {
+    "file": "GreaterSoulCoreSpeed.webp"
+  },
+  "Soul Core of Ticaba": {
+    "file": "GreaterSoulCoreCrit.webp"
+  },
+  "Soul Core of Atmohua": {
+    "file": "GreaterSoulCoreStrength.webp"
+  },
+  "Soul Core of Cholotl": {
+    "file": "GreaterSoulCoreDex.webp"
+  },
+  "Soul Core of Zantipi": {
+    "file": "GreaterSoulCoreint.webp"
+  },
+  "Snake Idol": {
+    "file": "AzmeriSocketableSnake.webp"
+  },
+  "Primate Idol": {
+    "file": "AzmeriSocketableMonkey.webp"
+  },
+  "Owl Idol": {
+    "file": "AzmeriSocketableOwl.webp"
+  },
+  "Cat Idol": {
+    "file": "AzmeriSocketableCat.webp"
+  },
+  "Wolf Idol": {
+    "file": "AzmeriSocketableWolf.webp"
+  },
+  "Stag Idol": {
+    "file": "AzmeriSocketableStag.webp"
+  },
+  "Boar Idol": {
+    "file": "AzmeriSocketableBoar.webp"
+  },
+  "Bear Idol": {
+    "file": "AzmeriSocketableBear.webp"
+  },
+  "Ox Idol": {
+    "file": "AzmeriSocketableOx.webp"
+  },
+  "Rabbit Idol": {
+    "file": "AzmeriSocketableRabbit.webp"
+  },
+  "Fox Idol": {
+    "file": "AzmeriSocketableFox.webp"
+  },
+  "Amanamu's Gaze": {
+    "file": "AmanamusGaze.webp"
+  },
+  "Tecrod's Gaze": {
+    "file": "TecrodsGaze.webp"
+  },
+  "Kurgal's Gaze": {
+    "file": "KurgalsGaze.webp"
+  },
+  "Ulaman's Gaze": {
+    "file": "UlamansGaze.webp"
+  },
+  "Guatelitzi's Thesis": {
+    "file": "SoulCoreBlood.webp"
+  },
+  "Citaqualotl's Thesis": {
+    "file": "SoulCoreSacrifice.webp"
+  },
+  "Jiquani's Thesis": {
+    "file": "SoulCoreSoul.webp"
+  },
+  "Quipolatl's Thesis": {
+    "file": "SoulCoreScience.webp"
+  },
+  "Ethereal Blade": {
+    "file": "Dagger1.webp"
+  },
+  "Shortsword": {
+    "file": "1HSword01.webp"
+  },
+  "Broadsword": {
+    "file": "1HSword02.webp"
+  },
+  "Vampiric Blade": {
+    "file": "1HSword03.webp"
+  },
+  "Scimitar": {
+    "file": "1HSword04.webp"
+  },
+  "Charred Shortsword": {
+    "file": "1HSword05.webp"
+  },
+  "Sickle Sword": {
+    "file": "1HSword06.webp"
+  },
+  "Falchion": {
+    "file": "1HSword07.webp"
+  },
+  "Treasured Blade": {
+    "file": "1HSword08.webp"
+  },
+  "Cutlass": {
+    "file": "1HSword09.webp"
+  },
+  "Runic Shortsword": {
+    "file": "1HSword10.webp"
+  },
+  "Messer": {
+    "file": "1HSword11.webp"
+  },
+  "Commander Sword": {
+    "file": "1HSword12.webp"
+  },
+  "Dark Blade": {
+    "file": "1HSword13.webp"
+  },
+  "Corroded Longsword": {
+    "file": "2HSword01.webp"
+  },
+  "Iron Greatsword": {
+    "file": "2HSword02.webp"
+  },
+  "Blessed Claymore": {
+    "file": "2HSword03.webp"
+  },
+  "Broad Greatsword": {
+    "file": "2HSword04.webp"
+  },
+  "Rippled Greatsword": {
+    "file": "2HSword05.webp"
+  },
+  "Arced Longsword": {
+    "file": "2HSword06.webp"
+  },
+  "Stone Greatsword": {
+    "file": "2HSword07.webp"
+  },
+  "Obsidian Greatsword": {
+    "file": "2HSword08.webp"
+  },
+  "Keen Greatsword": {
+    "file": "2HSword09.webp"
+  },
+  "Ancient Greatblade": {
+    "file": "2HSword10.webp"
+  },
+  "Flanged Greatblade": {
+    "file": "2HSword11.webp"
+  },
+  "Regalia Longsword": {
+    "file": "2HSword12.webp"
+  },
+  "Ultra Greatsword": {
+    "file": "2HSword13.webp"
+  },
+  "Dull Hatchet": {
+    "file": "1HAxe01.webp"
+  },
+  "Hook Axe": {
+    "file": "1HAxe02.webp"
+  },
+  "Bearded Axe": {
+    "file": "1HAxe03.webp"
+  },
+  "Extended Cleaver": {
+    "file": "1HAxe04.webp"
+  },
+  "Bandit Hatchet": {
+    "file": "1HAxe05.webp"
+  },
+  "Crescent Axe": {
+    "file": "1HAxe06.webp"
+  },
+  "Carving Hatchet": {
+    "file": "1HAxe07.webp"
+  },
+  "Sacrificial Axe": {
+    "file": "1HAxe08.webp"
+  },
+  "Boarding Hatchet": {
+    "file": "1HAxe09.webp"
+  },
+  "Fury Cleaver": {
+    "file": "1HAxe10.webp"
+  },
+  "Battle Axe": {
+    "file": "1HAxe11.webp"
+  },
+  "Profane Cleaver": {
+    "file": "1HAxe12.webp"
+  },
+  "Dread Hatchet": {
+    "file": "1HAxe13.webp"
+  },
+  "Splitting Greataxe": {
+    "file": "2HAxe01.webp"
+  },
+  "Light Halberd": {
+    "file": "2HAxe02.webp"
+  },
+  "Executioner Greataxe": {
+    "file": "2HAxe03.webp"
+  },
+  "Arched Greataxe": {
+    "file": "2HAxe04.webp"
+  },
+  "Elegant Glaive": {
+    "file": "2HAxe05.webp"
+  },
+  "Savage Greataxe": {
+    "file": "2HAxe06.webp"
+  },
+  "Rending Halberd": {
+    "file": "2HAxe07.webp"
+  },
+  "Jagged Greataxe": {
+    "file": "2HAxe08.webp"
+  },
+  "Reaver Glaive": {
+    "file": "2HAxe09.webp"
+  },
+  "Ember Greataxe": {
+    "file": "2HAxe10.webp"
+  },
+  "Ceremonial Halberd": {
+    "file": "2HAxe11.webp"
+  },
+  "Monument Greataxe": {
+    "file": "2HAxe12.webp"
+  },
+  "Vile Greataxe": {
+    "file": "2HAxe13.webp"
+  },
+  "Wooden Club": {
+    "file": "1HMace01.webp"
+  },
+  "Smithing Hammer": {
+    "file": "1HMace02.webp"
+  },
+  "Slim Mace": {
+    "file": "1HMace03.webp"
+  },
+  "Spiked Club": {
+    "file": "1HMace04.webp"
+  },
+  "Warpick": {
+    "file": "1HMace05.webp"
+  },
+  "Plated Mace": {
+    "file": "1HMace06.webp"
+  },
+  "Brigand Mace": {
+    "file": "1HMace07.webp"
+  },
+  "Construct Hammer": {
+    "file": "1HMace08.webp"
+  },
+  "Morning Star": {
+    "file": "1HMace09.webp"
+  },
+  "Jade Club": {
+    "file": "1HMace10.webp"
+  },
+  "Lumen Mace": {
+    "file": "1HMace01.webp"
+  },
+  "Execratus Hammer": {
+    "file": "1HMace01.webp"
+  },
+  "Torment Club": {
+    "file": "1HMace01.webp"
+  },
+  "Kalguuran Forgehammer": {
+    "file": "1HMace01.webp"
+  },
+  "Felled Greatclub": {
+    "file": "2HMace01.webp"
+  },
+  "Oak Greathammer": {
+    "file": "2HMace02.webp"
+  },
+  "Forge Maul": {
+    "file": "2HMace03.webp"
+  },
+  "Studded Greatclub": {
+    "file": "2HMace04.webp"
+  },
+  "Cultist Greathammer": {
+    "file": "2HMace05.webp"
+  },
+  "Temple Maul": {
+    "file": "2HMace06.webp"
+  },
+  "Leaden Greathammer": {
+    "file": "2HMace07.webp"
+  },
+  "Crumbling Maul": {
+    "file": "2HMace08.webp"
+  },
+  "Pointed Maul": {
+    "file": "2HMace09.webp"
+  },
+  "Totemic Greatclub": {
+    "file": "2HMace10.webp"
+  },
+  "Greatmace": {
+    "file": "2HMace11.webp"
+  },
+  "Precise Greathammer": {
+    "file": "2HMace12.webp"
+  },
+  "Giant Maul": {
+    "file": "2HMace13.webp"
+  },
+  "Hardwood Spear": {
+    "file": "1HSpear01.webp"
+  },
+  "Ironhead Spear": {
+    "file": "1HSpear02.webp"
+  },
+  "Hunting Spear": {
+    "file": "1HSpear03.webp"
+  },
+  "Winged Spear": {
+    "file": "1HSpear04.webp"
+  },
+  "War Spear": {
+    "file": "1HSpear05.webp"
+  },
+  "Forked Spear": {
+    "file": "1HSpear06.webp"
+  },
+  "Barbed Spear": {
+    "file": "1HSpear07.webp"
+  },
+  "Broad Spear": {
+    "file": "1HSpear08.webp"
+  },
+  "Crossblade Spear": {
+    "file": "1HSpear09.webp"
+  },
+  "Seaglass Spear": {
+    "file": "1HSpear10.webp"
+  },
+  "Sword Spear": {
+    "file": "1HSpear11.webp"
+  },
+  "Striking Spear": {
+    "file": "1HSpear12.webp"
+  },
+  "Helix Spear": {
+    "file": "1HSpear13.webp"
+  },
+  "Crude Claw": {
+    "file": "Claw01.webp"
+  },
+  "Pict Claw": {
+    "file": "Claw02.webp"
+  },
+  "Wolfbone Claw": {
+    "file": "Claw03.webp"
+  },
+  "Forked Claw": {
+    "file": "Claw04.webp"
+  },
+  "Plated Claw": {
+    "file": "Claw05.webp"
+  },
+  "Edged Claw": {
+    "file": "Claw06.webp"
+  },
+  "Arced Claw": {
+    "file": "Claw07.webp"
+  },
+  "Hooked Claw": {
+    "file": "Claw08.webp"
+  },
+  "Razorglass Claw": {
+    "file": "Claw09.webp"
+  },
+  "Sharktooth Claw": {
+    "file": "Claw10.webp"
+  },
+  "Armoured Claw": {
+    "file": "Claw11.webp"
+  },
+  "Piercing Claw": {
+    "file": "Claw12.webp"
+  },
+  "Talon Claw": {
+    "file": "Claw13.webp"
+  },
+  "Glass Shank": {
+    "file": "Dagger01.webp"
+  },
+  "Crone Knife": {
+    "file": "Dagger02.webp"
+  },
+  "Simple Dagger": {
+    "file": "Dagger03.webp"
+  },
+  "Skinning Knife": {
+    "file": "Dagger04.webp"
+  },
+  "Moon Dagger": {
+    "file": "Dagger05.webp"
+  },
+  "Engraved Knife": {
+    "file": "Dagger06.webp"
+  },
+  "Obsidian Dagger": {
+    "file": "Dagger07.webp"
+  },
+  "Bloodletting Dagger": {
+    "file": "Dagger08.webp"
+  },
+  "Mail Breaker": {
+    "file": "Dagger09.webp"
+  },
+  "Kris Knife": {
+    "file": "Dagger10.webp"
+  },
+  "Parrying Dagger": {
+    "file": "Dagger11.webp"
+  },
+  "Arcane Dirk": {
+    "file": "Dagger12.webp"
+  },
+  "Cinquedea": {
+    "file": "Dagger13.webp"
+  },
+  "Wrapped Quarterstaff": {
+    "file": "Warstaff01.webp"
+  },
+  "Long Quarterstaff": {
+    "file": "Warstaff02.webp"
+  },
+  "Gothic Quarterstaff": {
+    "file": "Warstaff03.webp"
+  },
+  "Crackling Quarterstaff": {
+    "file": "Warstaff04.webp"
+  },
+  "Crescent Quarterstaff": {
+    "file": "Warstaff05.webp"
+  },
+  "Steelpoint Quarterstaff": {
+    "file": "Warstaff06.webp"
+  },
+  "Slicing Quarterstaff": {
+    "file": "Warstaff07.webp"
+  },
+  "Barrier Quarterstaff": {
+    "file": "Warstaff08.webp"
+  },
+  "Hefty Quarterstaff": {
+    "file": "Warstaff09.webp"
+  },
+  "Smooth Quarterstaff": {
+    "file": "Warstaff10.webp"
+  },
+  "Anima Quarterstaff": {
+    "file": "Warstaff01.webp"
+  },
+  "Graceful Quarterstaff": {
+    "file": "Warstaff01.webp"
+  },
+  "Wyrm Quarterstaff": {
+    "file": "Warstaff01.webp"
+  },
+  "Splintered Flail": {
+    "file": "Flail01.webp"
+  },
+  "Chain Flail": {
+    "file": "Flail02.webp"
+  },
+  "Holy Flail": {
+    "file": "Flail03.webp"
+  },
+  "Iron Flail": {
+    "file": "Flail04.webp"
+  },
+  "Twin Flail": {
+    "file": "Flail05.webp"
+  },
+  "Slender Flail": {
+    "file": "Flail06.webp"
+  },
+  "Stone Flail": {
+    "file": "Flail07.webp"
+  },
+  "Ring Flail": {
+    "file": "Flail08.webp"
+  },
+  "Guarded Flail": {
+    "file": "Flail09.webp"
+  },
+  "Icicle Flail": {
+    "file": "Flail10.webp"
+  },
+  "Tearing Flail": {
+    "file": "Flail11.webp"
+  },
+  "Great Flail": {
+    "file": "Flail12.webp"
+  },
+  "Abyssal Flail": {
+    "file": "Flail13.webp"
+  },
+  "Withered Wand": {
+    "file": "Wand01.webp"
+  },
+  "Bone Wand": {
+    "file": "Wand02.webp"
+  },
+  "Attuned Wand": {
+    "file": "Wand03.webp"
+  },
+  "Siphoning Wand": {
+    "file": "Wand04.webp"
+  },
+  "Volatile Wand": {
+    "file": "Wand05.webp"
+  },
+  "Galvanic Wand": {
+    "file": "Wand06.webp"
+  },
+  "Acrid Wand": {
+    "file": "Wand07.webp"
+  },
+  "Offering Wand": {
+    "file": "Wand08.webp"
+  },
+  "Frigid Wand": {
+    "file": "Wand01.webp"
+  },
+  "Torture Wand": {
+    "file": "Wand01.webp"
+  },
+  "Critical Wand": {
+    "file": "Wand11.webp"
+  },
+  "Primordial Wand": {
+    "file": "Wand12.webp"
+  },
+  "Dueling Wand": {
+    "file": "Wand13.webp"
+  },
+  "Ashen Staff": {
+    "file": "Staff01.webp"
+  },
+  "Gelid Staff": {
+    "file": "Staff02.webp"
+  },
+  "Voltaic Staff": {
+    "file": "Staff03.webp"
+  },
+  "Spriggan Staff": {
+    "file": "Staff04.webp"
+  },
+  "Pyrophyte Staff": {
+    "file": "Staff05.webp"
+  },
+  "Chiming Staff": {
+    "file": "Staff06.webp"
+  },
+  "Rending Staff": {
+    "file": "Staff07.webp"
+  },
+  "Reaping Staff": {
+    "file": "Staff08.webp"
+  },
+  "Icicle Staff": {
+    "file": "Staff01.webp"
+  },
+  "Roaring Staff": {
+    "file": "Staff01.webp"
+  },
+  "Paralysing Staff": {
+    "file": "Staff01.webp"
+  },
+  "Sanctified Staff": {
+    "file": "Staff01.webp"
+  },
+  "Dark Staff": {
+    "file": "Staff01.webp"
+  },
+  "Ravenous Staff": {
+    "file": "Staff01.webp"
+  },
+  "Permafrost Staff": {
+    "file": "Staff02.webp"
+  },
+  "Reflecting Staff": {
+    "file": "Staff02.webp"
+  },
+  "Crude Bow": {
+    "file": "Bow01.webp"
+  },
+  "Shortbow": {
+    "file": "Bow02.webp"
+  },
+  "Warden Bow": {
+    "file": "Bow03.webp"
+  },
+  "Recurve Bow": {
+    "file": "Bow04.webp"
+  },
+  "Composite Bow": {
+    "file": "Bow05.webp"
+  },
+  "Dualstring Bow": {
+    "file": "Bow06.webp"
+  },
+  "Cultist Bow": {
+    "file": "Bow07.webp"
+  },
+  "Zealot Bow": {
+    "file": "Bow08.webp"
+  },
+  "Artillery Bow": {
+    "file": "Bow09.webp"
+  },
+  "Tribal Bow": {
+    "file": "Bow10.webp"
+  },
+  "Greatbow": {
+    "file": "Bow01.webp"
+  },
+  "Double Limb Bow": {
+    "file": "Bow12.webp"
+  },
+  "Heavy Bow": {
+    "file": "Bow13.webp"
+  },
+  "Makeshift Crossbow": {
+    "file": "2HCrossbow01.webp"
+  },
+  "Tense Crossbow": {
+    "file": "2HCrossbow02.webp"
+  },
+  "Sturdy Crossbow": {
+    "file": "2HCrossbow03.webp"
+  },
+  "Varnished Crossbow": {
+    "file": "2HCrossbow04.webp"
+  },
+  "Dyad Crossbow": {
+    "file": "2HCrossbow05.webp"
+  },
+  "Alloy Crossbow": {
+    "file": "2HCrossbow06.webp"
+  },
+  "Bombard Crossbow": {
+    "file": "2HCrossbow07.webp"
+  },
+  "Construct Crossbow": {
+    "file": "2HCrossbow08.webp"
+  },
+  "Blackfire Crossbow": {
+    "file": "2HCrossbow09.webp"
+  },
+  "Piercing Crossbow": {
+    "file": "2HCrossbow10.webp"
+  },
+  "Cumbrous Crossbow": {
+    "file": "2HCrossbow04.webp"
+  },
+  "Dedalian Crossbow": {
+    "file": "2HCrossbow04.webp"
+  },
+  "Esoteric Crossbow": {
+    "file": "2HCrossbow04.webp"
+  },
+  "Rattling Sceptre": {
+    "file": "Sceptre01.webp"
+  },
+  "Stoic Sceptre": {
+    "file": "Sceptre02.webp"
+  },
+  "Lupine Sceptre": {
+    "file": "Sceptre03.webp"
+  },
+  "Omen Sceptre": {
+    "file": "Sceptre04.webp"
+  },
+  "Ochre Sceptre": {
+    "file": "Sceptre05.webp"
+  },
+  "Shrine Sceptre": {
+    "file": "Sceptre06c.webp"
+  },
+  "Devouring Sceptre": {
+    "file": "Sceptre07.webp"
+  },
+  "Clasped Sceptre": {
+    "file": "Sceptre08.webp"
+  },
+  "Devotional Sceptre": {
+    "file": "Sceptre09.webp"
+  },
+  "Wrath Sceptre": {
+    "file": "Sceptre10.webp"
+  },
+  "Aromatic Sceptre": {
+    "file": "Sceptre01.webp"
+  },
+  "Pious Sceptre": {
+    "file": "Sceptre01.webp"
+  },
+  "Hallowed Sceptre": {
+    "file": "Sceptre01.webp"
+  },
+  "Clay Trap": {
+    "file": "Trap01.webp"
+  },
+  "Clamping Trap": {
+    "file": "Trap02.webp"
+  },
+  "Shrapnel Trap": {
+    "file": "TrapRemote01.webp"
+  },
+  "Urn Trap": {
+    "file": "Trap03.webp"
+  },
+  "Incense Trap": {
+    "file": "TrapRemote02.webp"
+  },
+  "Bladed Trap": {
+    "file": "Trap04.webp"
+  },
+  "Dart Trap": {
+    "file": "TrapRemote03.webp"
+  },
+  "Spike Trap": {
+    "file": "Trap05.webp"
+  },
+  "Coiled Trap": {
+    "file": "TrapRemote04.webp"
+  },
+  "Lead Trap": {
+    "file": "Trap06.webp"
+  },
+  "Medallion Trap": {
+    "file": "Trap07.webp"
+  },
+  "Intricate Trap": {
+    "file": "TrapRemote05.webp"
+  },
+  "Refined Trap": {
+    "file": "Trap08.webp"
+  },
+  "Changeling Talisman": {
+    "file": "ChangelingTalisman.webp"
+  },
+  "Nettle Talisman": {
+    "file": "NettleTalisman.webp"
+  },
+  "Cinderbark Talisman": {
+    "file": "CinderbarkTalisman.webp"
+  },
+  "Familial Talisman": {
+    "file": "FamilialTalisman.webp"
+  },
+  "Frenzied Talisman": {
+    "file": "FrenziedTalisman.webp"
+  },
+  "Primal Talisman": {
+    "file": "PrimalTalisman.webp"
+  },
+  "Rabid Talisman": {
+    "file": "RabidTalisman.webp"
+  },
+  "Vicious Talisman": {
+    "file": "ViciousTalisman.webp"
+  },
+  "Voltfang Talisman": {
+    "file": "VoltfangTalisman.webp"
+  },
+  "Lumbering Talisman": {
+    "file": "LumberingTalisman.webp"
+  },
+  "Roaring Talisman": {
+    "file": "RoaringTalisman.webp"
+  },
+  "Wingbeat Talisman": {
+    "file": "WingbeatTalisman.webp"
+  },
+  "Condemned Talisman": {
+    "file": "CondemnedTalisman.webp"
+  },
+  "Rusted Cuirass": {
+    "file": "BodyStr01.webp"
+  },
+  "Fur Plate": {
+    "file": "BodyStr02.webp"
+  },
+  "Iron Cuirass": {
+    "file": "BodyStr03.webp"
+  },
+  "Raider Plate": {
+    "file": "BodyStr04.webp"
+  },
+  "Maraketh Cuirass": {
+    "file": "BodyStr05.webp"
+  },
+  "Steel Plate": {
+    "file": "BodyStr06.webp"
+  },
+  "Full Plate": {
+    "file": "BodyStr07.webp"
+  },
+  "Vaal Cuirass": {
+    "file": "BodyStr08.webp"
+  },
+  "Juggernaut Plate": {
+    "file": "BodyStr09.webp"
+  },
+  "Chieftain Cuirass": {
+    "file": "BodyStr10.webp"
+  },
+  "Colosseum Plate": {
+    "file": "BodyStr01.webp"
+  },
+  "Champion Cuirass": {
+    "file": "BodyStr01.webp"
+  },
+  "Glorious Plate": {
+    "file": "BodyStr01.webp"
+  },
+  "Conqueror Plate": {
+    "file": "BodyStr01.webp"
+  },
+  "Abyssal Cuirass": {
+    "file": "BodyStr01.webp"
+  },
+  "Leather Vest": {
+    "file": "BodyDex01.webp"
+  },
+  "Quilted Vest": {
+    "file": "BodyDex02.webp"
+  },
+  "Pathfinder Coat": {
+    "file": "BodyDex03.webp"
+  },
+  "Shrouded Vest": {
+    "file": "BodyDex04.webp"
+  },
+  "Rhoahide Coat": {
+    "file": "BodyDex05.webp"
+  },
+  "Studded Vest": {
+    "file": "BodyDex06.webp"
+  },
+  "Scout's Vest": {
+    "file": "BodyDex07.webp"
+  },
+  "Serpentscale Coat": {
+    "file": "BodyDex08.webp"
+  },
+  "Corsair Vest": {
+    "file": "BodyDex09.webp"
+  },
+  "Smuggler Coat": {
+    "file": "BodyDex10.webp"
+  },
+  "Strider Vest": {
+    "file": "BodyDex01.webp"
+  },
+  "Hardleather Coat": {
+    "file": "BodyDex01.webp"
+  },
+  "Exquisite Vest": {
+    "file": "BodyDex13.webp"
+  },
+  "Mail Coat": {
+    "file": "BodyDex01.webp"
+  },
+  "Armoured Vest": {
+    "file": "BodyDex01.webp"
+  },
+  "Tattered Robe": {
+    "file": "BodyInt01.webp"
+  },
+  "Feathered Robe": {
+    "file": "BodyInt02.webp"
+  },
+  "Hexer's Robe": {
+    "file": "BodyInt03.webp"
+  },
+  "Bone Raiment": {
+    "file": "BodyInt04.webp"
+  },
+  "Silk Robe": {
+    "file": "BodyInt05.webp"
+  },
+  "Keth Raiment": {
+    "file": "BodyInt06.webp"
+  },
+  "Votive Raiment": {
+    "file": "BodyInt07.webp"
+  },
+  "Altar Robe": {
+    "file": "BodyInt08.webp"
+  },
+  "Elementalist Robe": {
+    "file": "BodyInt09.webp"
+  },
+  "Mystic Raiment": {
+    "file": "BodyInt10.webp"
+  },
+  "Imperial Robe": {
+    "file": "BodyInt11.webp"
+  },
+  "Plated Raiment": {
+    "file": "BodyInt12.webp"
+  },
+  "Havoc Raiment": {
+    "file": "BodyInt13.webp"
+  },
+  "Enlightened Robe": {
+    "file": "BodyInt01.webp"
+  },
+  "Arcane Raiment": {
+    "file": "BodyInt01.webp"
+  },
+  "Chain Mail": {
+    "file": "BodyStrDex01.webp"
+  },
+  "Rogue Armour": {
+    "file": "BodyStrDex02.webp"
+  },
+  "Vagabond Armour": {
+    "file": "BodyStrDex03.webp"
+  },
+  "Cloaked Mail": {
+    "file": "BodyStrDex04.webp"
+  },
+  "Explorer Armour": {
+    "file": "BodyStrDex05.webp"
+  },
+  "Scale Mail": {
+    "file": "BodyStrDex06.webp"
+  },
+  "Knight Armour": {
+    "file": "BodyStrDex07.webp"
+  },
+  "Ancestral Mail": {
+    "file": "BodyStrDex08.webp"
+  },
+  "Lamellar Mail": {
+    "file": "BodyStrDex01.webp"
+  },
+  "Gladiator Armour": {
+    "file": "BodyStrDex01.webp"
+  },
+  "Heroic Armour": {
+    "file": "BodyStrDex11.webp"
+  },
+  "Tournament Mail": {
+    "file": "BodyStrDex12c.webp"
+  },
+  "Slayer Armour": {
+    "file": "BodyStrDex01.webp"
+  },
+  "Pilgrim Vestments": {
+    "file": "BodyIntStr01.webp"
+  },
+  "Pelt Mantle": {
+    "file": "BodyIntStr02.webp"
+  },
+  "Mail Vestments": {
+    "file": "BodyIntStr03.webp"
+  },
+  "Shaman Mantle": {
+    "file": "BodyIntStr04.webp"
+  },
+  "Ironclad Vestments": {
+    "file": "BodyIntStr05.webp"
+  },
+  "Sacrificial Mantle": {
+    "file": "BodyIntStr06.webp"
+  },
+  "Cleric Vestments": {
+    "file": "BodyIntStr07.webp"
+  },
+  "Tideseer Mantle": {
+    "file": "BodyIntStr08.webp"
+  },
+  "Gilded Vestments": {
+    "file": "BodyIntStr09.webp"
+  },
+  "Venerated Mantle": {
+    "file": "BodyIntStr10.webp"
+  },
+  "Revered Vestments": {
+    "file": "BodyIntStr11.webp"
+  },
+  "Corvus Mantle": {
+    "file": "BodyIntStr12.webp"
+  },
+  "Zenith Vestments": {
+    "file": "BodyIntStr13.webp"
+  },
+  "Hermit Garb": {
+    "file": "BodyDexInt01.webp"
+  },
+  "Waxed Jacket": {
+    "file": "BodyDexInt02.webp"
+  },
+  "Marabout Garb": {
+    "file": "BodyDexInt03.webp"
+  },
+  "Wayfarer Jacket": {
+    "file": "BodyDexInt04.webp"
+  },
+  "Anchorite Garb": {
+    "file": "BodyDexInt05.webp"
+  },
+  "Scalper's Jacket": {
+    "file": "BodyDexInt06.webp"
+  },
+  "Scoundrel Jacket": {
+    "file": "BodyDexInt07.webp"
+  },
+  "Ascetic Garb": {
+    "file": "BodyDexInt01.webp"
+  },
+  "Clandestine Jacket": {
+    "file": "BodyDexInt09.webp"
+  },
+  "Monastic Garb": {
+    "file": "BodyDexInt10.webp"
+  },
+  "Torment Jacket": {
+    "file": "BodyDexInt01.webp"
+  },
+  "Devout Garb": {
+    "file": "BodyDexInt01.webp"
+  },
+  "Assassin Garb": {
+    "file": "BodyDexInt01.webp"
+  },
+  "Rusted Greathelm": {
+    "file": "HelmetStr01.webp"
+  },
+  "Soldier Greathelm": {
+    "file": "HelmetStr02.webp"
+  },
+  "Wrapped Greathelm": {
+    "file": "HelmetStr03.webp"
+  },
+  "Spired Greathelm": {
+    "file": "HelmetStr04.webp"
+  },
+  "Elite Greathelm": {
+    "file": "HelmetStr05.webp"
+  },
+  "Warrior Greathelm": {
+    "file": "HelmetStr06.webp"
+  },
+  "Commander Greathelm": {
+    "file": "HelmetStr07.webp"
+  },
+  "Fierce Greathelm": {
+    "file": "HelmetStr08.webp"
+  },
+  "Sentinel Greathelm": {
+    "file": "HelmetStr09.webp"
+  },
+  "Goliath Greathelm": {
+    "file": "HelmetStr10.webp"
+  },
+  "Guardian Greathelm": {
+    "file": "HelmetStr11.webp"
+  },
+  "Shabby Hood": {
+    "file": "HelmetDex01.webp"
+  },
+  "Felt Cap": {
+    "file": "HelmetDex02.webp"
+  },
+  "Lace Hood": {
+    "file": "HelmetDex03.webp"
+  },
+  "Swathed Cap": {
+    "file": "HelmetDex04.webp"
+  },
+  "Hunter Hood": {
+    "file": "HelmetDex05.webp"
+  },
+  "Viper Cap": {
+    "file": "HelmetDex06.webp"
+  },
+  "Corsair Cap": {
+    "file": "HelmetDex07.webp"
+  },
+  "Leatherbound Hood": {
+    "file": "HelmetDex08.webp"
+  },
+  "Velvet Cap": {
+    "file": "HelmetDex09.webp"
+  },
+  "Covert Hood": {
+    "file": "HelmetDex10.webp"
+  },
+  "Armoured Cap": {
+    "file": "HelmetDex01.webp"
+  },
+  "Twig Circlet": {
+    "file": "HelmetInt01.webp"
+  },
+  "Wicker Tiara": {
+    "file": "HelmetInt02.webp"
+  },
+  "Beaded Circlet": {
+    "file": "HelmetInt03.webp"
+  },
+  "Chain Tiara": {
+    "file": "HelmetInt04.webp"
+  },
+  "Feathered Tiara": {
+    "file": "HelmetInt05.webp"
+  },
+  "Gold Circlet": {
+    "file": "HelmetInt06.webp"
+  },
+  "Vermeil Circlet": {
+    "file": "HelmetInt07.webp"
+  },
+  "Jade Tiara": {
+    "file": "HelmetInt08.webp"
+  },
+  "Noble Circlet": {
+    "file": "HelmetInt01.webp"
+  },
+  "Twilight Tiara": {
+    "file": "HelmetInt10.webp"
+  },
+  "Magus Tiara": {
+    "file": "HelmetInt11.webp"
+  },
+  "Brimmed Helm": {
+    "file": "HelmetStrDex01.webp"
+  },
+  "Guarded Helm": {
+    "file": "HelmetStrDex02.webp"
+  },
+  "Visored Helm": {
+    "file": "HelmetStrDex03.webp"
+  },
+  "Cowled Helm": {
+    "file": "HelmetStrDex04.webp"
+  },
+  "Shielded Helm": {
+    "file": "HelmetStrDex05.webp"
+  },
+  "Closed Helm": {
+    "file": "HelmetStrDex06.webp"
+  },
+  "Decorated Helm": {
+    "file": "HelmetStrDex07.webp"
+  },
+  "Gallant Helm": {
+    "file": "HelmetStrDex08.webp"
+  },
+  "Iron Crown": {
+    "file": "HelmetIntStr01.webp"
+  },
+  "Horned Crown": {
+    "file": "HelmetIntStr02.webp"
+  },
+  "Cultist Crown": {
+    "file": "HelmetIntStr03.webp"
+  },
+  "Martyr Crown": {
+    "file": "HelmetIntStr04.webp"
+  },
+  "Heavy Crown": {
+    "file": "HelmetIntStr05.webp"
+  },
+  "Spiritbone Crown": {
+    "file": "HelmetIntStr06.webp"
+  },
+  "Lavish Crown": {
+    "file": "HelmetIntStr07.webp"
+  },
+  "Archon Crown": {
+    "file": "HelmetIntStr08.webp"
+  },
+  "Hewn Mask": {
+    "file": "HelmetDexInt01.webp"
+  },
+  "Face Mask": {
+    "file": "HelmetDexInt02.webp"
+  },
+  "Hooded Mask": {
+    "file": "HelmetDexInt03.webp"
+  },
+  "Veiled Mask": {
+    "file": "HelmetDexInt04.webp"
+  },
+  "Tribal Mask": {
+    "file": "HelmetDexInt05.webp"
+  },
+  "Solid Mask": {
+    "file": "HelmetDexInt06.webp"
+  },
+  "Shaded Mask": {
+    "file": "HelmetDexInt07.webp"
+  },
+  "Death Mask": {
+    "file": "HelmetDexInt08.webp"
+  },
+  "Stocky Mitts": {
+    "file": "GlovesStr01.webp"
+  },
+  "Riveted Mitts": {
+    "file": "GlovesStr02.webp"
+  },
+  "Tempered Mitts": {
+    "file": "GlovesStr03.webp"
+  },
+  "Bolstered Mitts": {
+    "file": "GlovesStr04.webp"
+  },
+  "Moulded Mitts": {
+    "file": "GlovesStr05.webp"
+  },
+  "Detailed Mitts": {
+    "file": "GlovesStr06.webp"
+  },
+  "Titan Mitts": {
+    "file": "GlovesStr07.webp"
+  },
+  "Grand Mitts": {
+    "file": "GlovesStr01.webp"
+  },
+  "Suede Bracers": {
+    "file": "GlovesDex01.webp"
+  },
+  "Firm Bracers": {
+    "file": "GlovesDex02.webp"
+  },
+  "Bound Bracers": {
+    "file": "GlovesDex03.webp"
+  },
+  "Sectioned Bracers": {
+    "file": "GlovesDex04.webp"
+  },
+  "Spined Bracers": {
+    "file": "GlovesDex05.webp"
+  },
+  "Fine Bracers": {
+    "file": "GlovesDex06.webp"
+  },
+  "Hardened Bracers": {
+    "file": "GlovesDex07.webp"
+  },
+  "Engraved Bracers": {
+    "file": "GlovesDex01.webp"
+  },
+  "Torn Gloves": {
+    "file": "GlovesInt01.webp"
+  },
+  "Sombre Gloves": {
+    "file": "GlovesInt02.webp"
+  },
+  "Stitched Gloves": {
+    "file": "GlovesInt03.webp"
+  },
+  "Jewelled Gloves": {
+    "file": "GlovesInt04.webp"
+  },
+  "Intricate Gloves": {
+    "file": "GlovesInt05.webp"
+  },
+  "Pauascale Gloves": {
+    "file": "GlovesInt06.webp"
+  },
+  "Embroidered Gloves": {
+    "file": "GlovesInt07.webp"
+  },
+  "Adorned Gloves": {
+    "file": "GlovesInt01.webp"
+  },
+  "Ringmail Gauntlets": {
+    "file": "GlovesStrDex01.webp"
+  },
+  "Layered Gauntlets": {
+    "file": "GlovesStrDex02.webp"
+  },
+  "Doubled Gauntlets": {
+    "file": "GlovesStrDex03.webp"
+  },
+  "Plate Gauntlets": {
+    "file": "GlovesStrDex04.webp"
+  },
+  "Burnished Gauntlets": {
+    "file": "GlovesStrDex01.webp"
+  },
+  "Ornate Gauntlets": {
+    "file": "GlovesStrDex01.webp"
+  },
+  "Rope Cuffs": {
+    "file": "GlovesIntStr01.webp"
+  },
+  "Aged Cuffs": {
+    "file": "GlovesIntStr02.webp"
+  },
+  "Goldcast Cuffs": {
+    "file": "GlovesIntStr03.webp"
+  },
+  "Verisium Cuffs": {
+    "file": "GlovesIntStr04.webp"
+  },
+  "Righteous Cuffs": {
+    "file": "GlovesIntStr05png.webp"
+  },
+  "Signet Cuffs": {
+    "file": "GlovesIntStr01.webp"
+  },
+  "Gauze Wraps": {
+    "file": "GlovesDexInt01.webp"
+  },
+  "Linen Wraps": {
+    "file": "GlovesDexInt02.webp"
+  },
+  "Spiral Wraps": {
+    "file": "GlovesDexInt03.webp"
+  },
+  "Buckled Wraps": {
+    "file": "GlovesDexInt04.webp"
+  },
+  "Furtive Wraps": {
+    "file": "GlovesDexInt01.webp"
+  },
+  "Utility Wraps": {
+    "file": "GlovesDexInt01.webp"
+  },
+  "Rough Greaves": {
+    "file": "BootsStr01.webp"
+  },
+  "Iron Greaves": {
+    "file": "BootsStr02.webp"
+  },
+  "Bronze Greaves": {
+    "file": "BootsStr03.webp"
+  },
+  "Trimmed Greaves": {
+    "file": "BootsStr04.webp"
+  },
+  "Stone Greaves": {
+    "file": "BootsStr05.webp"
+  },
+  "Reefsteel Greaves": {
+    "file": "BootsStr06.webp"
+  },
+  "Monument Greaves": {
+    "file": "BootsStr01.webp"
+  },
+  "Totemic Greaves": {
+    "file": "BootsStr08.webp"
+  },
+  "Rawhide Boots": {
+    "file": "BootsDex01.webp"
+  },
+  "Laced Boots": {
+    "file": "BootsDex02.webp"
+  },
+  "Embossed Boots": {
+    "file": "BootsDex03.webp"
+  },
+  "Steeltoe Boots": {
+    "file": "BootsDex04.webp"
+  },
+  "Lizardscale Boots": {
+    "file": "BootsDex05.webp"
+  },
+  "Flared Boots": {
+    "file": "BootsDex06.webp"
+  },
+  "Leatherplate Boots": {
+    "file": "BootsDex01.webp"
+  },
+  "Embroidered Boots": {
+    "file": "BootsDex01.webp"
+  },
+  "Straw Sandals": {
+    "file": "BootsInt01.webp"
+  },
+  "Wrapped Sandals": {
+    "file": "BootsInt02.webp"
+  },
+  "Lattice Sandals": {
+    "file": "BootsInt03.webp"
+  },
+  "Silk Slippers": {
+    "file": "BootsInt04.webp"
+  },
+  "Feathered Sandals": {
+    "file": "BootsInt05.webp"
+  },
+  "Flax Sandals": {
+    "file": "BootsInt06.webp"
+  },
+  "Studded Sandals": {
+    "file": "BootsInt01.webp"
+  },
+  "Elaborate Sandals": {
+    "file": "BootsInt01.webp"
+  },
+  "Mail Sabatons": {
+    "file": "BootsStrDex01.webp"
+  },
+  "Braced Sabatons": {
+    "file": "BootsStrDex02.webp"
+  },
+  "Stacked Sabatons": {
+    "file": "BootsStrDex03.webp"
+  },
+  "Covered Sabatons": {
+    "file": "BootsStrDex04.webp"
+  },
+  "Flexile Sabatons": {
+    "file": "BootsStrDex01.webp"
+  },
+  "Bold Sabatons": {
+    "file": "BootsStrDex06.webp"
+  },
+  "Padded Leggings": {
+    "file": "BootsIntStr01.webp"
+  },
+  "Secured Leggings": {
+    "file": "BootsIntStr02.webp"
+  },
+  "Pelt Leggings": {
+    "file": "BootsIntStr03.webp"
+  },
+  "Weaver Leggings": {
+    "file": "BootsIntStr04.webp"
+  },
+  "Gilt Leggings": {
+    "file": "BootsIntStr01.webp"
+  },
+  "Pious Leggings": {
+    "file": "BootsIntStr01.webp"
+  },
+  "Frayed Shoes": {
+    "file": "BootsDexInt01.webp"
+  },
+  "Threaded Shoes": {
+    "file": "BootsDexInt02.webp"
+  },
+  "Hunting Shoes": {
+    "file": "BootsDexInt03.webp"
+  },
+  "Steelpoint Shoes": {
+    "file": "BootsDexInt04.webp"
+  },
+  "Velour Shoes": {
+    "file": "BootsDexInt01.webp"
+  },
+  "Bladed Shoes": {
+    "file": "BootsDexInt01.webp"
+  },
+  "Splintered Tower Shield": {
+    "file": "Tower01.webp"
+  },
+  "Painted Tower Shield": {
+    "file": "Tower02.webp"
+  },
+  "Braced Tower Shield": {
+    "file": "Tower03.webp"
+  },
+  "Barricade Tower Shield": {
+    "file": "Tower04.webp"
+  },
+  "Effigial Tower Shield": {
+    "file": "Tower05.webp"
+  },
+  "Rampart Tower Shield": {
+    "file": "Tower06.webp"
+  },
+  "Heraldric Tower Shield": {
+    "file": "Tower07.webp"
+  },
+  "Stone Tower Shield": {
+    "file": "Tower08.webp"
+  },
+  "Crucible Tower Shield": {
+    "file": "Tower09.webp"
+  },
+  "Ancestor Tower Shield": {
+    "file": "Tower10.webp"
+  },
+  "Phalanx Tower Shield": {
+    "file": "Tower01.webp"
+  },
+  "Defiant Tower Shield": {
+    "file": "Tower01.webp"
+  },
+  "Blacksteel Tower Shield": {
+    "file": "Tower01.webp"
+  },
+  "Hardwood Targe": {
+    "file": "Shield01.webp"
+  },
+  "Pelage Targe": {
+    "file": "Shield02.webp"
+  },
+  "Studded Targe": {
+    "file": "Shield03.webp"
+  },
+  "Crescent Targe": {
+    "file": "Shield04.webp"
+  },
+  "Chiseled Targe": {
+    "file": "Shield05.webp"
+  },
+  "Feathered Targe": {
+    "file": "Shield06.webp"
+  },
+  "Stratified Targe": {
+    "file": "Shield07.webp"
+  },
+  "Carved Targe": {
+    "file": "Shield08.webp"
+  },
+  "Mosaic Targe": {
+    "file": "Shield09.webp"
+  },
+  "Aureate Targe": {
+    "file": "Shield10.webp"
+  },
+  "Grand Targe": {
+    "file": "Shield11.webp"
+  },
+  "Blazon Crest Shield": {
+    "file": "Crest01.webp"
+  },
+  "Sigil Crest Shield": {
+    "file": "Crest02.webp"
+  },
+  "Emblem Crest Shield": {
+    "file": "Crest03.webp"
+  },
+  "Jingling Crest Shield": {
+    "file": "Crest04.webp"
+  },
+  "Sectarian Crest Shield": {
+    "file": "Crest05.webp"
+  },
+  "Omen Crest Shield": {
+    "file": "Crest06.webp"
+  },
+  "Wayward Crest Shield": {
+    "file": "Crest07.webp"
+  },
+  "Seer Crest Shield": {
+    "file": "Crest08.webp"
+  },
+  "Stoic Crest Shield": {
+    "file": "Crest01.webp"
+  },
+  "Empyreal Crest Shield": {
+    "file": "Crest01.webp"
+  },
+  "Deified Crest Shield": {
+    "file": "Crest01.webp"
+  },
+  "Leather Buckler": {
+    "file": "Buckler01.webp"
+  },
+  "Wooden Buckler": {
+    "file": "Buckler02.webp"
+  },
+  "Plated Buckler": {
+    "file": "Buckler03.webp"
+  },
+  "Iron Buckler": {
+    "file": "Buckler04.webp"
+  },
+  "Ridged Buckler": {
+    "file": "Buckler05.webp"
+  },
+  "Spiked Buckler": {
+    "file": "Buckler06.webp"
+  },
+  "Ringed Buckler": {
+    "file": "Buckler07.webp"
+  },
+  "Edged Buckler": {
+    "file": "Buckler08.webp"
+  },
+  "Laminate Buckler": {
+    "file": "Buckler09.webp"
+  },
+  "Pearl Buckler": {
+    "file": "Buckler10.webp"
+  },
+  "Ornate Buckler": {
+    "file": "Buckler03.webp"
+  },
+  "Array Buckler": {
+    "file": "Buckler12.webp"
+  },
+  "Aegis Buckler": {
+    "file": "Buckler13.webp"
+  },
+  "Twig Focus": {
+    "file": "Focus01.webp"
+  },
+  "Woven Focus": {
+    "file": "Focus02.webp"
+  },
+  "Antler Focus": {
+    "file": "Focus03.webp"
+  },
+  "Engraved Focus": {
+    "file": "Focus04.webp"
+  },
+  "Tonal Focus": {
+    "file": "Focus05.webp"
+  },
+  "Crystal Focus": {
+    "file": "Focus06.webp"
+  },
+  "Voodoo Focus": {
+    "file": "Focus07.webp"
+  },
+  "Plumed Focus": {
+    "file": "Focus08.webp"
+  },
+  "Runed Focus": {
+    "file": "Focus09.webp"
+  },
+  "Whorl Focus": {
+    "file": "Focus10.webp"
+  },
+  "Elegant Focus": {
+    "file": "Focus01.webp"
+  },
+  "Attuned Focus": {
+    "file": "Focus01.webp"
+  },
+  "Magus Focus": {
+    "file": "Focus01.webp"
+  },
+  "Broadhead Quiver": {
+    "file": "QuiverBroadhead.webp"
+  },
+  "Fire Quiver": {
+    "file": "QuiverFire.webp"
+  },
+  "Sacral Quiver": {
+    "file": "QuiverSacral.webp"
+  },
+  "Two-Point Quiver": {
+    "file": "QuiverTwoPoint.webp"
+  },
+  "Blunt Quiver": {
+    "file": "QuiverBlunt.webp"
+  },
+  "Toxic Quiver": {
+    "file": "QuiverToxic.webp"
+  },
+  "Serrated Quiver": {
+    "file": "QuiverSerrated.webp"
+  },
+  "Primed Quiver": {
+    "file": "QuiverPrimed.webp"
+  },
+  "Penetrating Quiver": {
+    "file": "QuiverPenetrating.webp"
+  },
+  "Volant Quiver": {
+    "file": "QuiverVolant.webp"
+  },
+  "Visceral Quiver": {
+    "file": "QuiverVisceral.webp"
+  },
+  "Crimson Amulet": {
+    "file": "CrimsonAmulet.webp"
+  },
+  "Azure Amulet": {
+    "file": "AzureAmulet.webp"
+  },
+  "Amber Amulet": {
+    "file": "AmberAmulet.webp"
+  },
+  "Jade Amulet": {
+    "file": "JadeAmulet.webp"
+  },
+  "Lapis Amulet": {
+    "file": "LapisAmulet.webp"
+  },
+  "Lunar Amulet": {
+    "file": "LunarAmulet.webp"
+  },
+  "Bloodstone Amulet": {
+    "file": "BloodstoneAmulet.webp"
+  },
+  "Stellar Amulet": {
+    "file": "StellarAmulet.webp"
+  },
+  "Solar Amulet": {
+    "file": "SolarAmulet.webp"
+  },
+  "Gold Amulet": {
+    "file": "GoldAmulet.webp"
+  },
+  "Pearlescent Amulet": {
+    "file": "PearlescentAmulet.webp"
+  },
+  "Iron Ring": {
+    "file": "IronRing.webp"
+  },
+  "Lazuli Ring": {
+    "file": "LazuliRing.webp"
+  },
+  "Ruby Ring": {
+    "file": "RubyRing.webp"
+  },
+  "Sapphire Ring": {
+    "file": "SapphireRing.webp"
+  },
+  "Topaz Ring": {
+    "file": "TopazRing.webp"
+  },
+  "Amethyst Ring": {
+    "file": "AmethystRing.webp"
+  },
+  "Emerald Ring": {
+    "file": "EmeraldRing.webp"
+  },
+  "Pearl Ring": {
+    "file": "PearlRing.webp"
+  },
+  "Prismatic Ring": {
+    "file": "PrismaticRing.webp"
+  },
+  "Gold Ring": {
+    "file": "GoldRing.webp"
+  },
+  "Unset Ring": {
+    "file": "UnsetRing.webp"
+  },
+  "Abyssal Signet": {
+    "file": "IronRing.webp"
+  },
+  "Rawhide Belt": {
+    "file": "Belt01.webp"
+  },
+  "Linen Belt": {
+    "file": "Belt02.webp"
+  },
+  "Wide Belt": {
+    "file": "Belt03.webp"
+  },
+  "Long Belt": {
+    "file": "Belt04.webp"
+  },
+  "Plate Belt": {
+    "file": "Belt05.webp"
+  },
+  "Ornate Belt": {
+    "file": "Belt06.webp"
+  },
+  "Mail Belt": {
+    "file": "Belt07.webp"
+  },
+  "Double Belt": {
+    "file": "Belt08.webp"
+  },
+  "Heavy Belt": {
+    "file": "Belt09.webp"
+  },
+  "Utility Belt": {
+    "file": "Belt10.webp"
+  },
+  "Fine Belt": {
+    "file": "Belt11.webp"
+  },
+  "Lesser Life Flask": {
+    "file": "FlaskLife01.webp"
+  },
+  "Medium Life Flask": {
+    "file": "FlaskLife02.webp"
+  },
+  "Greater Life Flask": {
+    "file": "FlaskLife03.webp"
+  },
+  "Grand Life Flask": {
+    "file": "FlaskLife04.webp"
+  },
+  "Giant Life Flask": {
+    "file": "FlaskLife05.webp"
+  },
+  "Colossal Life Flask": {
+    "file": "FlaskLife06.webp"
+  },
+  "Gargantuan Life Flask": {
+    "file": "FlaskLife07.webp"
+  },
+  "Transcendent Life Flask": {
+    "file": "FlaskLife08.webp"
+  },
+  "Ultimate Life Flask": {
+    "file": "FlaskLife09.webp"
+  },
+  "Lesser Mana Flask": {
+    "file": "FlaskMana01.webp"
+  },
+  "Medium Mana Flask": {
+    "file": "FlaskMana02.webp"
+  },
+  "Greater Mana Flask": {
+    "file": "FlaskMana03.webp"
+  },
+  "Grand Mana Flask": {
+    "file": "FlaskMana04.webp"
+  },
+  "Giant Mana Flask": {
+    "file": "FlaskMana05.webp"
+  },
+  "Colossal Mana Flask": {
+    "file": "FlaskMana06.webp"
+  },
+  "Gargantuan Mana Flask": {
+    "file": "FlaskMana07.webp"
+  },
+  "Transcendent Mana Flask": {
+    "file": "FlaskMana08.webp"
+  },
+  "Ultimate Mana Flask": {
+    "file": "FlaskMana09.webp"
+  },
+  "Thawing Charm": {
+    "file": "ThawingCharm.webp"
+  },
+  "Staunching Charm": {
+    "file": "StaunchingCharm.webp"
+  },
+  "Antidote Charm": {
+    "file": "AntidoteCharm.webp"
+  },
+  "Dousing Charm": {
+    "file": "DousingCharm.webp"
+  },
+  "Grounding Charm": {
+    "file": "GroundingCharm.webp"
+  },
+  "Stone Charm": {
+    "file": "StoneCharm.webp"
+  },
+  "Silver Charm": {
+    "file": "SilverCharm.webp"
+  },
+  "Ruby Charm": {
+    "file": "RubyCharm.webp"
+  },
+  "Sapphire Charm": {
+    "file": "SapphireCharm.webp"
+  },
+  "Topaz Charm": {
+    "file": "TopazCharm.webp"
+  },
+  "Amethyst Charm": {
+    "file": "AmethystCharm.webp"
+  },
+  "Golden Charm": {
+    "file": "GoldenCharm.webp"
+  },
+  "Cleansing Charm": {
+    "file": "AmethystCharm.webp"
+  },
+  "Ring": {
+    "file": "MirrorRing.webp"
+  },
+  "Dusk Ring": {
+    "file": "LakeRing1.webp"
+  },
+  "Gloam Ring": {
+    "file": "LakeRing2.webp"
+  },
+  "Penumbra Ring": {
+    "file": "LakeRing3.webp"
+  },
+  "Tenebrous Ring": {
+    "file": "LakeRing4.webp"
+  },
+  "Dusk Amulet": {
+    "file": "HeistAmulet1.webp"
+  },
+  "Gloam Amulet": {
+    "file": "HeistAmulet1.webp"
+  },
+  "Penumbra Amulet": {
+    "file": "HeistAmulet2.webp"
+  },
+  "Tenebrous Amulet": {
+    "file": "HeistAmulet2.webp"
+  },
+  "Distorted Amulet": {
+    "file": "HeistAmulet2.webp"
+  },
+  "Garment": {
+    "file": "BodyStr01.webp"
+  },
+  "Grand Regalia": {
+    "file": "BodyStr01.webp"
+  },
+  "Sacrificial Regalia": {
+    "file": "BodyStrDexInt02.webp"
+  },
+  "Grand Visage": {
+    "file": "HelmetStr01.webp"
+  },
+  "Grand Manchettes": {
+    "file": "GlovesStr01.webp"
+  },
+  "Grand Cuisses": {
+    "file": "BootsStr01.webp"
+  },
+  "Breach Ring": {
+    "file": "BreachRing.webp"
+  },
+  "Calescent Hammer": {
+    "file": "1HMace02.webp"
+  },
+  "Flared Mace": {
+    "file": "1HMace03.webp"
+  },
+  "Battle Pick": {
+    "file": "1HMace05.webp"
+  },
+  "Marching Mace": {
+    "file": "1HMace06.webp"
+  },
+  "Bandit Mace": {
+    "file": "1HMace07.webp"
+  },
+  "Structured Hammer": {
+    "file": "1HMace08.webp"
+  },
+  "Snakewood Greathammer": {
+    "file": "2HMace02.webp"
+  },
+  "Blacksmith Maul": {
+    "file": "2HMace03.webp"
+  },
+  "Zealot Greathammer": {
+    "file": "2HMace05.webp"
+  },
+  "Solemn Maul": {
+    "file": "2HMace06.webp"
+  },
+  "Heavy Greathammer": {
+    "file": "2HMace07.webp"
+  },
+  "Disintegrating Maul": {
+    "file": "2HMace08.webp"
+  },
+  "Reaching Quarterstaff": {
+    "file": "Warstaff02.webp"
+  },
+  "Barbarous Quarterstaff": {
+    "file": "Warstaff03.webp"
+  },
+  "Arcing Quarterstaff": {
+    "file": "Warstaff04.webp"
+  },
+  "Waxing Quarterstaff": {
+    "file": "Warstaff05.webp"
+  },
+  "Bladed Quarterstaff": {
+    "file": "Warstaff07.webp"
+  },
+  "Guardian Quarterstaff": {
+    "file": "Warstaff08.webp"
+  },
+  "Snakewood Shortbow": {
+    "file": "Bow02.webp"
+  },
+  "Protector Bow": {
+    "file": "Bow03.webp"
+  },
+  "Rider Bow": {
+    "file": "Bow05.webp"
+  },
+  "Twin Bow": {
+    "file": "Bow06.webp"
+  },
+  "Adherent Bow": {
+    "file": "Bow07.webp"
+  },
+  "Militant Bow": {
+    "file": "Bow08.webp"
+  },
+  "Taut Crossbow": {
+    "file": "2HCrossbow02.webp"
+  },
+  "Robust Crossbow": {
+    "file": "2HCrossbow03.webp"
+  },
+  "Painted Crossbow": {
+    "file": "2HCrossbow04.webp"
+  },
+  "Twin Crossbow": {
+    "file": "2HCrossbow05.webp"
+  },
+  "Cannonade Crossbow": {
+    "file": "2HCrossbow07.webp"
+  },
+  "Bleak Crossbow": {
+    "file": "2HCrossbow08.webp"
+  },
+  "Steelhead Spear": {
+    "file": "1HSpear02.webp"
+  },
+  "Coursing Spear": {
+    "file": "1HSpear03.webp"
+  },
+  "Swift Spear": {
+    "file": "1HSpear05.webp"
+  },
+  "Branched Spear": {
+    "file": "1HSpear06.webp"
+  },
+  "Jagged Spear": {
+    "file": "1HSpear07.webp"
+  },
+  "Massive Spear": {
+    "file": "1HSpear08.webp"
+  },
+  "Howling Talisman": {
+    "file": "PrimalTalisman.webp"
+  },
+  "Fury Talisman": {
+    "file": "RabidTalisman.webp"
+  },
+  "Cruel Talisman": {
+    "file": "ViciousTalisman.webp"
+  },
+  "Barbarian Plate": {
+    "file": "BodyStr02.webp"
+  },
+  "Rugged Cuirass": {
+    "file": "BodyStr03.webp"
+  },
+  "Sandsworn Cuirass": {
+    "file": "BodyStr05.webp"
+  },
+  "Elegant Plate": {
+    "file": "BodyStr06.webp"
+  },
+  "Heavy Plate": {
+    "file": "BodyStr07.webp"
+  },
+  "Stone Cuirass": {
+    "file": "BodyStr08.webp"
+  },
+  "Patchwork Vest": {
+    "file": "BodyDex02.webp"
+  },
+  "Hunting Coat": {
+    "file": "BodyDex03.webp"
+  },
+  "Riding Coat": {
+    "file": "BodyDex05.webp"
+  },
+  "Layered Vest": {
+    "file": "BodyDex06.webp"
+  },
+  "Runner Vest": {
+    "file": "BodyDex07.webp"
+  },
+  "Lizardscale Coat": {
+    "file": "BodyDex08.webp"
+  },
+  "Avian Robe": {
+    "file": "BodyInt02.webp"
+  },
+  "Cursespeaker's Robe": {
+    "file": "BodyInt03.webp"
+  },
+  "Luxurious Robe": {
+    "file": "BodyInt05.webp"
+  },
+  "River Raiment": {
+    "file": "BodyInt06.webp"
+  },
+  "Adherent's Raiment": {
+    "file": "BodyInt07.webp"
+  },
+  "Ceremonial Robe": {
+    "file": "BodyInt08.webp"
+  },
+  "Ring Mail": {
+    "file": "BodyStrDex01.webp"
+  },
+  "Scoundrel Armour": {
+    "file": "BodyStrDex02.webp"
+  },
+  "Wanderer Armour": {
+    "file": "BodyStrDex03.webp"
+  },
+  "Mantled Mail": {
+    "file": "BodyStrDex04.webp"
+  },
+  "Trailblazer Armour": {
+    "file": "BodyStrDex05.webp"
+  },
+  "Golden Mail": {
+    "file": "BodyStrDex06.webp"
+  },
+  "Templar Vestments": {
+    "file": "BodyIntStr01.webp"
+  },
+  "Bearskin Mantle": {
+    "file": "BodyIntStr02.webp"
+  },
+  "Chain Vestments": {
+    "file": "BodyIntStr03.webp"
+  },
+  "Occultist Mantle": {
+    "file": "BodyIntStr04.webp"
+  },
+  "Plated Vestments": {
+    "file": "BodyIntStr05.webp"
+  },
+  "Heartcarver Mantle": {
+    "file": "BodyIntStr06.webp"
+  },
+  "Oiled Jacket": {
+    "file": "BodyDexInt02.webp"
+  },
+  "Evangelist Garb": {
+    "file": "BodyDexInt03.webp"
+  },
+  "Itinerant Jacket": {
+    "file": "BodyDexInt04.webp"
+  },
+  "Hatungo Garb": {
+    "file": "BodyDexInt05.webp"
+  },
+  "Hawker's Jacket": {
+    "file": "BodyDexInt06.webp"
+  },
+  "Corroded Greathelm": {
+    "file": "HelmetStr01.webp"
+  },
+  "Mercenary Greathelm": {
+    "file": "HelmetStr02.webp"
+  },
+  "Homeguard Greathelm": {
+    "file": "HelmetStr03.webp"
+  },
+  "Elegant Greathelm": {
+    "file": "HelmetStr04.webp"
+  },
+  "Noble Greathelm": {
+    "file": "HelmetStr05.webp"
+  },
+  "Rotted Hood": {
+    "file": "HelmetDex01.webp"
+  },
+  "Wool Cap": {
+    "file": "HelmetDex02.webp"
+  },
+  "Narrow Hood": {
+    "file": "HelmetDex03.webp"
+  },
+  "Wrapped Cap": {
+    "file": "HelmetDex04.webp"
+  },
+  "Deerstalker Hood": {
+    "file": "HelmetDex05.webp"
+  },
+  "Druidic Circlet": {
+    "file": "HelmetInt01.webp"
+  },
+  "Avian Tiara": {
+    "file": "HelmetInt02.webp"
+  },
+  "Desert Circlet": {
+    "file": "HelmetInt03.webp"
+  },
+  "Sandsworn Tiara": {
+    "file": "HelmetInt04.webp"
+  },
+  "Jungle Tiara": {
+    "file": "HelmetInt05.webp"
+  },
+  "Domed Helm": {
+    "file": "HelmetStrDex01.webp"
+  },
+  "Engraved Helm": {
+    "file": "HelmetStrDex02.webp"
+  },
+  "Soldier Helm": {
+    "file": "HelmetStrDex03.webp"
+  },
+  "Cabalist Helm": {
+    "file": "HelmetStrDex04.webp"
+  },
+  "Gladiatoral Helm": {
+    "file": "HelmetStrDex05.webp"
+  },
+  "Mailed Crown": {
+    "file": "HelmetIntStr01.webp"
+  },
+  "Forest Crown": {
+    "file": "HelmetIntStr02.webp"
+  },
+  "Zealot Crown": {
+    "file": "HelmetIntStr03.webp"
+  },
+  "Hallowed Crown": {
+    "file": "HelmetIntStr04.webp"
+  },
+  "Inquisitor Crown": {
+    "file": "HelmetIntStr05.webp"
+  },
+  "Oak Mask": {
+    "file": "HelmetDexInt01.webp"
+  },
+  "Bandit Mask": {
+    "file": "HelmetDexInt02.webp"
+  },
+  "Skulking Mask": {
+    "file": "HelmetDexInt03.webp"
+  },
+  "Pariah Mask": {
+    "file": "HelmetDexInt04.webp"
+  },
+  "Avian Mask": {
+    "file": "HelmetDexInt05.webp"
+  },
+  "Plated Mitts": {
+    "file": "GlovesStr02.webp"
+  },
+  "Elegant Mitts": {
+    "file": "GlovesStr03.webp"
+  },
+  "Ancient Mitts": {
+    "file": "GlovesStr04.webp"
+  },
+  "Feathered Mitts": {
+    "file": "GlovesStr05.webp"
+  },
+  "Hunting Bracers": {
+    "file": "GlovesDex02.webp"
+  },
+  "Swift Bracers": {
+    "file": "GlovesDex03.webp"
+  },
+  "Refined Bracers": {
+    "file": "GlovesDex04.webp"
+  },
+  "Spiked Bracers": {
+    "file": "GlovesDex05.webp"
+  },
+  "Ominous Gloves": {
+    "file": "GlovesInt02.webp"
+  },
+  "Embellished Gloves": {
+    "file": "GlovesInt03.webp"
+  },
+  "Baroque Gloves": {
+    "file": "GlovesInt04.webp"
+  },
+  "Gold Gloves": {
+    "file": "GlovesInt05.webp"
+  },
+  "Ironmail Gauntlets": {
+    "file": "GlovesStrDex01.webp"
+  },
+  "Captain Gauntlets": {
+    "file": "GlovesStrDex02.webp"
+  },
+  "Zealot Gauntlets": {
+    "file": "GlovesStrDex03.webp"
+  },
+  "Braided Cuffs": {
+    "file": "GlovesIntStr01.webp"
+  },
+  "Heirloom Cuffs": {
+    "file": "GlovesIntStr02.webp"
+  },
+  "Ornate Cuffs": {
+    "file": "GlovesIntStr03.webp"
+  },
+  "Bandage Wraps": {
+    "file": "GlovesDexInt01.webp"
+  },
+  "Cambric Wraps": {
+    "file": "GlovesDexInt02.webp"
+  },
+  "Adorned Wraps": {
+    "file": "GlovesDexInt03.webp"
+  },
+  "Plated Greaves": {
+    "file": "BootsStr02.webp"
+  },
+  "Lionheart Greaves": {
+    "file": "BootsStr03.webp"
+  },
+  "Elegant Greaves": {
+    "file": "BootsStr04.webp"
+  },
+  "Carved Greaves": {
+    "file": "BootsStr05.webp"
+  },
+  "Bound Boots": {
+    "file": "BootsDex02.webp"
+  },
+  "Sleek Boots": {
+    "file": "BootsDex03.webp"
+  },
+  "Studded Boots": {
+    "file": "BootsDex04.webp"
+  },
+  "Serpentscale Boots": {
+    "file": "BootsDex05.webp"
+  },
+  "Laced Sandals": {
+    "file": "BootsInt02.webp"
+  },
+  "Bangled Sandals": {
+    "file": "BootsInt03.webp"
+  },
+  "Elegant Slippers": {
+    "file": "BootsInt04.webp"
+  },
+  "Dunerunner Sandals": {
+    "file": "BootsInt05.webp"
+  },
+  "Soldiering Sabatons": {
+    "file": "BootsStrDex01.webp"
+  },
+  "Goldwork Sabatons": {
+    "file": "BootsStrDex02.webp"
+  },
+  "Bastion Sabatons": {
+    "file": "BootsStrDex03.webp"
+  },
+  "Adherent Leggings": {
+    "file": "BootsIntStr01.webp"
+  },
+  "Bound Leggings": {
+    "file": "BootsIntStr02.webp"
+  },
+  "Shamanistic Leggings": {
+    "file": "BootsIntStr03.webp"
+  },
+  "Wayfarer Shoes": {
+    "file": "BootsDexInt01.webp"
+  },
+  "Silverbuckled Shoes": {
+    "file": "BootsDexInt02.webp"
+  },
+  "Treerunner Shoes": {
+    "file": "BootsDexInt03.webp"
+  },
+  "Aged Tower Shield": {
+    "file": "Tower02.webp"
+  },
+  "Metalworked Tower Shield": {
+    "file": "Tower03.webp"
+  },
+  "Cultist Tower Shield": {
+    "file": "Tower05.webp"
+  },
+  "Bulwark Tower Shield": {
+    "file": "Tower06.webp"
+  },
+  "Noble Tower Shield": {
+    "file": "Tower07.webp"
+  },
+  "Goldworked Tower Shield": {
+    "file": "Tower08.webp"
+  },
+  "Ironwood Targe": {
+    "file": "Shield01.webp"
+  },
+  "Fur-lined Targe": {
+    "file": "Shield02.webp"
+  },
+  "Mercenary Targe": {
+    "file": "Shield03.webp"
+  },
+  "Polished Targe": {
+    "file": "Shield04.webp"
+  },
+  "Stone Targe": {
+    "file": "Shield05.webp"
+  },
+  "Avian Targe": {
+    "file": "Shield06.webp"
+  },
+  "Painted Crest Shield": {
+    "file": "Crest01.webp"
+  },
+  "Engraved Crest Shield": {
+    "file": "Crest02.webp"
+  },
+  "Descry Crest Shield": {
+    "file": "Crest03.webp"
+  },
+  "Dekharan Crest Shield": {
+    "file": "Crest04.webp"
+  },
+  "Quartered Crest Shield": {
+    "file": "Crest05.webp"
+  },
+  "Glowering Crest Shield": {
+    "file": "Crest06.webp"
+  },
+  "Oak Buckler": {
+    "file": "Buckler02.webp"
+  },
+  "Painted Buckler": {
+    "file": "Buckler03.webp"
+  },
+  "Coiled Buckler": {
+    "file": "Buckler05.webp"
+  },
+  "Spikeward Buckler": {
+    "file": "Buckler06.webp"
+  },
+  "Jingling Buckler": {
+    "file": "Buckler07.webp"
+  },
+  "Bladeguard Buckler": {
+    "file": "Buckler08.webp"
+  },
+  "Wreath Focus": {
+    "file": "Focus02.webp"
+  },
+  "Staghorn Focus": {
+    "file": "Focus03.webp"
+  },
+  "Jingling Focus": {
+    "file": "Focus05.webp"
+  },
+  "Arrayed Focus": {
+    "file": "Focus06.webp"
+  },
+  "Cultist Focus": {
+    "file": "Focus07.webp"
+  },
+  "Hallowed Focus": {
+    "file": "Focus08.webp"
+  },
+  "Soldier Cuirass": {
+    "file": "BodyStr03.webp"
+  },
+  "Ornate Plate": {
+    "file": "BodyStr06.webp"
+  },
+  "Utzaal Cuirass": {
+    "file": "BodyStr08.webp"
+  },
+  "Warlord Cuirass": {
+    "file": "BodyStr10.webp"
+  },
+  "Swiftstalker Coat": {
+    "file": "BodyDex03.webp"
+  },
+  "Slipstrike Vest": {
+    "file": "BodyDex06.webp"
+  },
+  "Wyrmscale Coat": {
+    "file": "BodyDex08.webp"
+  },
+  "Corsair Coat": {
+    "file": "BodyDex10.webp"
+  },
+  "Vile Robe": {
+    "file": "BodyInt03.webp"
+  },
+  "Flowing Raiment": {
+    "file": "BodyInt06.webp"
+  },
+  "Sacramental Robe": {
+    "file": "BodyInt08.webp"
+  },
+  "Feathered Raiment": {
+    "file": "BodyInt10.webp"
+  },
+  "Dastard Armour": {
+    "file": "BodyStrDex02.webp"
+  },
+  "Shrouded Mail": {
+    "file": "BodyStrDex04.webp"
+  },
+  "Death Mail": {
+    "file": "BodyStrDex06.webp"
+  },
+  "Thane Mail": {
+    "file": "BodyStrDex08.webp"
+  },
+  "Wolfskin Mantle": {
+    "file": "BodyIntStr02.webp"
+  },
+  "Conjurer Mantle": {
+    "file": "BodyIntStr04.webp"
+  },
+  "Death Mantle": {
+    "file": "BodyIntStr06.webp"
+  },
+  "Seastorm Mantle": {
+    "file": "BodyIntStr08.webp"
+  },
+  "Sleek Jacket": {
+    "file": "BodyDexInt02.webp"
+  },
+  "Rambler Jacket": {
+    "file": "BodyDexInt04.webp"
+  },
+  "Falconer's Jacket": {
+    "file": "BodyDexInt06.webp"
+  },
+  "Austere Garb": {
+    "file": "BodyDexInt08.webp"
+  },
+  "Warmonger Greathelm": {
+    "file": "HelmetStr02.webp"
+  },
+  "Masked Greathelm": {
+    "file": "HelmetStr04.webp"
+  },
+  "Paragon Greathelm": {
+    "file": "HelmetStr05.webp"
+  },
+  "Imperial Greathelm": {
+    "file": "HelmetStr07.webp"
+  },
+  "Woven Cap": {
+    "file": "HelmetDex02.webp"
+  },
+  "Desert Cap": {
+    "file": "HelmetDex04.webp"
+  },
+  "Trapper Hood": {
+    "file": "HelmetDex05.webp"
+  },
+  "Freebooter Cap": {
+    "file": "HelmetDex07.webp"
+  },
+  "Skycrown Tiara": {
+    "file": "HelmetInt02.webp"
+  },
+  "Sorcerous Tiara": {
+    "file": "HelmetInt04.webp"
+  },
+  "Kamasan Tiara": {
+    "file": "HelmetInt05.webp"
+  },
+  "Ancestral Tiara": {
+    "file": "HelmetInt08.webp"
+  },
+  "Warded Helm": {
+    "file": "HelmetStrDex02.webp"
+  },
+  "Cryptic Helm": {
+    "file": "HelmetStrDex04.webp"
+  },
+  "Champion Helm": {
+    "file": "HelmetStrDex05.webp"
+  },
+  "Gladiatorial Helm": {
+    "file": "HelmetStrDex06.webp"
+  },
+  "Druidic Crown": {
+    "file": "HelmetIntStr02.webp"
+  },
+  "Saintly Crown": {
+    "file": "HelmetIntStr04.webp"
+  },
+  "Divine Crown": {
+    "file": "HelmetIntStr05.webp"
+  },
+  "Cryptic Crown": {
+    "file": "HelmetIntStr06.webp"
+  },
+  "Brigand Mask": {
+    "file": "HelmetDexInt02.webp"
+  },
+  "Faridun Mask": {
+    "file": "HelmetDexInt04.webp"
+  },
+  "Soaring Mask": {
+    "file": "HelmetDexInt05.webp"
+  },
+  "Grinning Mask": {
+    "file": "HelmetDexInt06.webp"
+  },
+  "Knightly Mitts": {
+    "file": "GlovesStr02.webp"
+  },
+  "Ornate Mitts": {
+    "file": "GlovesStr04.webp"
+  },
+  "Vaal Mitts": {
+    "file": "GlovesStr05.webp"
+  },
+  "Massive Mitts": {
+    "file": "GlovesStr06.webp"
+  },
+  "Stalking Bracers": {
+    "file": "GlovesDex02.webp"
+  },
+  "Grand Bracers": {
+    "file": "GlovesDex04.webp"
+  },
+  "Barbed Bracers": {
+    "file": "GlovesDex05.webp"
+  },
+  "Polished Bracers": {
+    "file": "GlovesDex06.webp"
+  },
+  "Grim Gloves": {
+    "file": "GlovesInt02.webp"
+  },
+  "Opulent Gloves": {
+    "file": "GlovesInt04.webp"
+  },
+  "Vaal Gloves": {
+    "file": "GlovesInt05.webp"
+  },
+  "Sirenscale Gloves": {
+    "file": "GlovesInt06.webp"
+  },
+  "Steelmail Gauntlets": {
+    "file": "GlovesStrDex01.webp"
+  },
+  "Commander Gauntlets": {
+    "file": "GlovesStrDex02.webp"
+  },
+  "Cultist Gauntlets": {
+    "file": "GlovesStrDex03.webp"
+  },
+  "Blacksteel Gauntlets": {
+    "file": "GlovesStrDex04.webp"
+  },
+  "Bound Cuffs": {
+    "file": "GlovesIntStr01.webp"
+  },
+  "Ancient Cuffs": {
+    "file": "GlovesIntStr02.webp"
+  },
+  "Gleaming Cuffs": {
+    "file": "GlovesIntStr03.webp"
+  },
+  "Adherent Cuffs": {
+    "file": "GlovesIntStr04.webp"
+  },
+  "War Wraps": {
+    "file": "GlovesDexInt01.webp"
+  },
+  "Elegant Wraps": {
+    "file": "GlovesDexInt02.webp"
+  },
+  "Vaal Wraps": {
+    "file": "GlovesDexInt03.webp"
+  },
+  "Secured Wraps": {
+    "file": "GlovesDexInt04.webp"
+  },
+  "Bulwark Greaves": {
+    "file": "BootsStr02.webp"
+  },
+  "Ornate Greaves": {
+    "file": "BootsStr04.webp"
+  },
+  "Vaal Greaves": {
+    "file": "BootsStr05.webp"
+  },
+  "Tasalian Greaves": {
+    "file": "BootsStr06.webp"
+  },
+  "Cinched Boots": {
+    "file": "BootsDex02.webp"
+  },
+  "Cavalry Boots": {
+    "file": "BootsDex04.webp"
+  },
+  "Dragonscale Boots": {
+    "file": "BootsDex05.webp"
+  },
+  "Drakeskin Boots": {
+    "file": "BootsDex06.webp"
+  },
+  "Bound Sandals": {
+    "file": "BootsInt02.webp"
+  },
+  "Luxurious Slippers": {
+    "file": "BootsInt04.webp"
+  },
+  "Sandsworn Sandals": {
+    "file": "BootsInt05.webp"
+  },
+  "Sekhema Sandals": {
+    "file": "BootsInt06.webp"
+  },
+  "Veteran Sabatons": {
+    "file": "BootsStrDex01.webp"
+  },
+  "Noble Sabatons": {
+    "file": "BootsStrDex02.webp"
+  },
+  "Fortress Sabatons": {
+    "file": "BootsStrDex03.webp"
+  },
+  "Blacksteel Sabatons": {
+    "file": "BootsStrDex04.webp"
+  },
+  "Faithful Leggings": {
+    "file": "BootsIntStr01.webp"
+  },
+  "Apostle Leggings": {
+    "file": "BootsIntStr02.webp"
+  },
+  "Warlock Leggings": {
+    "file": "BootsIntStr03.webp"
+  },
+  "Cryptic Leggings": {
+    "file": "BootsIntStr04.webp"
+  },
+  "Wanderer Shoes": {
+    "file": "BootsDexInt01.webp"
+  },
+  "Charmed Shoes": {
+    "file": "BootsDexInt02.webp"
+  },
+  "Quickslip Shoes": {
+    "file": "BootsDexInt03.webp"
+  },
+  "Daggerfoot Shoes": {
+    "file": "BootsDexInt04.webp"
+  },
+  "Royal Tower Shield": {
+    "file": "Tower03.webp"
+  },
+  "Fortress Tower Shield": {
+    "file": "Tower06.webp"
+  },
+  "Vaal Tower Shield": {
+    "file": "Tower08.webp"
+  },
+  "Tawhoan Tower Shield": {
+    "file": "Tower10.webp"
+  },
+  "Mammoth Targe": {
+    "file": "Shield02.webp"
+  },
+  "Baroque Targe": {
+    "file": "Shield04.webp"
+  },
+  "Soaring Targe": {
+    "file": "Shield06.webp"
+  },
+  "Golden Targe": {
+    "file": "Shield10.webp"
+  },
+  "Intricate Crest Shield": {
+    "file": "Crest02.webp"
+  },
+  "Sekheman Crest Shield": {
+    "file": "Crest04.webp"
+  },
+  "Vaal Crest Shield": {
+    "file": "Crest06.webp"
+  },
+  "Blacksteel Crest Shield": {
+    "file": "Crest07.webp"
+  },
+  "Gutspike Buckler": {
+    "file": "Buckler06.webp"
+  },
+  "Ancient Buckler": {
+    "file": "Buckler08.webp"
+  },
+  "Desert Buckler": {
+    "file": "Buckler09.webp"
+  },
+  "Druidic Focus": {
+    "file": "Focus03.webp"
+  },
+  "Leyline Focus": {
+    "file": "Focus06.webp"
+  },
+  "Sacred Focus": {
+    "file": "Focus08.webp"
+  },
+  "Tasalian Focus": {
+    "file": "Focus10.webp"
+  },
+  "Flanged Mace": {
+    "file": "1HMace03.webp"
+  },
+  "Crown Mace": {
+    "file": "1HMace06.webp"
+  },
+  "Molten Hammer": {
+    "file": "1HMace02.webp"
+  },
+  "Strife Pick": {
+    "file": "1HMace05.webp"
+  },
+  "Fortified Hammer": {
+    "file": "1HMace08.webp"
+  },
+  "Marauding Mace": {
+    "file": "1HMace07.webp"
+  },
+  "Akoyan Club": {
+    "file": "1HMace10.webp"
+  },
+  "Anvil Maul": {
+    "file": "2HMace03.webp"
+  },
+  "Sacred Maul": {
+    "file": "2HMace06.webp"
+  },
+  "Ironwood Greathammer": {
+    "file": "2HMace02.webp"
+  },
+  "Fanatic Greathammer": {
+    "file": "2HMace05.webp"
+  },
+  "Ruination Maul": {
+    "file": "2HMace08.webp"
+  },
+  "Massive Greathammer": {
+    "file": "2HMace07.webp"
+  },
+  "Tawhoan Greatclub": {
+    "file": "2HMace10.webp"
+  },
+  "Sinister Quarterstaff": {
+    "file": "Warstaff03.webp"
+  },
+  "Lunar Quarterstaff": {
+    "file": "Warstaff05.webp"
+  },
+  "Striking Quarterstaff": {
+    "file": "Warstaff02.webp"
+  },
+  "Bolting Quarterstaff": {
+    "file": "Warstaff04.webp"
+  },
+  "Aegis Quarterstaff": {
+    "file": "Warstaff08.webp"
+  },
+  "Razor Quarterstaff": {
+    "file": "Warstaff07.webp"
+  },
+  "Skullcrusher Quarterstaff": {
+    "file": "Warstaff09.webp"
+  },
+  "Dreaming Quarterstaff": {
+    "file": "Warstaff10.webp"
+  },
+  "Ironwood Shortbow": {
+    "file": "Bow02.webp"
+  },
+  "Cavalry Bow": {
+    "file": "Bow05.webp"
+  },
+  "Guardian Bow": {
+    "file": "Bow03.webp"
+  },
+  "Gemini Bow": {
+    "file": "Bow06.webp"
+  },
+  "Fanatic Bow": {
+    "file": "Bow07.webp"
+  },
+  "Warmonger Bow": {
+    "file": "Bow08.webp"
+  },
+  "Obliterator Bow": {
+    "file": "Bow09.webp"
+  },
+  "Stout Crossbow": {
+    "file": "2HCrossbow03.webp"
+  },
+  "Engraved Crossbow": {
+    "file": "2HCrossbow04.webp"
+  },
+  "Flexed Crossbow": {
+    "file": "2HCrossbow02.webp"
+  },
+  "Gemini Crossbow": {
+    "file": "2HCrossbow05.webp"
+  },
+  "Siege Crossbow": {
+    "file": "2HCrossbow07.webp"
+  },
+  "Desolate Crossbow": {
+    "file": "2HCrossbow08.webp"
+  },
+  "Elegant Crossbow": {
+    "file": "2HCrossbow10.webp"
+  },
+  "Orichalcum Spear": {
+    "file": "1HSpear02.webp"
+  },
+  "Soaring Spear": {
+    "file": "1HSpear04.webp"
+  },
+  "Pronged Spear": {
+    "file": "1HSpear06.webp"
+  },
+  "Stalking Spear": {
+    "file": "1HSpear03.webp"
+  },
+  "Flying Spear": {
+    "file": "1HSpear05.webp"
+  },
+  "Grand Spear": {
+    "file": "1HSpear08.webp"
+  },
+  "Spiked Spear": {
+    "file": "1HSpear07.webp"
+  },
+  "Guardian Spear": {
+    "file": "1HSpear09.webp"
+  },
+  "Akoyan Spear": {
+    "file": "1HSpear10.webp"
+  },
+  "Spiny Talisman": {
+    "file": "NettleTalisman.webp"
+  },
+  "Ashbark Talisman": {
+    "file": "CinderbarkTalisman.webp"
+  },
+  "Fang Talisman": {
+    "file": "FamilialTalisman.webp"
+  },
+  "Fungal Talisman": {
+    "file": "FrenziedTalisman.webp"
+  },
+  "Alpha Talisman": {
+    "file": "PrimalTalisman.webp"
+  },
+  "Maji Talisman": {
+    "file": "RabidTalisman.webp"
+  },
+  "Wildwood Talisman": {
+    "file": "ViciousTalisman.webp"
+  },
+  "Thunder Talisman": {
+    "file": "VoltfangTalisman.webp"
+  },
+  "Jade Talisman": {
+    "file": "LumberingTalisman.webp"
+  },
+  "Guarding Arm": {
+    "file": "TempleMap.webp"
+  },
+  "Combat Arm": {
+    "file": "TempleMap.webp"
+  },
+  "Caster Arm": {
+    "file": "TempleMap.webp"
+  },
+  "Decrepifying Arm": {
+    "file": "TempleMap.webp"
+  },
+  "Deflective Arm": {
+    "file": "TempleMap.webp"
+  },
+  "Commanding Arm": {
+    "file": "TempleMap.webp"
+  },
+  "Evasive Leg": {
+    "file": "TempleMap.webp"
+  },
+  "Sprinters Leg": {
+    "file": "TempleMap.webp"
+  },
+  "Sturdy Leg": {
+    "file": "TempleMap.webp"
+  },
+  "Surefooted Leg": {
+    "file": "TempleMap.webp"
+  },
+  "Calm Leg": {
+    "file": "TempleMap.webp"
+  },
+  "Restorative Leg": {
+    "file": "TempleMap.webp"
+  }
+}

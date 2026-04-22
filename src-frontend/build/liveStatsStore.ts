@@ -83,6 +83,7 @@ interface LiveStatsState {
   refresh: (xml: string | null) => Promise<void>;
   setMainSkill: (index: number) => Promise<void>;
   setAllocated: (ids: number[], overrides?: Record<number, number>) => Promise<void>;
+  setConfig: (values: Record<string, number | boolean | string>) => Promise<void>;
 }
 
 // Shared store driven from App — BuildMeta (top bar) and Sidebar (stats panel)
@@ -163,6 +164,21 @@ export const useLiveStatsStore = create<LiveStatsState>((set) => ({
     set((prev) => ({ ...prev, loading: true, error: null }));
     try {
       const data = await invoke<LiveStats>("lua_set_allocated", { ids, overrides });
+      set({
+        data,
+        defence: snapshotDefensive(data.stats),
+        headline: snapshotHeadline(data),
+        error: null,
+        loading: false,
+      });
+    } catch (e) {
+      set((prev) => ({ ...prev, error: String(e), loading: false }));
+    }
+  },
+  setConfig: async (values) => {
+    set((prev) => ({ ...prev, loading: true, error: null }));
+    try {
+      const data = await invoke<LiveStats>("lua_set_config", { values });
       set({
         data,
         defence: snapshotDefensive(data.stats),
