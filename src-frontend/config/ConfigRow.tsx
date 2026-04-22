@@ -86,7 +86,7 @@ export function ConfigRow({ option, value, onChange }: Props) {
       </HoverRow>
     );
   }
-  const current = value ?? items[(option.defaultIndex ?? 1) - 1]?.val ?? items[0].val;
+  const current = value ?? items[(option.defaultIndex ?? 1) - 1]?.val ?? items[0]?.val ?? "";
   return (
     <HoverRow tooltip={option.tooltip} className="cfg-row cfg-row-list" htmlFor={id}>
       <span>{option.label}</span>
