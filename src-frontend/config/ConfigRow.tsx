@@ -20,14 +20,13 @@ function HoverRow({
   children: ReactNode;
 }) {
   const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
-  const showTip = tooltip && tooltip.trim().length > 0;
+  const showTip = !!(tooltip && tooltip.trim().length > 0);
   return (
     <>
       <label
         htmlFor={htmlFor}
         className={className}
         onMouseEnter={(e) => showTip && setHover({ x: e.clientX, y: e.clientY })}
-        onMouseMove={(e) => showTip && setHover({ x: e.clientX, y: e.clientY })}
         onMouseLeave={() => setHover(null)}
       >
         {children}

@@ -84,13 +84,10 @@ body { font-family: var(--font-sans); font-feature-settings: "tnum", "ss01"; }
 .config-toolbar input::placeholder { color: var(--color-fg-muted); }
 
 .config-sections {
-  columns: 3 320px;
-  column-gap: 16px;
-}
-.config-sections > * {
-  break-inside: avoid;
-  margin-bottom: 12px;
-  display: block;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+  align-items: start;
 }
 .config-grid {
   display: flex;
