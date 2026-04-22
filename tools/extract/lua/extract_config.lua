@@ -110,7 +110,21 @@ local function encode(v)
     return "null"
 end
 
+-- encode_array: always emit a JSON array, even for empty tables
+local function encode_array(arr)
+    local parts = {}
+    for i = 1, #arr do parts[i] = encode(arr[i]) end
+    return "[" .. table.concat(parts, ",") .. "]"
+end
+
+-- Build top-level JSON with options always as arrays
+local sec_parts = {}
+for _, sec in ipairs(sections) do
+    sec_parts[#sec_parts+1] = '{"name":' .. encode(sec.name) .. ',"options":' .. encode_array(sec.options) .. '}'
+end
+local out = '{"sections":[' .. table.concat(sec_parts, ",") .. "]}"
+
 local f = assert(io.open(out_json_path, "wb"))
-f:write(encode({ sections = sections }))
+f:write(out)
 f:close()
 print(string.format("wrote %s (%d sections)", out_json_path, #sections))
