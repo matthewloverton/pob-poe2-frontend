@@ -1,0 +1,1360 @@
+{
+  "Background2": {
+    "file": "Background2.webp",
+    "width": 1024,
+    "height": 1024,
+    "sourceFile": "background_1024_1024_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "PSGroupBackground1": {
+    "file": "PSGroupBackground1.webp",
+    "width": 360,
+    "height": 360,
+    "sourceFile": "group-background_360_360_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "PSGroupBackgroundSmallBlank": {
+    "file": "PSGroupBackground1.webp",
+    "width": 360,
+    "height": 360,
+    "sourceFile": "group-background_360_360_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/oraclepassiveskillscreenpassiveframeactive.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameoraclepassiveskillscreenpassiveframeactivedds.webp",
+    "width": 104,
+    "height": 104,
+    "sourceFile": "group-background_104_104_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/oraclepassiveskillscreenpassiveframecanallocate.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameoraclepassiveskillscreenpassiveframecanallocatedds.webp",
+    "width": 104,
+    "height": 104,
+    "sourceFile": "group-background_104_104_BC7.dds.zst",
+    "sourceIndex": 2
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/oraclepassiveskillscreenpassiveframenormal.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameoraclepassiveskillscreenpassiveframenormaldds.webp",
+    "width": 104,
+    "height": 104,
+    "sourceFile": "group-background_104_104_BC7.dds.zst",
+    "sourceIndex": 3
+  },
+  "PSSkillFrame": {
+    "file": "PSSkillFrame.webp",
+    "width": 104,
+    "height": 104,
+    "sourceFile": "group-background_104_104_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "PSSkillFrameActive": {
+    "file": "PSSkillFrameActive.webp",
+    "width": 104,
+    "height": 104,
+    "sourceFile": "group-background_104_104_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "PSSkillFrameHighlighted": {
+    "file": "PSSkillFrameHighlighted.webp",
+    "width": 104,
+    "height": 104,
+    "sourceFile": "group-background_104_104_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "PSStartNodeBackgroundInactive": {
+    "file": "PSStartNodeBackgroundInactive.webp",
+    "width": 528,
+    "height": 528,
+    "sourceFile": "group-background_528_528_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "NotableFrameCanAllocate": {
+    "file": "NotableFrameCanAllocate.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 11
+  },
+  "NotableFrameUnallocated": {
+    "file": "NotableFrameUnallocated.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 12
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/abyss/abysslichpassiveskillscreenjewelsocketactive.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameabyssabysslichpassiveskillscreenjewelsocketactivedds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/abyss/abysslichpassiveskillscreenjewelsocketcanallocate.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameabyssabysslichpassiveskillscreenjewelsocketcanallocatedds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 2
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/abyss/abysslichpassiveskillscreenjewelsocketnormal.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameabyssabysslichpassiveskillscreenjewelsocketnormaldds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 3
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/lichpassiveskillscreenjewelsocketactive.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingamelichpassiveskillscreenjewelsocketactivedds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/lichpassiveskillscreenjewelsocketcanallocate.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingamelichpassiveskillscreenjewelsocketcanallocatedds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/lichpassiveskillscreenjewelsocketnormal.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingamelichpassiveskillscreenjewelsocketnormaldds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/oraclepassiveskillscreennotableframeactive.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameoraclepassiveskillscreennotableframeactivedds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 7
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/oraclepassiveskillscreennotableframecanallocate.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameoraclepassiveskillscreennotableframecanallocatedds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 8
+  },
+  "art/textures/interface/2d/2dart/uiimages/ingame/oraclepassiveskillscreennotableframenormal.dds": {
+    "file": "arttexturesinterface2d2dartuiimagesingameoraclepassiveskillscreennotableframenormaldds.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 9
+  },
+  "JewelFrameAllocated": {
+    "file": "JewelFrameAllocated.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 13
+  },
+  "JewelFrameCanAllocate": {
+    "file": "JewelFrameCanAllocate.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 14
+  },
+  "JewelFrameUnallocated": {
+    "file": "JewelFrameUnallocated.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 15
+  },
+  "NotableFrameAllocated": {
+    "file": "NotableFrameAllocated.webp",
+    "width": 152,
+    "height": 156,
+    "sourceFile": "group-background_152_156_BC7.dds.zst",
+    "sourceIndex": 10
+  },
+  "AscendancyMiddle": {
+    "file": "AscendancyMiddle.webp",
+    "width": 92,
+    "height": 92,
+    "sourceFile": "group-background_92_92_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "PSGroupBackground3": {
+    "file": "PSGroupBackground3.webp",
+    "width": 740,
+    "height": 376,
+    "sourceFile": "group-background_740_376_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "PSGroupBackgroundLargeBlank": {
+    "file": "PSGroupBackground3.webp",
+    "width": 740,
+    "height": 376,
+    "sourceFile": "group-background_740_376_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "PSGroupBackgroundMediumBlank": {
+    "file": "PSGroupBackgroundMediumBlank.webp",
+    "width": 468,
+    "height": 468,
+    "sourceFile": "group-background_468_468_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "PSGroupBackground2": {
+    "file": "PSGroupBackgroundMediumBlank.webp",
+    "width": 468,
+    "height": 468,
+    "sourceFile": "group-background_468_468_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "KeystoneFrameAllocated": {
+    "file": "KeystoneFrameAllocated.webp",
+    "width": 220,
+    "height": 224,
+    "sourceFile": "group-background_220_224_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "KeystoneFrameCanAllocate": {
+    "file": "KeystoneFrameCanAllocate.webp",
+    "width": 220,
+    "height": 224,
+    "sourceFile": "group-background_220_224_BC7.dds.zst",
+    "sourceIndex": 2
+  },
+  "KeystoneFrameUnallocated": {
+    "file": "KeystoneFrameUnallocated.webp",
+    "width": 220,
+    "height": 224,
+    "sourceFile": "group-background_220_224_BC7.dds.zst",
+    "sourceIndex": 3
+  },
+  "PathfinderFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "PathfinderFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "PathfinderFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "RitualistFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "RitualistFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "RitualistFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "ShamanFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "ShamanFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "ShamanFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Smith of KitavaFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Smith of KitavaFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Smith of KitavaFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "StormweaverFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "StormweaverFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "StormweaverFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "TacticianFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "TacticianFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "TacticianFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "TitanFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "TitanFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "TitanFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "WarbringerFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "WarbringerFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "WarbringerFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "WitchhunterFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "WitchhunterFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "WitchhunterFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Abyssal LichFrameSmallAllocated": {
+    "file": "AbyssalLichFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "Abyssal LichFrameSmallCanAllocate": {
+    "file": "AbyssalLichFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 2
+  },
+  "Abyssal LichFrameSmallNormal": {
+    "file": "AbyssalLichFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 3
+  },
+  "Acolyte of ChayulaFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Acolyte of ChayulaFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Acolyte of ChayulaFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "AmazonFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "AmazonFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "AmazonFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Blood MageFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Blood MageFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Blood MageFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "ChronomancerFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "ChronomancerFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "ChronomancerFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "DeadeyeFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "DeadeyeFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "DeadeyeFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Disciple of VarashtaFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Disciple of VarashtaFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Disciple of VarashtaFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Gemling LegionnaireFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Gemling LegionnaireFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Gemling LegionnaireFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "InfernalistFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "InfernalistFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "InfernalistFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "InvokerFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "InvokerFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "InvokerFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "LichFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "LichFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "LichFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "OracleFrameSmallAllocated": {
+    "file": "PathfinderFrameSmallAllocated.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "OracleFrameSmallCanAllocate": {
+    "file": "PathfinderFrameSmallCanAllocate.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "OracleFrameSmallNormal": {
+    "file": "PathfinderFrameSmallNormal.webp",
+    "width": 160,
+    "height": 164,
+    "sourceFile": "group-background_160_164_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "ClassesInfernalist": {
+    "file": "ClassesInfernalist.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 11
+  },
+  "ClassesBlood Mage": {
+    "file": "ClassesBloodMage.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 3
+  },
+  "ClassesDeadeye": {
+    "file": "ClassesDeadeye.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "ClassesLich": {
+    "file": "ClassesLich.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 14
+  },
+  "ClassesAbyssal Lich": {
+    "file": "ClassesAbyssalLich.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 13
+  },
+  "ClassesWitch": {
+    "file": "ClassesWitch.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 32
+  },
+  "ClassesPathfinder": {
+    "file": "ClassesPathfinder.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 19
+  },
+  "ClassesStormweaver": {
+    "file": "ClassesStormweaver.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 26
+  },
+  "ClassesChronomancer": {
+    "file": "ClassesChronomancer.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "ClassesRanger": {
+    "file": "ClassesRanger.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 21
+  },
+  "ClassesDisciple of Varashta": {
+    "file": "ClassesDiscipleofVarashta.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "ClassesSorceress": {
+    "file": "ClassesSorceress.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 25
+  },
+  "ClassesAmazon": {
+    "file": "ClassesAmazon.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 2
+  },
+  "ClassesInvoker": {
+    "file": "ClassesInvoker.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 12
+  },
+  "ClassesRitualist": {
+    "file": "ClassesRitualist.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 20
+  },
+  "ClassesAcolyte of Chayula": {
+    "file": "ClassesAcolyteofChayula.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "ClassesHuntress": {
+    "file": "ClassesHuntress.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 10
+  },
+  "ClassesMonk": {
+    "file": "ClassesMonk.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 17
+  },
+  "ClassesTitan": {
+    "file": "ClassesTitan.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 29
+  },
+  "ClassesWarbringer": {
+    "file": "ClassesWarbringer.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 30
+  },
+  "ClassesSmith of Kitava": {
+    "file": "ClassesSmithofKitava.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 24
+  },
+  "ClassesWarrior": {
+    "file": "ClassesWarrior.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 31
+  },
+  "ClassesTactician": {
+    "file": "ClassesTactician.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 27
+  },
+  "ClassesWitchhunter": {
+    "file": "ClassesWitchhunter.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 33
+  },
+  "ClassesGemling Legionnaire": {
+    "file": "ClassesGemlingLegionnaire.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 9
+  },
+  "ClassesMercenary": {
+    "file": "ClassesMercenary.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 16
+  },
+  "ClassesOracle": {
+    "file": "ClassesOracle.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 18
+  },
+  "ClassesMarauder": {
+    "file": "ClassesMarauder.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 15
+  },
+  "ClassesDuelist": {
+    "file": "ClassesDuelist.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 8
+  },
+  "ClassesShaman": {
+    "file": "ClassesShaman.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 23
+  },
+  "ClassesShadow": {
+    "file": "ClassesShadow.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 22
+  },
+  "ClassesTemplar": {
+    "file": "ClassesTemplar.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 28
+  },
+  "ClassesDruid": {
+    "file": "ClassesDruid.webp",
+    "width": 1500,
+    "height": 1500,
+    "sourceFile": "ascendancy-background_1500_1500_BC7.dds.zst",
+    "sourceIndex": 7
+  },
+  "Abyssal LichFrameLargeCanAllocate": {
+    "file": "AbyssalLichFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 2
+  },
+  "Abyssal LichFrameLargeNormal": {
+    "file": "AbyssalLichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 3
+  },
+  "Acolyte of ChayulaFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "LichFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "OracleFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "OracleFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "OracleFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "PathfinderFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Blood MageFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Blood MageFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Blood MageFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "ChronomancerFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "ChronomancerFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "ChronomancerFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "DeadeyeFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "DeadeyeFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "DeadeyeFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Disciple of VarashtaFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Disciple of VarashtaFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Disciple of VarashtaFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Gemling LegionnaireFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Gemling LegionnaireFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Gemling LegionnaireFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "InfernalistFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "InfernalistFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "InfernalistFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "InvokerFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "InvokerFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "InvokerFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "LichFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "LichFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Acolyte of ChayulaFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Acolyte of ChayulaFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "AmazonFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "AmazonFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "AmazonFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "PathfinderFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "PathfinderFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "RitualistFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "RitualistFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "RitualistFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "ShamanFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "ShamanFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "ShamanFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Smith of KitavaFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "Smith of KitavaFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "Smith of KitavaFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "StormweaverFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "StormweaverFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "StormweaverFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "TacticianFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "TacticianFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "TacticianFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "TitanFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "TitanFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "TitanFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "WarbringerFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "WarbringerFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "WarbringerFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "WitchhunterFrameLargeAllocated": {
+    "file": "AcolyteofChayulaFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 4
+  },
+  "WitchhunterFrameLargeCanAllocate": {
+    "file": "OracleFrameLargeCanAllocate.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 5
+  },
+  "WitchhunterFrameLargeNormal": {
+    "file": "LichFrameLargeNormal.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 6
+  },
+  "Abyssal LichFrameLargeAllocated": {
+    "file": "AbyssalLichFrameLargeAllocated.webp",
+    "width": 208,
+    "height": 208,
+    "sourceFile": "group-background_208_208_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "BGTree": {
+    "file": "BGTree.webp",
+    "width": 4000,
+    "height": 4000,
+    "sourceFile": "ascendancy-background_4000_4000_BC7.dds.zst",
+    "sourceIndex": 1
+  },
+  "BGTreeActive": {
+    "file": "BGTreeActive.webp",
+    "width": 4000,
+    "height": 4000,
+    "sourceFile": "ascendancy-background_4000_4000_BC7.dds.zst",
+    "sourceIndex": 2
+  }
+}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useDialogStore } from "./dialogStore";
+import { useDialogStore, type ChoiceOption } from "./dialogStore";
 import { Button } from "./Button";
 
 export function DialogHost() {
@@ -9,10 +9,12 @@ export function DialogHost() {
   const resolvePrompt = useDialogStore((s) => s.resolvePrompt);
   const confirm = useDialogStore((s) => s.confirm);
   const resolveConfirm = useDialogStore((s) => s.resolveConfirm);
+  const choice = useDialogStore((s) => s.choice);
+  const resolveChoice = useDialogStore((s) => s.resolveChoice);
 
   return (
     <>
-      {(prompt || confirm) && (
+      {(prompt || confirm || choice) && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
           {prompt && (
             <PromptDialog
@@ -27,6 +29,13 @@ export function DialogHost() {
               title={confirm.title}
               message={confirm.message}
               onResult={(value) => resolveConfirm(value)}
+            />
+          )}
+          {choice && (
+            <ChoiceDialog
+              title={choice.title}
+              options={choice.options}
+              onPick={(i) => resolveChoice(i)}
             />
           )}
         </div>
@@ -87,6 +96,42 @@ function PromptDialog({
         <div className="flex justify-end gap-2">
           <Button onClick={onCancel}>Cancel</Button>
           <Button onClick={() => onSubmit(value)} disabled={!value.trim()}>Import</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ChoiceDialog({
+  title,
+  options,
+  onPick,
+}: {
+  title: string;
+  options: ChoiceOption[];
+  onPick: (index: number | null) => void;
+}) {
+  return (
+    <div className="border border-border bg-bg-elevated w-[380px] max-w-[90vw] font-mono text-xs">
+      <div className="border-b border-border px-4 py-2 text-[10px] uppercase tracking-widest text-fg-muted">
+        {title}
+      </div>
+      <div className="p-3 space-y-2">
+        {options.map((opt, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => onPick(i)}
+            className="w-full rounded-sm border border-border bg-bg px-3 py-2 text-left hover:border-fg-muted hover:bg-bg-elev"
+          >
+            <div className="text-fg">{opt.label}</div>
+            {opt.description && (
+              <div className="mt-0.5 text-[10px] text-fg-dim">{opt.description}</div>
+            )}
+          </button>
+        ))}
+        <div className="flex justify-end pt-1">
+          <Button onClick={() => onPick(null)}>Cancel</Button>
         </div>
       </div>
     </div>

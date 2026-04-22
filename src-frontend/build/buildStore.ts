@@ -16,19 +16,37 @@ interface BuildState {
   ascendStartId: number | null;
   allocated: Set<NodeId>;
   nodeModes: Record<number, AllocMode>;
+  // "+5 to any attribute" nodes and other multi-option nodes record the
+  // picked option index here, keyed by node id. 0-based against the node's
+  // `options` array (e.g. 0=Str, 1=Dex, 2=Int for attribute choices).
+  nodeOverrides: Record<number, number>;
   allocMode: AllocMode;
   sourceXml: string | null;
   dirty: boolean;
-  loadFromParsed: (parsed: ParsedBuild, nodes: NodeId[]) => void;
+  loadFromParsed: (parsed: ParsedBuild, nodes: NodeId[], overrides?: Record<number, number>) => void;
   setClass: (classId: number) => void;
   setAscendancy: (ascendancyId: number) => void;
   setAllocMode: (mode: AllocMode) => void;
   allocate: (ids: NodeId[]) => void;
   deallocate: (id: NodeId) => void;
+  setNodeOverride: (nodeId: NodeId, optionIndex: number) => void;
+  // Swap to a new class+ascendancy while optionally preserving the current
+  // allocation. When `connectPath` is provided, its nodes are merged into
+  // the allocated set so the existing tree stays connected to the new class
+  // start; when omitted, the allocation is reset to just the new anchors.
+  swapClass: (
+    newClassId: number,
+    newAscendancyId: number,
+    connectPath?: NodeId[],
+  ) => void;
   // Replace allocation + per-node modes in one shot. Used after an import so
-  // the Lua-side-authoritative state (which knows WS1/WS2) overrides our
-  // URL-only derived set.
-  syncAllocation: (allocated: NodeId[], nodeModes: Record<number, AllocMode>) => void;
+  // the Lua-side-authoritative state (which knows WS1/WS2 + overrides)
+  // supersedes our URL-only derived set.
+  syncAllocation: (
+    allocated: NodeId[],
+    nodeModes: Record<number, AllocMode>,
+    overrides?: Record<number, number>,
+  ) => void;
   reset: () => void;
 }
 
@@ -42,6 +60,7 @@ function initialState() {
     ascendStartId: null as number | null,
     allocated,
     nodeModes: {} as Record<number, AllocMode>,
+    nodeOverrides: {} as Record<number, number>,
     allocMode: 0 as AllocMode,
     sourceXml: null,
     dirty: false,
@@ -64,7 +83,7 @@ export function countUserAllocated(state: {
 
 export const useBuildStore = create<BuildState>((set) => ({
   ...initialState(),
-  loadFromParsed: (parsed, nodes) => {
+  loadFromParsed: (parsed, nodes, overrides) => {
     const startId = classStartId(parsed.activeSpec.classId);
     const ascStartId = ascendStartIdFor(parsed.activeSpec.classId, parsed.activeSpec.ascendancyId);
     const allocated = new Set<NodeId>(nodes);
@@ -76,6 +95,7 @@ export const useBuildStore = create<BuildState>((set) => ({
       ascendancyId: parsed.activeSpec.ascendancyId,
       ascendStartId: ascStartId,
       allocated,
+      nodeOverrides: overrides ?? {},
       sourceXml: parsed.sourceXml,
       dirty: false,
     });
@@ -89,6 +109,7 @@ export const useBuildStore = create<BuildState>((set) => ({
         classId: newClassId,
         classStartId: newStartId,
         allocated,
+        nodeOverrides: {},
         ascendancyId: 0,
         ascendStartId: null,
         dirty: false,
@@ -105,12 +126,16 @@ export const useBuildStore = create<BuildState>((set) => ({
       return { ascendancyId, ascendStartId: newAscStart, allocated, dirty: true };
     }),
   setAllocMode: (mode) => set({ allocMode: mode }),
-  syncAllocation: (allocatedArr, modes) =>
+  syncAllocation: (allocatedArr, modes, overrides) =>
     set((state) => {
       const allocated = new Set<NodeId>(allocatedArr);
       if (state.classStartId != null) allocated.add(state.classStartId);
       if (state.ascendStartId != null) allocated.add(state.ascendStartId);
-      return { allocated, nodeModes: { ...modes } };
+      return {
+        allocated,
+        nodeModes: { ...modes },
+        nodeOverrides: overrides ? { ...overrides } : state.nodeOverrides,
+      };
     }),
   allocate: (ids) =>
     set((state) => {
@@ -130,7 +155,53 @@ export const useBuildStore = create<BuildState>((set) => ({
       next.delete(id);
       const modes = { ...state.nodeModes };
       delete modes[id];
-      return { allocated: next, nodeModes: modes, dirty: true };
+      const overrides = { ...state.nodeOverrides };
+      delete overrides[id as unknown as number];
+      return { allocated: next, nodeModes: modes, nodeOverrides: overrides, dirty: true };
+    }),
+  setNodeOverride: (nodeId, optionIndex) =>
+    set((state) => ({
+      nodeOverrides: { ...state.nodeOverrides, [nodeId as unknown as number]: optionIndex },
+      dirty: true,
+    })),
+  swapClass: (newClassId, newAscendancyId, connectPath) =>
+    set((state) => {
+      const newClassStart = classStartId(newClassId);
+      const newAscStart = ascendStartIdFor(newClassId, newAscendancyId);
+      // If no connect path given, this is a Reset & Swap: clear allocation
+      // down to just the new class + ascendancy anchors.
+      if (!connectPath) {
+        const allocated = new Set<NodeId>();
+        if (newClassStart != null) allocated.add(newClassStart);
+        if (newAscStart != null) allocated.add(newAscStart);
+        return {
+          classId: newClassId,
+          classStartId: newClassStart,
+          ascendancyId: newAscendancyId,
+          ascendStartId: newAscStart,
+          allocated,
+          nodeModes: {},
+          nodeOverrides: {},
+          dirty: false,
+        };
+      }
+      // Connect-Path: keep everything except the old class/ascend anchors
+      // (replaced with the new class's), merge in the connect path so the
+      // new class start is linked to the existing tree.
+      const allocated = new Set<NodeId>(state.allocated);
+      if (state.classStartId != null) allocated.delete(state.classStartId);
+      if (state.ascendStartId != null) allocated.delete(state.ascendStartId);
+      if (newClassStart != null) allocated.add(newClassStart);
+      if (newAscStart != null) allocated.add(newAscStart);
+      for (const id of connectPath) allocated.add(id);
+      return {
+        classId: newClassId,
+        classStartId: newClassStart,
+        ascendancyId: newAscendancyId,
+        ascendStartId: newAscStart,
+        allocated,
+        dirty: true,
+      };
     }),
   reset: () => set({ ...initialState() }),
 }));

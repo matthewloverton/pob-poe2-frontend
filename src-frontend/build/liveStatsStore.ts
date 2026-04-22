@@ -82,7 +82,7 @@ interface LiveStatsState {
   loading: boolean;
   refresh: (xml: string | null) => Promise<void>;
   setMainSkill: (index: number) => Promise<void>;
-  setAllocated: (ids: number[]) => Promise<void>;
+  setAllocated: (ids: number[], overrides?: Record<number, number>) => Promise<void>;
 }
 
 // Shared store driven from App — BuildMeta (top bar) and Sidebar (stats panel)
@@ -110,17 +110,22 @@ export const useLiveStatsStore = create<LiveStatsState>((set) => ({
     try {
       await invoke("lua_load_pob");
       await invoke("lua_load_build", { xml });
-      // Pull the authoritative allocation + weapon-set modes from PoB so the
-      // frontend set includes WS1/WS2 nodes the tree URL didn't encode.
+      // Pull the authoritative allocation + weapon-set modes + multi-option
+      // picks from PoB so the frontend set includes WS1/WS2 nodes the tree
+      // URL didn't encode and honors the build's saved attribute choices.
       try {
-        const state = await invoke<{ allocated: number[]; modes: Record<string, number> }>(
-          "lua_get_alloc_state",
-        );
+        const state = await invoke<{
+          allocated: number[];
+          modes: Record<string, number>;
+          overrides?: Record<string, number>;
+        }>("lua_get_alloc_state");
         const modes: Record<number, AllocMode> = {};
         for (const [k, v] of Object.entries(state.modes)) {
           if (v === 1 || v === 2) modes[Number(k)] = v as AllocMode;
         }
-        useBuildStore.getState().syncAllocation(state.allocated, modes);
+        const overrides: Record<number, number> = {};
+        for (const [k, v] of Object.entries(state.overrides ?? {})) overrides[Number(k)] = v;
+        useBuildStore.getState().syncAllocation(state.allocated, modes, overrides);
       } catch { /* fall through — stats still work with partial allocation */ }
       set((prev) => ({ ...prev, importPhase: "Calculating Stats" }));
       const data = await invoke<LiveStats>("lua_compute_stats");
@@ -154,10 +159,10 @@ export const useLiveStatsStore = create<LiveStatsState>((set) => ({
       set((prev) => ({ ...prev, error: String(e), loading: false }));
     }
   },
-  setAllocated: async (ids) => {
+  setAllocated: async (ids, overrides) => {
     set((prev) => ({ ...prev, loading: true, error: null }));
     try {
-      const data = await invoke<LiveStats>("lua_set_allocated", { ids });
+      const data = await invoke<LiveStats>("lua_set_allocated", { ids, overrides });
       set({
         data,
         defence: snapshotDefensive(data.stats),

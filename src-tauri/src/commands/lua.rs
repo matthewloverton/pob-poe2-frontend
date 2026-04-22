@@ -135,9 +135,17 @@ pub async fn lua_set_allocated(
     app: AppHandle,
     sidecar: State<'_, LuaSidecar>,
     ids: Vec<u32>,
+    overrides: Option<std::collections::HashMap<String, u32>>,
 ) -> Result<Value, String> {
+    // overrides comes over the wire as { "722": 0, ... } because JS object
+    // keys are strings. The Lua side copes with either numeric or string keys
+    // via tonumber(), so we just pass it through unchanged.
+    let payload = match overrides {
+        Some(m) if !m.is_empty() => json!({ "ids": ids, "overrides": m }),
+        _ => json!({ "ids": ids }),
+    };
     sidecar
-        .invoke(&app, "set_allocated", json!({ "ids": ids }))
+        .invoke(&app, "set_allocated", payload)
         .await
         .map_err(|e| e.to_string())
 }

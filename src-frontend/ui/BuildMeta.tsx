@@ -82,13 +82,22 @@ export function BuildMeta() {
 
 function PointsPill() {
   const level = useLiveStatsStore((s) => s.data?.level);
+  const sidecarPoints = useLiveStatsStore((s) => s.data?.points);
   const allocMode = useBuildStore((s) => s.allocMode);
   const setAllocMode = useBuildStore((s) => s.setAllocMode);
   const allocated = useBuildStore((s) => s.allocated);
   const nodeModes = useBuildStore((s) => s.nodeModes);
   const classStartId = useBuildStore((s) => s.classStartId);
   const ascendStartId = useBuildStore((s) => s.ascendStartId);
-  const p = computePoints({ allocated, nodeModes, classStartId, ascendStartId, level });
+  const local = computePoints({ allocated, nodeModes, classStartId, ascendStartId, level });
+  // Prefer the sidecar's authoritative caps (they factor in `ExtraPoints` from
+  // items / tree / ascendancy) once a build has been loaded. Fall back to the
+  // local computation before the first import / calc.
+  const p = {
+    ...local,
+    maxMain: sidecarPoints?.max_main ?? local.maxMain,
+    maxAscend: sidecarPoints?.max_ascend ?? local.maxAscend,
+  };
 
   const pill = (
     label: React.ReactNode,
