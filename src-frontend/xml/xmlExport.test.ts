@@ -1,7 +1,8 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, beforeEach } from "vitest";
 import { readFileSync } from "node:fs";
 import { parseBuildXml } from "./xmlImport";
 import { serializeBuild } from "./xmlExport";
+import { useConfigStore } from "../config/configStore";
 
 const minimal = readFileSync("test/fixtures/minimal-build.xml", "utf8");
 
@@ -24,5 +25,25 @@ describe("serializeBuild", () => {
     expect(out).toContain("<Items");
     expect(out).toContain("<Calcs");
     expect(out).toContain("<Notes");
+  });
+});
+
+describe("xmlExport Config", () => {
+  beforeEach(() => {
+    useConfigStore.setState({
+      schema: {
+        sections: [{
+          name: "General",
+          options: [{ var: "conditionLowLife", type: "check", label: "Low Life" }],
+        }],
+      },
+      values: { conditionLowLife: true },
+    });
+  });
+
+  test("includes Config values from configStore in exported XML", () => {
+    const parsed = parseBuildXml(minimal);
+    const out = serializeBuild(parsed, { newTreeUrl: parsed.activeSpec.treeUrl });
+    expect(out).toContain('<Input name="conditionLowLife" boolean="true"/>');
   });
 });

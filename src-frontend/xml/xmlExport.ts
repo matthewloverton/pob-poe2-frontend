@@ -1,4 +1,5 @@
 import type { ParsedBuild } from "./xmlImport";
+import { useConfigStore } from "../config/configStore";
 
 export interface SerializeOptions {
   newTreeUrl: string;
@@ -67,7 +68,16 @@ export function serializeBuild(build: ParsedBuild, opts: SerializeOptions): stri
   }
 
   const newTreeBlock = treeBlock.slice(0, specStart) + newSpecBlock + treeBlock.slice(specEnd);
-  return xml.slice(0, treeStart) + newTreeBlock + xml.slice(treeClose + "</Tree>".length);
+  let output = xml.slice(0, treeStart) + newTreeBlock + xml.slice(treeClose + "</Tree>".length);
+
+  // Splice in current Config values from configStore.
+  const configFragment = useConfigStore.getState().toXml();
+  output = output.replace(/<Config>[\s\S]*?<\/Config>/, configFragment);
+  if (!/<Config>/.test(output)) {
+    output = output.replace(/<\/PathOfBuilding>/, `${configFragment}\n</PathOfBuilding>`);
+  }
+
+  return output;
 }
 
 function escapeXmlText(s: string): string {
