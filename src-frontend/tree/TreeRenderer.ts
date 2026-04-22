@@ -126,8 +126,13 @@ export class TreeRenderer {
       this.resizeObserver = new ResizeObserver(() => {
         const w = parent.clientWidth;
         const h = parent.clientHeight;
+        if (w === 0 || h === 0) return;
         this.app.renderer.resize(w, h);
         if (this.viewport) this.viewport.resize(w, h);
+        // Immediately paint into the freshly-resized backbuffer so the
+        // browser never composites an empty (black) canvas between the
+        // resize tick and the next ticker frame.
+        this.app.renderer.render(this.app.stage);
       });
       this.resizeObserver.observe(parent);
     }
