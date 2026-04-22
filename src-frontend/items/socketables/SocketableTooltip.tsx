@@ -9,9 +9,14 @@ interface Props {
   iconSrc?: string;
   x: number;
   y: number;
+  /** Druid Shaman gets an extra per-rune Bonded: line. Hide them for every
+   *  other ascendancy so we don't show mods that do nothing. */
+  isShaman?: boolean;
 }
 
-export function SocketableTooltip({ name, entry, iconSrc, x, y }: Props) {
+const BONDED_PREFIX = /^Bonded:\s*/;
+
+export function SocketableTooltip({ name, entry, iconSrc, x, y, isShaman = false }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState<{ left: number; top: number }>({ left: x + 16, top: y + 16 });
 
@@ -19,10 +24,15 @@ export function SocketableTooltip({ name, entry, iconSrc, x, y }: Props) {
     const el = ref.current;
     if (!el) return;
     setPos(clampWithinBounds(x, y, el.offsetWidth, el.offsetHeight, getMainBounds()));
-  }, [x, y, name, entry]);
+  }, [x, y, name, entry, isShaman]);
 
   // "Rune" / "SoulCore" as emitted by PoB. Humanise "SoulCore" → "Soul Core".
   const typeLabel = entry.type === "SoulCore" ? "Soul Core" : entry.type;
+
+  // Mods: hide Bonded: lines for non-Shaman, strip the prefix when showing them.
+  const visibleMods = entry.mods
+    .filter((m) => isShaman || !BONDED_PREFIX.test(m))
+    .map((m) => ({ text: m.replace(BONDED_PREFIX, ""), bonded: BONDED_PREFIX.test(m) }));
 
   return createPortal(
     <div
@@ -43,12 +53,12 @@ export function SocketableTooltip({ name, entry, iconSrc, x, y }: Props) {
           <div className="text-[10px] text-fg-muted opacity-80">{typeLabel}</div>
         </div>
       </div>
-      {entry.mods.length > 0 && (
+      {visibleMods.length > 0 && (
         <>
           <div className="my-2 border-t border-border" />
           <div className="space-y-0.5">
-            {entry.mods.map((m, i) => (
-              <div key={i} className="text-sky-300">{m}</div>
+            {visibleMods.map((m, i) => (
+              <div key={i} className={m.bonded ? "text-purple-400" : "text-sky-300"}>{m.text}</div>
             ))}
           </div>
         </>

@@ -5,7 +5,7 @@ import { ItemTooltip } from "./ItemTooltip";
 import { TextTooltip } from "../ui/TextTooltip";
 import { useSocketablesStore } from "./socketables/socketablesStore";
 import { SocketableTooltip } from "./socketables/SocketableTooltip";
-import { slotTypeForKey } from "./socketables/slotType";
+import { slotCandidatesFor } from "./socketables/slotType";
 import { useBuildStore } from "../build/buildStore";
 import { ascendanciesFor } from "../build/classStarts";
 
@@ -298,6 +298,8 @@ function GearSlot({
                   name={name}
                   file={socketableIcon(name)}
                   slotKey={slotKey}
+                  itemClass={item.itemClass}
+                  isShaman={isShaman}
                   onHoverChange={setSocketHover}
                 />
               ))}
@@ -350,16 +352,22 @@ function SocketableIcon({
   name,
   file,
   slotKey,
+  itemClass,
+  isShaman,
   onHoverChange,
 }: {
   name: string;
   file: string | undefined;
   slotKey: SlotKey;
+  itemClass?: string;
+  isShaman?: boolean;
   onHoverChange?: (hovered: boolean) => void;
 }) {
   const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
   const lookup = useSocketablesStore((s) => s.lookup);
-  const entry = hover ? lookup(name, slotTypeForKey(slotKey as import("./socketables/slotType").SlotKey)) : null;
+  const entry = hover
+    ? lookup(name, slotCandidatesFor(slotKey as import("./socketables/slotType").SlotKey, itemClass))
+    : null;
   const iconSrc = file ? `/items/${file}` : undefined;
   return (
     <>
@@ -373,7 +381,7 @@ function SocketableIcon({
         ) : null}
       </div>
       {hover && entry && (
-        <SocketableTooltip name={name} entry={entry} iconSrc={iconSrc} x={hover.x} y={hover.y} />
+        <SocketableTooltip name={name} entry={entry} iconSrc={iconSrc} x={hover.x} y={hover.y} isShaman={isShaman} />
       )}
       {hover && !entry && (
         <TextTooltip text={name} x={hover.x} y={hover.y} iconSrc={iconSrc} />
