@@ -26,7 +26,7 @@ export function TextTooltip({ text, x, y, maxWidth = 360, iconSrc }: Props) {
     <div
       ref={ref}
       style={{ left: pos.left, top: pos.top, maxWidth }}
-      className="pointer-events-none fixed z-50 rounded border border-border bg-bg-elevated px-3 py-2 text-[12px] leading-snug text-fg shadow-lg whitespace-pre-wrap flex items-center gap-2"
+      className="pointer-events-none fixed z-[100] border border-border bg-bg-elevated/95 px-3 py-2 font-mono text-[11px] leading-snug text-fg shadow-xl backdrop-blur-sm whitespace-pre-wrap flex items-center gap-2"
     >
       {iconSrc && (
         <img
