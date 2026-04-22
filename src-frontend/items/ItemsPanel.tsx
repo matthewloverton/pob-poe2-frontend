@@ -257,6 +257,7 @@ function GearSlot({
   socketableIcon: (name: string) => string | undefined;
 }) {
   const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
+  const [socketHover, setSocketHover] = useState(false);
   return (
     <div
       className={`relative rounded-sm border border-border bg-bg-elev/60 ${className}`}
@@ -289,7 +290,12 @@ function GearSlot({
           {item.socketables.length > 0 && (
             <div className="absolute top-1 right-1 flex flex-wrap-reverse justify-end gap-0.5 max-w-[70%]">
               {item.socketables.map((name, i) => (
-                <SocketableIcon key={i} name={name} file={socketableIcon(name)} />
+                <SocketableIcon
+                  key={i}
+                  name={name}
+                  file={socketableIcon(name)}
+                  onHoverChange={setSocketHover}
+                />
               ))}
             </div>
           )}
@@ -310,7 +316,7 @@ function GearSlot({
           </div>
         </>
       )}
-      {item && hover && <ItemTooltip item={item} x={hover.x} y={hover.y} isShaman={isShaman} />}
+      {item && hover && !socketHover && <ItemTooltip item={item} x={hover.x} y={hover.y} isShaman={isShaman} />}
     </div>
   );
 }
@@ -336,13 +342,21 @@ function rarityText(rarity: ParsedItem["rarity"]): string {
   }
 }
 
-function SocketableIcon({ name, file }: { name: string; file: string | undefined }) {
+function SocketableIcon({
+  name,
+  file,
+  onHoverChange,
+}: {
+  name: string;
+  file: string | undefined;
+  onHoverChange?: (hovered: boolean) => void;
+}) {
   const [hover, setHover] = useState<{ x: number; y: number } | null>(null);
   return (
     <>
       <div
-        onMouseEnter={(e) => setHover({ x: e.clientX, y: e.clientY })}
-        onMouseLeave={() => setHover(null)}
+        onMouseEnter={(e) => { setHover({ x: e.clientX, y: e.clientY }); onHoverChange?.(true); }}
+        onMouseLeave={() => { setHover(null); onHoverChange?.(false); }}
         className="h-4 w-4 rounded-full bg-bg/60 backdrop-blur-sm ring-1 ring-border/60 overflow-hidden"
       >
         {file ? (
