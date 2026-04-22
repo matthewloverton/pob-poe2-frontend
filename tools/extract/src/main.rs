@@ -6,6 +6,7 @@ mod tree;
 mod sprites;
 mod manifest;
 mod config;
+mod socketables;
 
 #[derive(Parser, Debug)]
 #[command(about = "Extract PoB-PoE2 data artifacts into frontend-consumable JSON")]
@@ -42,5 +43,8 @@ fn main() -> Result<()> {
 
     config::extract_config(&args.luajit, &args.pob, &args.out.join("config-schema.json"))?;
     println!("wrote config-schema.json");
+
+    socketables::extract_socketables(&args.luajit, &args.pob, &args.out.join("socketables.json"))?;
+    println!("wrote socketables.json");
     Ok(())
 }
