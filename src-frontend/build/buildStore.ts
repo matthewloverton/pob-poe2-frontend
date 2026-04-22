@@ -30,6 +30,15 @@ interface BuildState {
   allocate: (ids: NodeId[]) => void;
   deallocate: (id: NodeId) => void;
   setNodeOverride: (nodeId: NodeId, optionIndex: number) => void;
+  // Swap to a new class+ascendancy while optionally preserving the current
+  // allocation. When `connectPath` is provided, its nodes are merged into
+  // the allocated set so the existing tree stays connected to the new class
+  // start; when omitted, the allocation is reset to just the new anchors.
+  swapClass: (
+    newClassId: number,
+    newAscendancyId: number,
+    connectPath?: NodeId[],
+  ) => void;
   // Replace allocation + per-node modes in one shot. Used after an import so
   // the Lua-side-authoritative state (which knows WS1/WS2 + overrides)
   // supersedes our URL-only derived set.
@@ -155,5 +164,44 @@ export const useBuildStore = create<BuildState>((set) => ({
       nodeOverrides: { ...state.nodeOverrides, [nodeId as unknown as number]: optionIndex },
       dirty: true,
     })),
+  swapClass: (newClassId, newAscendancyId, connectPath) =>
+    set((state) => {
+      const newClassStart = classStartId(newClassId);
+      const newAscStart = ascendStartIdFor(newClassId, newAscendancyId);
+      // If no connect path given, this is a Reset & Swap: clear allocation
+      // down to just the new class + ascendancy anchors.
+      if (!connectPath) {
+        const allocated = new Set<NodeId>();
+        if (newClassStart != null) allocated.add(newClassStart);
+        if (newAscStart != null) allocated.add(newAscStart);
+        return {
+          classId: newClassId,
+          classStartId: newClassStart,
+          ascendancyId: newAscendancyId,
+          ascendStartId: newAscStart,
+          allocated,
+          nodeModes: {},
+          nodeOverrides: {},
+          dirty: false,
+        };
+      }
+      // Connect-Path: keep everything except the old class/ascend anchors
+      // (replaced with the new class's), merge in the connect path so the
+      // new class start is linked to the existing tree.
+      const allocated = new Set<NodeId>(state.allocated);
+      if (state.classStartId != null) allocated.delete(state.classStartId);
+      if (state.ascendStartId != null) allocated.delete(state.ascendStartId);
+      if (newClassStart != null) allocated.add(newClassStart);
+      if (newAscStart != null) allocated.add(newAscStart);
+      for (const id of connectPath) allocated.add(id);
+      return {
+        classId: newClassId,
+        classStartId: newClassStart,
+        ascendancyId: newAscendancyId,
+        ascendStartId: newAscStart,
+        allocated,
+        dirty: true,
+      };
+    }),
   reset: () => set({ ...initialState() }),
 }));

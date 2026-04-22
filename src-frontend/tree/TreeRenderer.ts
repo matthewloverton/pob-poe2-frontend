@@ -24,7 +24,7 @@ import {
   type NodeKind,
   type NodeVisualState,
 } from "./NodeSprite";
-import { frameNameFor, FRAME_DIAMETER, ASCEND_FRAME_DIAMETER } from "./NodeFrame";
+import { frameNameFor, FRAME_DIAMETER, ASCEND_FRAME_DIAMETER, ASCEND_ROOT_FRAME } from "./NodeFrame";
 import { frameTexture, loadAtlases, manifestKey, type AtlasFrame } from "./atlas";
 
 const HIT_CELL_SIZE = 500;
@@ -183,6 +183,7 @@ export class TreeRenderer {
       if (resp.ok) this.bgManifest = await resp.json();
     } catch { /* non-fatal — backgrounds just won't render */ }
     if (this.bgManifest) {
+      await this.preloadPortraits();
       await this.buildFrameSprites();
     }
 
@@ -249,6 +250,11 @@ export class TreeRenderer {
     }
   }
 
+  // Kept as an instance field so focusNode() and other programmatic viewport
+  // updates can trigger a re-cull immediately — otherwise icons stay hidden
+  // from the last cull pass until the user manually pans.
+  private runCull: () => void = () => {};
+
   private setupCulling() {
     // Only icons are numerous enough to benefit from culling. Graphics layers
     // are single objects whose geometry lives on the GPU — cheap to render.
@@ -256,10 +262,10 @@ export class TreeRenderer {
     // skipUpdateTransform=false forces Pixi to compute fresh world transforms
     // before testing each sprite. Without it, mid-drag cull checks see stale
     // positions and cull sprites that should still be visible.
-    const cull = () => Culler.shared.cull(this.iconContainer, this.app.renderer.screen, false);
-    cull();
-    this.viewport.on("moved", cull);
-    this.viewport.on("zoomed", cull);
+    this.runCull = () => Culler.shared.cull(this.iconContainer, this.app.renderer.screen, false);
+    this.runCull();
+    this.viewport.on("moved", this.runCull);
+    this.viewport.on("zoomed", this.runCull);
   }
 
   private setupHitTesting() {
@@ -353,16 +359,57 @@ export class TreeRenderer {
     const minZoom = 0.5;
     if (this.viewport.scale.x < minZoom) this.viewport.setZoom(minZoom, true);
     this.viewport.moveCenter(n.x, n.y);
+    // pixi-viewport's moveCenter doesn't always emit "moved" for programmatic
+    // jumps, so icons can linger with stale cull state until the next user
+    // drag. Force the cull pass here so search→focus immediately reveals the
+    // icons at the new viewport position.
+    this.runCull();
+  }
+
+  // Warm the Pixi Assets cache for every class + ascendancy portrait + the
+  // two BGTree frames up-front. applyBackgrounds would otherwise lazy-load
+  // each on first selection, which has proven flaky — textures occasionally
+  // don't materialise until the user clicks their ascendancy. With the cache
+  // pre-populated, applyBackgrounds' Promise.all resolves instantly and the
+  // sprites are always created on the first pass.
+  private async preloadPortraits() {
+    if (!this.bgManifest) return;
+    const names = new Set<string>(["BGTree", "BGTreeActive"]);
+    for (const klass of this.tree.classes ?? []) {
+      if (klass.background?.image) names.add(klass.background.image);
+      for (const asc of klass.ascendancies ?? []) {
+        if (asc.background?.image) names.add(asc.background.image);
+      }
+    }
+    const urls: string[] = [];
+    for (const name of names) {
+      const entry = this.bgManifest[name];
+      if (entry) urls.push(`/tree-backgrounds/${entry.file}`);
+    }
+    try {
+      await Promise.all(urls.map((u) => Assets.load<Texture>(u)));
+    } catch { /* individual failures are fine — applyBackgrounds retries. */ }
   }
 
   // Diameter (in tree-world units) for the frame around a node. Ascendancy
   // nodes use their own ornate per-ascend frames at a slightly different size
-  // to match the game-art detail level.
-  private frameDiameter(kind: NodeKind, ascendancyName?: string): number {
+  // to match the game-art detail level. Ascendancy root nodes (name ==
+  // ascendancyName — the click target that swaps ascendancy) use the gold
+  // diamond AscendancyMiddle art instead.
+  private frameDiameter(kind: NodeKind, ascendancyName?: string, isRoot = false): number {
+    if (isRoot) return ASCEND_FRAME_DIAMETER.middle;
     if (ascendancyName) {
       return kind === "notable" ? ASCEND_FRAME_DIAMETER.large : ASCEND_FRAME_DIAMETER.small;
     }
     return FRAME_DIAMETER[kind];
+  }
+
+  // True when a node is the root of its ascendancy subtree — PoB marks these
+  // by having `name === ascendancyName`. Clicking them swaps ascendancy
+  // (handled in TreeCanvas) rather than allocating the node.
+  private isAscendancyRoot(node: PassiveNode): boolean {
+    const ascend = (node as unknown as { ascendancyName?: string }).ascendancyName;
+    return typeof ascend === "string" && (node.name as string | undefined) === ascend;
   }
 
   // Create one frame sprite per renderable node using the initial
@@ -373,20 +420,28 @@ export class TreeRenderer {
     if (!this.bgManifest) return;
     for (const n of this.nodes.values()) {
       const ascend = (n.node as unknown as { ascendancyName?: string }).ascendancyName;
-      const frameName = frameNameFor(n.kind, "unallocated", ascend);
+      const isRoot = this.isAscendancyRoot(n.node);
+      const frameName = isRoot ? ASCEND_ROOT_FRAME : frameNameFor(n.kind, "unallocated", ascend);
       if (!frameName) continue;
       const tex = await this.loadBackground(frameName);
       if (!tex) continue;
       const sprite = new Sprite(tex);
       sprite.anchor.set(0.5);
       sprite.position.set(n.x, n.y);
-      const d = this.frameDiameter(n.kind, ascend);
+      const d = this.frameDiameter(n.kind, ascend, isRoot);
       sprite.width = d;
       sprite.height = d;
       sprite.cullable = true;
       sprite.cullArea = new Rectangle(-d / 2, -d / 2, d, d);
       this.frameContainer.addChild(sprite);
       this.frameSprites.set(n.id, sprite);
+      // Ascendancy root nodes are click-targets for swapping ascendancy, not
+      // allocatable passives — the gold diamond frame is the whole visual,
+      // so hide the (generic ascendancy) icon that would otherwise sit inside.
+      if (isRoot) {
+        const iconSprite = this.iconSprites.get(n.id);
+        if (iconSprite) iconSprite.visible = false;
+      }
     }
     this.frameContainer.cullableChildren = true;
   }
@@ -398,6 +453,9 @@ export class TreeRenderer {
     if (!sprite) return;
     const r = this.nodes.get(id);
     if (!r) return;
+    // Ascendancy root frames don't vary by state — the gold diamond is
+    // always drawn. Clicking one swaps ascendancy rather than allocating.
+    if (this.isAscendancyRoot(r.node)) return;
     const ascend = (r.node as unknown as { ascendancyName?: string }).ascendancyName;
     const frameName = frameNameFor(r.kind, state, ascend);
     if (!frameName) return;
@@ -445,7 +503,23 @@ export class TreeRenderer {
   // Install / swap the class + ascendancy backgrounds. Called whenever the
   // user's class or ascendancy changes. Rotation of BGTreeActive points from
   // the class center toward the class-start node for flavor.
+  // Serializes concurrent applyBackgrounds calls (init race + effect fires)
+  // so that one run fully completes before the next starts applying changes.
+  // Without this the two runs interleave their awaits and a partial sprite
+  // set can be left on the container.
+  private backgroundsPending: Promise<void> = Promise.resolve();
+
   async applyBackgrounds(opts: {
+    classId: number;
+    ascendancyId: number;
+    classStartId: number | null;
+  }) {
+    const run = this.backgroundsPending.then(() => this.applyBackgroundsImpl(opts));
+    this.backgroundsPending = run.catch(() => undefined);
+    return run;
+  }
+
+  private async applyBackgroundsImpl(opts: {
     classId: number;
     ascendancyId: number;
     // Node id of the active class start; the renderer resolves its world
@@ -454,38 +528,76 @@ export class TreeRenderer {
   }) {
     if (!this.bgManifest || !this.tree.classes) return;
     // classId throughout the app is a ZERO-BASED INDEX into tree.classes[]
-    // (see build/classStarts.ts). The `integerId` field on each class is a
-    // game-engine id that doesn't match that index, so a `find()` on it
-    // returns the wrong class (e.g. Ranger index 0 ≠ integerId 2).
+    // (see build/classStarts.ts). The `integerId` field is a game-engine id
+    // that doesn't match that index.
     const klass = this.tree.classes[opts.classId];
     if (!klass || !klass.background) return;
 
     // PoB's DrawAsset convention: width/height fields are half-sizes, it draws
-    // at `width*2, height*2`. We anchor sprites at center, so match by
-    // doubling the declared dimensions here. Otherwise everything renders at
-    // half the intended size on the tree.
+    // at `width*2, height*2`. Our anchor is centered, so match by doubling.
     const DRAW_SCALE = 2;
 
-    // Central portrait — swap to active ascendancy if one is selected.
     const ascList = klass.ascendancies ?? [];
     const activeAscend = opts.ascendancyId > 0 ? ascList[opts.ascendancyId - 1] : undefined;
     const portraitName = activeAscend?.background?.image ?? klass.background.image;
     const cx = klass.background.x;
     const cy = klass.background.y;
-    await this.setSpriteTo(
+
+    // Collect every ascendancy across ALL classes so the tree shows every
+    // ascendancy backdrop at its actual position — not just those belonging
+    // to the active class. Inactive ones still dim to 0.75 alpha.
+    const allAscendancies = this.tree.classes
+      .flatMap((c) => c.ascendancies ?? [])
+      .filter((a) => a.background?.image);
+
+    // Gather every background texture needed in one batch so they load in
+    // parallel. The ascendancy textures in particular used to stall behind
+    // the class portrait/frame await chain.
+    const ascBackgrounds = allAscendancies.map((a) => a.background!.image);
+    const [portraitTex, bgTreeActiveTex, bgTreeTex, ...ascTextures] = await Promise.all([
+      this.loadBackground(portraitName),
+      this.loadBackground("BGTreeActive"),
+      this.loadBackground("BGTree"),
+      ...ascBackgrounds.map((n) => this.loadBackground(n)),
+    ]);
+
+    const applyOrCreate = (
+      slot: "classPortrait" | "bgTree" | "bgTreeActive",
+      tex: Texture | null,
+      x: number,
+      y: number,
+      w: number,
+      h: number,
+    ) => {
+      if (!tex) return;
+      let s = this.bgSprites[slot];
+      if (!s) {
+        s = new Sprite(tex);
+        s.anchor.set(0.5);
+        this.backgroundContainer.addChild(s);
+        this.bgSprites[slot] = s;
+      } else {
+        s.texture = tex;
+      }
+      s.position.set(x, y);
+      s.width = w;
+      s.height = h;
+      s.visible = true;
+    };
+
+    applyOrCreate(
       "classPortrait",
-      portraitName,
+      portraitTex,
       cx,
       cy,
       klass.background.width * DRAW_SCALE,
       klass.background.height * DRAW_SCALE,
     );
 
-    // BGTreeActive (inner frame that rotates toward the class-start node).
     const activeSize = klass.background.active ?? { width: 2000, height: 2000 };
-    await this.setSpriteTo(
+    applyOrCreate(
       "bgTreeActive",
-      "BGTreeActive",
+      bgTreeActiveTex,
       cx,
       cy,
       activeSize.width * DRAW_SCALE,
@@ -496,30 +608,27 @@ export class TreeRenderer {
       const startNode = this.tree.nodes[String(opts.classStartId)];
       if (startNode) {
         const pos = nodeWorldPosition(startNode, this.tree.groups, this.tree.constants);
-        // Match PoB: rotate so the asset's "top" (where its spotlight notch
-        // lives) points at the class-start node.
         bgActive.rotation = Math.PI / 2 + Math.atan2(pos.y - cy, pos.x - cx);
       }
     }
 
-    // BGTree (outer ornate ring) — sits on top of the portrait.
     const bgFrameSize = klass.background.bg ?? { width: 2000, height: 2000 };
-    await this.setSpriteTo(
+    applyOrCreate(
       "bgTree",
-      "BGTree",
+      bgTreeTex,
       cx,
       cy,
       bgFrameSize.width * DRAW_SCALE,
       bgFrameSize.height * DRAW_SCALE,
     );
 
-    // Ascendancy subtree backgrounds: draw each ascendancy's art at its own
-    // position, dim the inactive ones.
-    for (const asc of ascList) {
-      if (!asc.background?.image) continue;
+    // Ascendancy subtree backgrounds for every class. ascTextures[i] aligns
+    // with allAscendancies[i] because Promise.all preserves order.
+    for (let i = 0; i < allAscendancies.length; i++) {
+      const asc = allAscendancies[i];
+      const tex = ascTextures[i] ?? null;
+      if (!asc || !tex || !asc.background) continue;
       let s = this.bgSprites.ascendancyBgs.get(asc.name);
-      const tex = await this.loadBackground(asc.background.image);
-      if (!tex) continue;
       if (!s) {
         s = new Sprite(tex);
         s.anchor.set(0.5);
@@ -531,7 +640,9 @@ export class TreeRenderer {
       s.position.set(asc.background.x, asc.background.y);
       s.width = asc.background.width * DRAW_SCALE;
       s.height = asc.background.height * DRAW_SCALE;
-      s.alpha = activeAscend && activeAscend.name === asc.name ? 1.0 : 0.4;
+      // Active ascendancy gets full alpha; inactive ones (and ascendancies of
+      // non-active classes) dim to 0.75 so they recede without disappearing.
+      s.alpha = activeAscend && activeAscend.name === asc.name ? 1.0 : 0.75;
       s.visible = true;
     }
   }

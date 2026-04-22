@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { TreeRenderer } from "./TreeRenderer";
 import { TreeInteraction } from "./TreeInteraction";
 import type { PassiveTree, NodeId } from "../types/tree";
-import { useBuildStore } from "../build/buildStore";
-import { ascendanciesFor } from "../build/classStarts";
+import { countUserAllocated, useBuildStore } from "../build/buildStore";
+import { ascendanciesFor, classStartId as classStartIdFor } from "../build/classStarts";
 import { checkAllocation, computePoints } from "../build/pointCounts";
+import { buildGraph, shortestPath } from "../build/pathing";
 import { NodeTooltip } from "../ui/NodeTooltip";
 import { useFocusStore } from "./focusStore";
 
@@ -55,6 +56,25 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
       const i = interactionRef.current;
       if (!i) return;
       const s = useBuildStore.getState();
+      const clickedNode = tree.nodes[String(id)];
+      // Ascendancy root nodes (where `name === ascendancyName`) act as class
+      // pickers in PoB: clicking them selects that ascendancy — and the class
+      // that owns it — rather than trying to allocate the node. Intercept
+      // here before pathing/allocation runs.
+      if (
+        clickedNode?.ascendancyName &&
+        typeof clickedNode.name === "string" &&
+        clickedNode.name === clickedNode.ascendancyName
+      ) {
+        await handleAscendancyCoreClick(
+          tree,
+          clickedNode.ascendancyName,
+          (msg, kind) => import("../ui/dialogStore").then(({ useDialogStore }) =>
+            useDialogStore.getState().pushToast(msg, kind),
+          ),
+        );
+        return;
+      }
       if (s.allocated.has(id)) {
         const orphans = i.orphansOnRemove(s.allocated, id);
         deallocate(id);
@@ -217,5 +237,133 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
         />
       )}
     </div>
+  );
+}
+
+// Handle a click on an ascendancy root node ("Oracle", "Deadeye", etc.). If
+// the clicked ascendancy belongs to the current class we just swap the
+// ascendancy; otherwise we prompt the user to either Reset & Swap (clears the
+// tree and switches class) or Connect Path (keeps existing allocations and
+// auto-paths from the new class start through the main tree).
+async function handleAscendancyCoreClick(
+  tree: PassiveTree,
+  ascendancyName: string,
+  toast: (msg: string, kind?: "info" | "error" | "success") => Promise<unknown> | unknown,
+) {
+  const classes = tree.classes ?? [];
+  let targetClassId = -1;
+  let targetAscendancyId = -1;
+  for (let ci = 0; ci < classes.length; ci++) {
+    const klass = classes[ci]!;
+    const idx = (klass.ascendancies ?? []).findIndex((a) => a.name === ascendancyName);
+    if (idx >= 0) { targetClassId = ci; targetAscendancyId = idx + 1; break; }
+  }
+  if (targetClassId === -1) return;
+
+  const state = useBuildStore.getState();
+  if (targetClassId === state.classId) {
+    if (state.ascendancyId !== targetAscendancyId) {
+      useBuildStore.getState().setAscendancy(targetAscendancyId);
+    }
+    return;
+  }
+
+  const userAllocCount = countUserAllocated(state);
+  if (userAllocCount === 0) {
+    useBuildStore.getState().swapClass(targetClassId, targetAscendancyId);
+    return;
+  }
+
+  const newClassName = classes[targetClassId]?.name ?? "class";
+  const { useDialogStore } = await import("../ui/dialogStore");
+  const chosen = await useDialogStore.getState().openChoice(
+    `Change class to ${newClassName}?`,
+    [
+      {
+        label: "Reset & Swap",
+        description: `Clears your passive tree and switches to ${newClassName}.`,
+      },
+      {
+        label: "Connect Path",
+        description: `Keeps your tree and auto-paths from the new ${newClassName} start.`,
+      },
+    ],
+  );
+  if (chosen == null) return;
+
+  if (chosen === 0) {
+    useBuildStore.getState().swapClass(targetClassId, targetAscendancyId);
+    return;
+  }
+
+  // Connect Path — find shortest route from any currently allocated node to
+  // the new class's start node, respecting forbidden categories.
+  const newClassStart = classStartIdFor(targetClassId);
+  if (newClassStart == null) {
+    void toast("Cannot find start node for target class.", "error");
+    return;
+  }
+
+  const forbidden = new Set<NodeId>();
+  for (const [idStr, n] of Object.entries(tree.nodes)) {
+    const id = Number(idStr);
+    const nn = n as unknown as {
+      isProxy?: boolean; isOnlyImage?: boolean; classesStart?: unknown[];
+      ascendancyName?: string;
+    };
+    if (nn.isProxy || nn.isOnlyImage) forbidden.add(id);
+    if (Array.isArray(nn.classesStart) && id !== newClassStart) forbidden.add(id);
+    if (typeof nn.ascendancyName === "string" && nn.ascendancyName !== ascendancyName) {
+      forbidden.add(id);
+    }
+  }
+
+  const fromSet = new Set<NodeId>(state.allocated);
+  if (state.classStartId != null) fromSet.delete(state.classStartId);
+  if (state.ascendStartId != null) fromSet.delete(state.ascendStartId);
+  if (fromSet.size === 0) {
+    useBuildStore.getState().swapClass(targetClassId, targetAscendancyId);
+    return;
+  }
+
+  const graph = buildGraph(tree.nodes);
+  const path = shortestPath(fromSet, newClassStart, graph, forbidden);
+  if (!path) {
+    void toast(
+      `No path to ${newClassName}'s start from your current tree — reset instead or try a different class.`,
+      "error",
+    );
+    return;
+  }
+
+  // The connect path may include "+5 to any Attribute" nodes — prompt once
+  // and apply the pick to all of them so swapping doesn't silently leave
+  // them in their generic state. Same pattern as regular allocation flow.
+  const needsChoice: number[] = [];
+  for (const nid of path) {
+    const n = tree.nodes[String(nid)];
+    if (n?.options && n.options.length > 0 && state.nodeOverrides[nid] === undefined) {
+      needsChoice.push(nid);
+    }
+  }
+  if (needsChoice.length > 0) {
+    const first = tree.nodes[String(needsChoice[0])]!;
+    const options = (first.options ?? []).map((o) => ({
+      label: o.name,
+      description: Array.isArray(o.stats) ? o.stats.join(" · ") : undefined,
+    }));
+    const title = needsChoice.length === 1
+      ? (first.name ? `${first.name}: Choose Option` : "Choose Option")
+      : `Choose Option (applies to ${needsChoice.length} nodes in connect path)`;
+    const chosen = await useDialogStore.getState().openChoice(title, options);
+    if (chosen == null) return; // cancelled — abort the swap
+    const setOverride = useBuildStore.getState().setNodeOverride;
+    for (const nid of needsChoice) setOverride(nid, chosen);
+  }
+
+  useBuildStore.getState().swapClass(targetClassId, targetAscendancyId, path);
+  void toast(
+    `Swapped to ${newClassName} via ${path.length} connecting node${path.length === 1 ? "" : "s"}.`,
+    "success",
   );
 }

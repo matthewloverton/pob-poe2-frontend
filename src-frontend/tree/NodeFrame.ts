@@ -54,8 +54,14 @@ export const FRAME_DIAMETER: Record<NodeKind, number> = {
 
 // Ascendancy frames are drawn larger so their per-class ornate detail reads.
 // Indexed separately because ascendancy nodes use their own art regardless
-// of the underlying kind.
+// of the underlying kind. `middle` is the gold-diamond "AscendancyMiddle"
+// asset used for the ascendancy root node (clicking it swaps ascendancy).
 export const ASCEND_FRAME_DIAMETER = {
   small: 110,
   large: 200,
+  middle: 140,
 };
+
+// Ascendancy root nodes use a fixed gold-diamond frame and don't show an
+// icon inside — click behaviour differs (swap ascendancy, not allocate).
+export const ASCEND_ROOT_FRAME = "AscendancyMiddle";

@@ -289,7 +289,112 @@ export function Sidebar() {
       );
     };
 
-    const topBlock = (
+    // Secondary headline cell — same visual rhythm as the big Combined DPS
+    // but smaller. Used for Total DPS / Total DoT DPS and the per-element max
+    // hits in wide mode so the extra horizontal room surfaces useful numbers.
+    // `reserveSubtext` keeps vertical rhythm with the Combined DPS cell which
+    // includes a skill-name subtext line — sibling cells render an invisible
+    // line of the same height so the row's baseline stays flush.
+    const minorHeadline = (
+      label: string,
+      value: unknown,
+      accent?: string,
+      reserveSubtext = false,
+    ) => (
+      <div>
+        <div className="text-[9px] uppercase tracking-widest text-fg-muted">{label}</div>
+        <div className={`font-mono text-base leading-tight ${accent ?? "text-fg"}`}>{fmtInt(value)}</div>
+        {reserveSubtext && (
+          <div className="mt-0.5 font-mono text-[10px] text-fg-muted opacity-0 select-none" aria-hidden="true">&nbsp;</div>
+        )}
+      </div>
+    );
+
+    // Cell wrapper that spans a range of columns in the shared 12-col grid
+    // used in wide mode. Class strings are literals so Tailwind's JIT
+    // scanner picks them up (template `col-span-${n}` would be invisible to
+    // it). In narrow mode the span class is dropped.
+    const SPAN_CLASS: Record<1 | 2 | 3 | 4 | 6, string> = {
+      1: "col-span-1",
+      2: "col-span-2",
+      3: "col-span-3",
+      4: "col-span-4",
+      6: "col-span-6",
+    };
+    const span = (cols: 1 | 2 | 3 | 4 | 6) =>
+      wide ? `${SPAN_CLASS[cols]} min-w-0` : "min-w-0";
+
+    const topBlock = wide ? (
+      // Wide mode: single 12-column grid so every row aligns on the same x
+      // gridlines. Cells span 2/3/4 cols to group cleanly: DPS row 4-4-4,
+      // EHP row 2-2-2-2-2-2, vitals 3-3-3-3, attributes 4-4-4.
+      <>
+        <div className="grid grid-cols-12 gap-x-3 gap-y-3 relative pb-2">
+          {backgroundRecalc && (
+            <span
+              className="absolute right-0 top-0 h-1.5 w-1.5 animate-pulse rounded-full bg-accent"
+              title="Recalculating…"
+            />
+          )}
+          {/* 3 + 1 + 3 + 1 + 3 + 1 = 12. Three equal-width data cells with
+              dedicated 1-col slots holding the = / + glyphs between them
+              (and a trailing empty spacer keeping the total at 12 so the
+              grid lines match the rows below). */}
+          <div className={span(3)}>
+            <div className="text-[9px] uppercase tracking-widest text-fg-muted">Combined DPS</div>
+            <div className="font-mono text-base text-fg leading-tight">{fmtInt(headline.dps)}</div>
+            {headline.skill && (
+              <div className="mt-0.5 font-mono text-[10px] text-fg-muted truncate">{headline.skill}</div>
+            )}
+          </div>
+          {/* Mirror minorHeadline's structure (invisible label line + glyph
+              on a value line) so = and + land at the same vertical baseline
+              as the DPS values in their neighbours. */}
+          <div className={span(1) + " flex flex-col items-center"}>
+            <div className="text-[9px] opacity-0 select-none" aria-hidden="true">&nbsp;</div>
+            <div className="font-mono text-base leading-tight text-fg-dim select-none">=</div>
+          </div>
+          <div className={span(3)}>{minorHeadline("Total DPS", merged.TotalDPS, undefined, true)}</div>
+          <div className={span(1) + " flex flex-col items-center"}>
+            <div className="text-[9px] opacity-0 select-none" aria-hidden="true">&nbsp;</div>
+            <div className="font-mono text-base leading-tight text-fg-dim select-none">+</div>
+          </div>
+          <div className={span(3)}>{minorHeadline("Total DoT DPS", merged.TotalDotDPS, undefined, true)}</div>
+          <div className={span(1)} />
+
+          <div className={span(2)}>
+            <div className="text-[9px] uppercase tracking-widest text-fg-muted">Effective HP</div>
+            <div className="font-mono text-base text-fg leading-tight">{fmtInt(defence.TotalEHP)}</div>
+          </div>
+          <div className={span(2)}>{minorHeadline("Phys Hit", defence.PhysicalMaximumHitTaken)}</div>
+          <div className={span(2)}>{minorHeadline("Fire Hit", defence.FireMaximumHitTaken, "text-red-400")}</div>
+          <div className={span(2)}>{minorHeadline("Cold Hit", defence.ColdMaximumHitTaken, "text-cyan-400")}</div>
+          <div className={span(2)}>{minorHeadline("Lightning", defence.LightningMaximumHitTaken, "text-yellow-400")}</div>
+          <div className={span(2)}>{minorHeadline("Chaos", defence.ChaosMaximumHitTaken, "text-purple-500")}</div>
+        </div>
+
+        <div className="grid grid-cols-12 gap-x-3 gap-y-0 border-t border-border py-2">
+          <div className={span(3)}>{vitalCell("Life", merged.Life, "text-red-400")}</div>
+          <div className={span(3)}>{vitalCell("ES", merged.EnergyShield, "text-cyan-400")}</div>
+          <div className={span(3)}>{vitalCell("Evasion", merged.Evasion, "text-green-400")}</div>
+          <div className={span(3)}>{vitalCell("Armour", merged.Armour, "text-fg-dim")}</div>
+        </div>
+
+        <div className="grid grid-cols-12 gap-x-3 gap-y-0 border-t border-border py-2">
+          <div className={span(3)}>{resCell("Fire", merged.FireResistTotal, merged.FireResistOverCap, "text-red-400")}</div>
+          <div className={span(3)}>{resCell("Cold", merged.ColdResistTotal, merged.ColdResistOverCap, "text-cyan-400")}</div>
+          <div className={span(3)}>{resCell("Lightning", merged.LightningResistTotal, merged.LightningResistOverCap, "text-yellow-400")}</div>
+          <div className={span(3)}>{resCell("Chaos", merged.ChaosResistTotal, merged.ChaosResistOverCap, "text-purple-500")}</div>
+        </div>
+
+        <div className="grid grid-cols-12 gap-x-3 gap-y-0 border-t border-border py-2">
+          <div className={span(4)}>{vitalCell("Strength", str === "—" ? null : str, "text-red-400")}</div>
+          <div className={span(4)}>{vitalCell("Dexterity", dex === "—" ? null : dex, "text-green-400")}</div>
+          <div className={span(4)}>{vitalCell("Intelligence", intl === "—" ? null : intl, "text-blue-400")}</div>
+        </div>
+      </>
+    ) : (
+      // Narrow mode keeps the original stacked layout — no 12-col grid.
       <>
         <div className="relative pb-2">
           {backgroundRecalc && (
@@ -326,27 +431,28 @@ export function Sidebar() {
           {vitalCell("Dexterity", dex === "—" ? null : dex, "text-green-400")}
           {vitalCell("Intelligence", intl === "—" ? null : intl, "text-blue-400")}
         </div>
-
-        {data.skills && data.skills.length > 0 && (
-          <div className="mt-2">
-            <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-fg-muted">Main Skill</div>
-            <select
-              className="w-full rounded-sm border border-border bg-bg-elev px-2 py-0.5 font-mono text-xs text-fg"
-              value={data.mainSocketGroup ?? 1}
-              onChange={(e) => void setMainSkill(Number(e.target.value))}
-            >
-              {data.skills.map((g) => (
-                <option key={g.i} value={g.i} style={optionStyle}>{g.label}</option>
-              ))}
-            </select>
-          </div>
-        )}
       </>
+    );
+
+    const mainSkillPicker = data.skills && data.skills.length > 0 && (
+      <div className="mt-2">
+        <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-fg-muted">Main Skill</div>
+        <select
+          className="w-full rounded-sm border border-border bg-bg-elev px-2 py-0.5 font-mono text-xs text-fg"
+          value={data.mainSocketGroup ?? 1}
+          onChange={(e) => void setMainSkill(Number(e.target.value))}
+        >
+          {data.skills.map((g) => (
+            <option key={g.i} value={g.i} style={optionStyle}>{g.label}</option>
+          ))}
+        </select>
+      </div>
     );
 
     body = wide ? (
       <>
         {topBlock}
+        {mainSkillPicker}
         <div className="mt-2 grid grid-cols-2 gap-x-5">
           <div>{renderColumn(leftPanels)}</div>
           <div>{renderColumn(rightPanels)}</div>
@@ -355,6 +461,7 @@ export function Sidebar() {
     ) : (
       <>
         {topBlock}
+        {mainSkillPicker}
         <div className="mt-2">{renderColumn([...leftPanels, ...rightPanels])}</div>
       </>
     );

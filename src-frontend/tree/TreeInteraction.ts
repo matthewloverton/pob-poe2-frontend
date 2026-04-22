@@ -9,6 +9,10 @@ export class TreeInteraction {
   // can selectively unlock the active ascendancy subtree while still walling
   // off the others.
   private ascendancyNodesByName = new Map<string, Set<NodeId>>();
+  // Nodes that exist in the tree data but aren't rendered as interactive —
+  // masteries with `isOnlyImage`, proxy stubs, etc. Always forbidden in
+  // pathing so BFS can't bridge two visible notables via an invisible hub.
+  private hiddenNodes: Set<NodeId> = new Set();
   private forbidden: Set<NodeId> = new Set();
   private activeClassStartId: NodeId | null = null;
   private activeAscendStartId: NodeId | null = null;
@@ -21,6 +25,8 @@ export class TreeInteraction {
     for (const [idStr, node] of Object.entries(nodes)) {
       const id = Number(idStr);
       if (Array.isArray(node.classesStart)) this.allClassStarts.add(id);
+      if ((node as unknown as { isProxy?: boolean }).isProxy === true) this.hiddenNodes.add(id);
+      if ((node as unknown as { isOnlyImage?: boolean }).isOnlyImage === true) this.hiddenNodes.add(id);
       const ascName = (node as unknown as { ascendancyName?: string }).ascendancyName;
       if (typeof ascName === "string") {
         let bucket = this.ascendancyNodesByName.get(ascName);
@@ -47,6 +53,10 @@ export class TreeInteraction {
       if (name === opts.ascendancyName) continue;
       for (const id of bucket) forbidden.add(id);
     }
+    // Always forbid isProxy / isOnlyImage nodes (e.g. mastery hubs) so the
+    // pathing BFS can't bridge two visible notables through an invisible
+    // intermediate. These are never legitimate allocations anyway.
+    for (const id of this.hiddenNodes) forbidden.add(id);
     if (opts.classStartId != null) forbidden.delete(opts.classStartId);
     if (opts.ascendStartId != null) forbidden.delete(opts.ascendStartId);
     this.forbidden = forbidden;
@@ -65,13 +75,13 @@ export class TreeInteraction {
     return s;
   }
 
-  // Multi-source BFS from every active anchor (main class + active ascend root).
-  // Returns the parent chain so callers can derive both the node list and edge
-  // list. When both anchors exist BFS naturally emerges from whichever is
-  // closer to `target` — so ascendancy paths trace from the ascend root, main
-  // tree paths from the class start.
-  private bfsFromAnchor(target: NodeId): Map<NodeId, NodeId> | null {
-    const sources = this.anchors();
+  // Multi-source BFS seeded from every allocated node plus the class/ascend
+  // anchors. That way the returned path traces from whichever allocated node
+  // is nearest to the target — matching PoB + PoE behaviour where clicking a
+  // far node extends from your latest allocation, not from the class start.
+  private bfsFromAnchor(allocated: Set<NodeId>, target: NodeId): Map<NodeId, NodeId> | null {
+    const sources = new Set<NodeId>(this.anchors());
+    for (const id of allocated) sources.add(id);
     if (sources.size === 0) return null;
     if (sources.has(target)) return new Map();
     if (this.forbidden.has(target)) return null;
@@ -110,7 +120,7 @@ export class TreeInteraction {
   computePathing(allocated: Set<NodeId>, hovered: NodeId | null): Set<NodeId> {
     if (hovered == null) return new Set();
     if (allocated.has(hovered)) return new Set();
-    const parent = this.bfsFromAnchor(hovered);
+    const parent = this.bfsFromAnchor(allocated, hovered);
     if (!parent) return new Set();
     return new Set(this.reconstructPath(parent, hovered));
   }
@@ -118,7 +128,7 @@ export class TreeInteraction {
   pathingEdges(allocated: Set<NodeId>, hovered: NodeId | null): Array<[NodeId, NodeId]> {
     if (hovered == null) return [];
     if (allocated.has(hovered)) return [];
-    const parent = this.bfsFromAnchor(hovered);
+    const parent = this.bfsFromAnchor(allocated, hovered);
     if (!parent) return [];
     const edges: Array<[NodeId, NodeId]> = [];
     let n: NodeId = hovered;
@@ -130,10 +140,10 @@ export class TreeInteraction {
     return edges;
   }
 
-  // Called on click. Returns the same anchor-rooted path; already-allocated nodes
-  // in it are no-ops because the store's allocate() is a set-union.
-  nodesToAllocate(_allocated: Set<NodeId>, target: NodeId): NodeId[] {
-    const parent = this.bfsFromAnchor(target);
+  // Called on click. Returns the shortest path from any already-allocated node
+  // (or the class/ascend anchor if nothing is allocated) to the target.
+  nodesToAllocate(allocated: Set<NodeId>, target: NodeId): NodeId[] {
+    const parent = this.bfsFromAnchor(allocated, target);
     if (!parent) return [];
     return this.reconstructPath(parent, target);
   }
