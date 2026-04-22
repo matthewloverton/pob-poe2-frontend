@@ -68,21 +68,6 @@ body { font-family: var(--font-sans); font-feature-settings: "tnum", "ss01"; }
   padding: 12px 12px 8px;
   border-bottom: 1px solid var(--color-border-subtle);
 }
-.config-toolbar input {
-  width: 320px;
-  padding: 6px 10px;
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  color: var(--color-fg);
-  font-family: var(--font-sans);
-  font-size: 13px;
-  outline: none;
-  transition: border-color 120ms ease;
-}
-.config-toolbar input:focus { border-color: var(--color-accent); }
-.config-toolbar input::placeholder { color: var(--color-fg-muted); }
-
 .config-sections {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

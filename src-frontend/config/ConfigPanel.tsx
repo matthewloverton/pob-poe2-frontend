@@ -35,9 +35,10 @@ export function ConfigPanel() {
       <div className="config-toolbar">
         <input
           type="search"
-          placeholder="Search config..."
+          placeholder="Search config…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          className="w-72 bg-bg-elevated border border-border px-3 py-1.5 text-[12px] text-fg placeholder:text-fg-muted focus:outline-none focus:border-fg-muted"
         />
       </div>
       <div className="config-sections">
