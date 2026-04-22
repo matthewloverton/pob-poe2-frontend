@@ -552,6 +552,52 @@ function handlers.get_alloc_state(_payload)
     return { allocated = allocated, modes = modes, overrides = overrides }
 end
 
+-- Returns data for each tree-socketed jewel: its radius (in tree units),
+-- the radius-index PoB uses internally, the jewel's name, and the set of
+-- allocated tree-node ids that fall inside its radius. The frontend uses
+-- this to draw per-jewel radius rings on the tree and surface "affected
+-- by jewel X" in node tooltips — all without reimplementing PoB's
+-- geometry tables (outer/inner/multiplier) on the JS side.
+function handlers.get_jewel_sockets(_payload)
+    if not pob_loaded then error("get_jewel_sockets: call load_pob first") end
+    local build = _G.build
+    if not build or not build.spec then return { sockets = {} } end
+    local spec = build.spec
+    local gc = (_G.data and _G.data.gameConstants) or {}
+    local mult = gc.PassiveTreeJewelDistanceMultiplier or 1
+    local radiusTable = (_G.data and _G.data.jewelRadius) or {}
+    local items = (build.itemsTab and build.itemsTab.items) or {}
+
+    local sockets = {}
+    for nodeId, itemId in pairs(spec.jewels or {}) do
+        local entry = { nodeId = nodeId, itemId = itemId }
+        local item = items[itemId]
+        if item then
+            entry.itemName = item.name
+            local radIdx = item.jewelRadiusIndex
+            if radIdx and radiusTable[radIdx] then
+                entry.radiusIndex = radIdx
+                entry.outerRadius = (radiusTable[radIdx].outer or 0) * mult
+                entry.innerRadius = (radiusTable[radIdx].inner or 0) * mult
+                entry.radiusLabel = radiusTable[radIdx].label
+            end
+            -- Allocated tree nodes inside this jewel's radius. PoB precomputes
+            -- this under spec.nodes[nodeId].nodesInRadius[radiusIndex].
+            local affected = {}
+            local specNode = spec.nodes and spec.nodes[nodeId]
+            if specNode and specNode.nodesInRadius and radIdx
+               and specNode.nodesInRadius[radIdx] then
+                for nid in pairs(specNode.nodesInRadius[radIdx]) do
+                    affected[#affected + 1] = nid
+                end
+            end
+            entry.nodesInRadius = affected
+        end
+        sockets[#sockets + 1] = entry
+    end
+    return { sockets = sockets }
+end
+
 function handlers.set_main_skill(payload)
     if not pob_loaded then error("set_main_skill: call load_pob first") end
     if type(payload) ~= "table" or type(payload.index) ~= "number" then

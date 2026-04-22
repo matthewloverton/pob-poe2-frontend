@@ -18,6 +18,7 @@ pub fn run() {
             commands::lua::lua_compute_stats,
             commands::lua::lua_dump_output_keys,
             commands::lua::lua_set_main_skill,
+            commands::lua::lua_get_jewel_sockets,
             commands::lua::lua_set_allocated,
             commands::lua::lua_get_alloc_state,
             commands::fs::load_build,

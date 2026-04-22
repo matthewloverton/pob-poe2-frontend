@@ -55,6 +55,13 @@ export class TreeRenderer {
   // through its transparent center.
   private frameContainer = new Container();
   private frameSprites = new Map<number, Sprite>();
+  // Jewel socket area-of-effect rings + markers, drawn beneath the frame
+  // layer so the ring encircles surrounding nodes without obscuring them.
+  private jewelLayer = new Graphics();
+  // Jewel-icon sprites (the actual gem art) laid over the socket node so
+  // each socketed jewel reads as its own item rather than a generic socket.
+  private jewelIconContainer = new Container();
+  private jewelIconSprites = new Map<number, Sprite>();
   // Sits behind everything — holds class/ascendancy portraits + ornate frames.
   private backgroundContainer = new Container();
   private bgManifest: Record<string, { file: string; width: number; height: number }> | null = null;
@@ -160,7 +167,11 @@ export class TreeRenderer {
     this.viewport.addChild(this.removingConnectionLayer);
     this.viewport.addChild(this.bgFillLayer);
     this.viewport.addChild(this.overlayFillLayer);
+    this.viewport.addChild(this.jewelLayer);
     this.viewport.addChild(this.frameContainer);
+    // Jewel gem art sits INSIDE the frame — drawn after the frame container
+    // so the jewel's icon shows up within the JewelFrame border.
+    this.viewport.addChild(this.jewelIconContainer);
     this.viewport.addChild(this.iconContainer);
     this.viewport.addChild(this.bgStrokeLayer);
     this.viewport.addChild(this.overlayStrokeLayer);
@@ -657,6 +668,80 @@ export class TreeRenderer {
   // but no longer appears in the overrides map — so deallocating an attribute
   // node correctly reverts the icon to the generic "any Attribute" art.
   // No-op before init completes (atlas not yet loaded).
+  // Draw a radius ring + glow at each tree node id that has a jewel
+  // socketed, AND swap the jewel gem art onto the socket when an iconUrl
+  // is provided. `radius` comes from the sidecar's actual jewel data; a
+  // fallback applies when we only know the node id (ring defaults to
+  // 1500 units) or 0 (no-radius jewel — skip the ring entirely).
+  private static readonly DEFAULT_JEWEL_RADIUS = 1500;
+  private static readonly JEWEL_ICON_DIAMETER = 110;
+  async applyJewels(entries: Array<{ nodeId: number; radius?: number; iconUrl?: string }>) {
+    this.jewelLayer.clear();
+    // Remove gem sprites for sockets that no longer have a jewel, and
+    // restore the socket's own (generic) icon so the UI matches an empty
+    // socket again. Gem sprites draw INSIDE the frame but below the
+    // icon-container so we hide the socket icon whenever a gem is active.
+    const incoming = new Set(entries.map((e) => e.nodeId));
+    for (const [id, sprite] of this.jewelIconSprites) {
+      if (!incoming.has(id)) {
+        sprite.destroy();
+        this.jewelIconSprites.delete(id);
+        const socketIcon = this.iconSprites.get(id);
+        if (socketIcon) socketIcon.visible = true;
+      }
+    }
+    if (entries.length === 0) return;
+    const seen = new Set<number>();
+    for (const { nodeId, radius, iconUrl } of entries) {
+      if (seen.has(nodeId)) continue;
+      seen.add(nodeId);
+      const node = this.tree.nodes[String(nodeId)];
+      if (!node) continue;
+      const pos = nodeWorldPosition(node, this.tree.groups, this.tree.constants);
+      if (!Number.isFinite(pos.x)) continue;
+
+      // Radius ring (skip when radius === 0 — stat-stick jewel with no AoE).
+      if (radius !== 0) {
+        const r = radius && radius > 0 ? radius : TreeRenderer.DEFAULT_JEWEL_RADIUS;
+        this.jewelLayer.circle(pos.x, pos.y, r).fill({ color: 0x3b82f6, alpha: 0.08 });
+        this.jewelLayer.circle(pos.x, pos.y, r).stroke({ color: 0x60a5fa, width: 8, alpha: 0.7 });
+      }
+
+      // Jewel gem icon — lazy-load from the items manifest URL and slot
+      // inside the socket frame. We create/update a sprite per socket node.
+      if (iconUrl) {
+        try {
+          const tex = await Assets.load<Texture>(iconUrl);
+          if (!tex) continue;
+          let sprite = this.jewelIconSprites.get(nodeId);
+          if (!sprite) {
+            sprite = new Sprite(tex);
+            sprite.anchor.set(0.5);
+            this.jewelIconContainer.addChild(sprite);
+            this.jewelIconSprites.set(nodeId, sprite);
+          } else {
+            sprite.texture = tex;
+          }
+          sprite.position.set(pos.x, pos.y);
+          sprite.width = TreeRenderer.JEWEL_ICON_DIAMETER;
+          sprite.height = TreeRenderer.JEWEL_ICON_DIAMETER;
+          sprite.cullable = true;
+          sprite.cullArea = new Rectangle(
+            -TreeRenderer.JEWEL_ICON_DIAMETER / 2,
+            -TreeRenderer.JEWEL_ICON_DIAMETER / 2,
+            TreeRenderer.JEWEL_ICON_DIAMETER,
+            TreeRenderer.JEWEL_ICON_DIAMETER,
+          );
+          // Hide the socket's own icon so the gem is the visible art
+          // inside the frame instead of the generic socket placeholder.
+          const socketIcon = this.iconSprites.get(nodeId);
+          if (socketIcon) socketIcon.visible = false;
+        } catch { /* missing icon — leave the generic frame showing */ }
+      }
+    }
+    this.jewelIconContainer.cullableChildren = true;
+  }
+
   applyOverrideIcons(overrides: Record<number, number>) {
     if (!this.atlasFrames || !this.atlasSources) return;
 
