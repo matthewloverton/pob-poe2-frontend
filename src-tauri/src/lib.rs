@@ -21,6 +21,7 @@ pub fn run() {
             commands::lua::lua_get_jewel_sockets,
             commands::lua::lua_set_allocated,
             commands::lua::lua_get_alloc_state,
+            commands::lua::lua_set_config,
             commands::fs::load_build,
             commands::fs::save_build,
         ])

@@ -1,6 +1,17 @@
 import { create } from "zustand";
 import type { ConfigSchema, ConfigValue } from "./types";
 import { parseConfigXml, serializeConfigXml } from "./xmlConfig";
+import { useLiveStatsStore } from "../build/liveStatsStore";
+
+let _recomputeTimer: ReturnType<typeof setTimeout> | null = null;
+function scheduleRecompute(values: Record<string, ConfigValue>) {
+  if (_recomputeTimer) clearTimeout(_recomputeTimer);
+  _recomputeTimer = setTimeout(() => {
+    // Only fire when a build is loaded (data !== null means refresh succeeded).
+    if (useLiveStatsStore.getState().data === null) return;
+    useLiveStatsStore.getState().setConfig(values as Record<string, number | boolean | string>).catch(console.error);
+  }, 150);
+}
 
 interface ConfigState {
   schema: ConfigSchema | null;
@@ -24,7 +35,11 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
     set({ values: xml ? parseConfigXml(xml) : {} });
   },
   set: (key, value) => {
-    set((s) => ({ values: { ...s.values, [key]: value } }));
+    set((s) => {
+      const nextValues = { ...s.values, [key]: value };
+      scheduleRecompute(nextValues);
+      return { values: nextValues };
+    });
   },
   toXml: () => {
     const { schema, values } = get();

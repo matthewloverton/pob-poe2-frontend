@@ -160,3 +160,15 @@ pub async fn lua_set_allocated(
         .await
         .map_err(|e| e.to_string())
 }
+
+#[tauri::command]
+pub async fn lua_set_config(
+    app: AppHandle,
+    sidecar: State<'_, LuaSidecar>,
+    values: std::collections::HashMap<String, serde_json::Value>,
+) -> Result<Value, String> {
+    sidecar
+        .invoke(&app, "set_config", json!({ "values": values }))
+        .await
+        .map_err(|e| e.to_string())
+}

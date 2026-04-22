@@ -514,6 +514,34 @@ function handlers.set_allocated(payload)
     return handlers.get_stats(nil)
 end
 
+-- Applies one or more config input values, rebuilds the config mod list, then
+-- settles calcs and returns fresh stats. Values are keyed by PoB input var name
+-- (e.g. "usePowerCharges", "critMultiplier"). We do NOT clear existing keys —
+-- the caller sends the full set of non-default values it knows about; anything
+-- not in the payload keeps whatever the tab currently holds.
+function handlers.set_config(payload)
+    if not pob_loaded then error("set_config: call load_pob first") end
+    if type(payload) ~= "table" or type(payload.values) ~= "table" then
+        error("set_config: payload.values must be an object")
+    end
+    local build = _G.build
+    if not build or not build.configTab then
+        error("set_config: build.configTab not ready")
+    end
+    local input = build.configTab.input
+    if type(input) ~= "table" then
+        error("set_config: build.configTab.input missing")
+    end
+    for k, v in pairs(payload.values) do
+        input[k] = v
+    end
+    if type(build.configTab.BuildModList) == "function" then
+        pcall(function() build.configTab:BuildModList() end)
+    end
+    settle_calcs()
+    return handlers.get_stats(nil)
+end
+
 -- Returns the authoritative allocated set + weapon-set mode map + multi-option
 -- picks after PoB has parsed an imported XML. PoE2 tree URLs only encode
 -- main-tree nodes, so the frontend loses the WS1/WS2 slice unless it reconciles
