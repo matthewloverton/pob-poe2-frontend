@@ -235,19 +235,24 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
   useEffect(() => {
     const r = rendererRef.current;
     if (!r) return;
+    // Only surface rings/icons for jewels whose socket node is currently
+    // allocated. Prevents lingering radii after a tree reset when the items
+    // map still lists the jewels even though the user has deallocated.
     if (jewelSockets.length > 0) {
       void r.applyJewels(
-        jewelSockets.map((s) => ({
-          nodeId: s.nodeId,
-          radius: s.outerRadius ?? 0,
-          iconUrl: jewelIconUrl(s.itemId),
-        })),
+        jewelSockets
+          .filter((s) => allocated.has(s.nodeId))
+          .map((s) => ({
+            nodeId: s.nodeId,
+            radius: s.outerRadius ?? 0,
+            iconUrl: jewelIconUrl(s.itemId),
+          })),
       );
       return;
     }
     // Fallback before sidecar info arrives: draw default rings + look up
     // the jewel item via the treeSockets mapping for the icon.
-    const primary = Object.entries(treeSockets);
+    const primary = Object.entries(treeSockets).filter(([nodeId]) => allocated.has(Number(nodeId)));
     if (primary.length > 0) {
       void r.applyJewels(
         primary.map(([nodeId, itemId]) => ({
@@ -259,9 +264,13 @@ export function TreeCanvas({ tree }: { tree: PassiveTree }) {
     }
     const set = itemSets.find((s) => s.id === activeItemSet) ?? itemSets[0];
     void r.applyJewels(
-      set ? Object.keys(set.socketedJewels).map((k) => ({ nodeId: Number(k) })) : [],
+      set
+        ? Object.keys(set.socketedJewels)
+            .filter((k) => allocated.has(Number(k)))
+            .map((k) => ({ nodeId: Number(k) }))
+        : [],
     );
-  }, [jewelSockets, treeSockets, itemSets, activeItemSet, allItems, icons, uniqueIcons]);
+  }, [jewelSockets, treeSockets, itemSets, activeItemSet, allItems, icons, uniqueIcons, allocated]);
 
   useEffect(() => {
     const r = rendererRef.current;
