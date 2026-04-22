@@ -840,7 +840,7 @@ export class TreeRenderer {
             // weapon-set banks so the user can see which bank they're about to
             // spend into.
             color: allocMode === 1 ? 0xf87171 : allocMode === 2 ? 0x4ade80 : 0x06b6d4,
-            width: 4,
+            width: 6,
             includeClassStartEdges: false,
             filter: (a, b) => edgeSet.has(a < b ? `${a}-${b}` : `${b}-${a}`),
           },
@@ -869,28 +869,28 @@ export class TreeRenderer {
       drawConnections(
         this.allocatedMainLayer, this.tree.nodes, this.tree.groups, this.tree.constants,
         {
-          color: 0xfafafa, width: 4, includeClassStartEdges: false,
+          color: 0xfafafa, width: 6, includeClassStartEdges: false,
           filter: (a, b) => isKept(a) && isKept(b) && edgeMode(a, b) === 0,
         },
       );
       drawConnections(
         this.allocatedWs1Layer, this.tree.nodes, this.tree.groups, this.tree.constants,
         {
-          color: 0xf87171, width: 4, includeClassStartEdges: false,
+          color: 0xf87171, width: 6, includeClassStartEdges: false,
           filter: (a, b) => isKept(a) && isKept(b) && edgeMode(a, b) === 1,
         },
       );
       drawConnections(
         this.allocatedWs2Layer, this.tree.nodes, this.tree.groups, this.tree.constants,
         {
-          color: 0x4ade80, width: 4, includeClassStartEdges: false,
+          color: 0x4ade80, width: 6, includeClassStartEdges: false,
           filter: (a, b) => isKept(a) && isKept(b) && edgeMode(a, b) === 2,
         },
       );
       drawConnections(
         this.removingConnectionLayer, this.tree.nodes, this.tree.groups, this.tree.constants,
         {
-          color: 0xf43f5e, width: 4, includeClassStartEdges: false,
+          color: 0xf43f5e, width: 6, includeClassStartEdges: false,
           filter: (a, b) =>
             (removing.has(a) || removing.has(b)) && allocated.has(a) && allocated.has(b),
         },
